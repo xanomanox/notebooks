@@ -2,6 +2,7 @@ import json
 import os
 import re
 import shutil
+from datetime import datetime
 from glob import glob
 
 
@@ -85,6 +86,22 @@ def update_notebook_sections(
                         i += 1
 
             i += 1
+
+        # Ensure GPU metadata is set
+        if "metadata" not in notebook_content:
+            notebook_content["metadata"] = {}
+        if "accelerator" not in notebook_content["metadata"]:
+            notebook_content["metadata"]["accelerator"] = "GPU"
+            updated = True
+        if "colab" not in notebook_content["metadata"]:
+            notebook_content["metadata"]["colab"] = {"provenance": []}
+            updated = True
+        if "kernelspec" not in notebook_content["metadata"]:
+            notebook_content["metadata"]["kernelspec"] = {
+                "display_name": "Python 3",
+                "name": "python3",
+            }
+            updated = True
 
         if updated:
             with open(notebook_path, "w", encoding="utf-8") as f:
@@ -194,49 +211,41 @@ def update_readme(readme_path, notebooks_dir):
         # Sort sections alphabetically
         sorted_sections = dict(sorted(sections.items()))
 
-        # Update existing sections or add new ones
+        # Find the start and end of the "Notebooks Links" section
+        start_marker = "# Notebooks Links"
+        start_index = readme_content.find(start_marker)
+        if start_index == -1:
+            raise ValueError("Start marker '# Notebooks Links' not found in README.")
+        start_index += len(start_marker)
+
+        end_marker = "<!-- End of Notebook Links -->"
+        end_index = readme_content.find(end_marker)
+        if end_index == -1:
+            raise ValueError(
+                "End marker '<!-- End of Notebook Links -->' not found in README."
+            )
+
+        # Extract the content before and after the "Notebooks Links" section
+        content_before = readme_content[:start_index]
+        content_after = readme_content[end_index:]
+
+        # Construct the updated "Notebooks Links" section
+        updated_notebooks_links = ""
         for section_name, section_data in sorted_sections.items():
-            markdown_table = (
+            updated_notebooks_links += (
                 section_data["header"] + table_header + section_data["rows"]
             )
-            section_header_pattern = rf"## {section_name} Notebooks\n"
 
-            if re.search(section_header_pattern, readme_content, re.DOTALL):
-                # Update existing section
-                readme_content = re.sub(
-                    rf"({section_header_pattern})(.*?)(?=\n## |$)",
-                    rf"\1{markdown_table}",
-                    readme_content,
-                    flags=re.DOTALL,
-                    count=1,
-                )
-            else:
-                # Find the end of the "Notebooks Links" section
-                end_marker = "<!-- End of Notebook Links -->"
-                insertion_point = readme_content.find(end_marker)
+        # Add the "Last updated" timestamp
+        timestamp = f"<!-- Last updated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} -->\n"
 
-                # Insert new section before the end marker
-                readme_content = (
-                    readme_content[:insertion_point]
-                    + markdown_table
-                    + readme_content[insertion_point:]
-                )
-
-        # Remove sections not in sorted_sections
-        section_header_pattern = r"## (.+?) Notebooks\n"
-        matches = re.findall(section_header_pattern, readme_content, re.DOTALL)
-
-        for section_name in matches:
-            if section_name not in sorted_sections:
-                readme_content = re.sub(
-                    rf"## {section_name} Notebooks\n.*?(?=\n## |$)",
-                    "",
-                    readme_content,
-                    flags=re.DOTALL,
-                )
+        # Combine all the parts
+        updated_readme_content = (
+            content_before + "\n" + updated_notebooks_links + timestamp + content_after
+        )
 
         with open(readme_path, "w", encoding="utf-8") as f:
-            f.write(readme_content)
+            f.write(updated_readme_content)
 
         print(f"Successfully updated {readme_path}")
 

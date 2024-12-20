@@ -2,7 +2,6 @@
 Test
 
 # Notebooks Links
-
 ## Kaggle Notebooks
 | Notebook | Link |
 | --- | --- |
@@ -33,6 +32,7 @@ Test
 | Unsloth_Studio_Chat_Llama_3_1_8b_Instruct.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/Unsloth_Studio_Chat_Llama_3_1_8b_Instruct.ipynb) |
 | Continued_pretraining_Korean_and_Unsloth.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/Continued_pretraining_Korean_and_Unsloth.ipynb) |
 | ChatML_and_CodeGemma_7b_full_example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/ChatML_and_CodeGemma_7b_full_example.ipynb) |
+| test_local_notebooks.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/test_local_notebooks.ipynb) |
 | DPO_Zephyr_Unsloth_Example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/DPO_Zephyr_Unsloth_Example.ipynb) |
 | Ollama_and_Unsloth_and_Llama_3_and_Alpaca.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/Ollama_and_Unsloth_and_Llama_3_and_Alpaca.ipynb) |
 | ChatML_and_chat_templates_and_Mistral_v3_7b_full_example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/ChatML_and_chat_templates_and_Mistral_v3_7b_full_example.ipynb) |
@@ -44,6 +44,7 @@ Test
 | Pixtral_Vision_Finetuning_Unsloth_General_Dataset.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/VLM/Pixtral_Vision_Finetuning_Unsloth_General_Dataset.ipynb) |
 | Llama_3_2_Vision_Finetuning_Unsloth_Radiography.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/VLM/Llama_3_2_Vision_Finetuning_Unsloth_Radiography.ipynb) |
 | Qwen2_Vision_Finetuning_Unsloth_Maths_OCR.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/VLM/Qwen2_Vision_Finetuning_Unsloth_Maths_OCR.ipynb) |
+<!-- Last updated on: 2024-12-20 17:58:35 -->
 <!-- End of Notebook Links -->
 
 # Outro
