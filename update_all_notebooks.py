@@ -154,8 +154,10 @@ You will learn how to do [data prep](#Data), how to [train](#Train), how to [run
 
 
 def update_readme(readme_path, notebooks_dir):
-    base_url_colab = "https://colab.research.google.com/github/Erland366/unsloth-notebooks/blob/master/"
-    base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/Erland366/unsloth-notebooks/blob/master/"
+    base_url_colab = (
+        "https://colab.research.google.com/github/unslothai/notebooks/blob/master/"
+    )
+    base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/master/"
 
     paths = glob(os.path.join(notebooks_dir, "*", "*.ipynb"))
 
