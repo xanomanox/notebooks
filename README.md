@@ -13,7 +13,7 @@
 </div>
 
 # ✨ Fine-tuning Notebooks
-Below are all our main notebooks which you can use on Google Colab, Kaggle or any platform. Add your dataset, click "Run All", and you'll get a 2x faster finetuned model which can be exported to GGUF, Ollama, vLLM or uploaded to Hugging Face.
+Below are all our notebooks which you can use on Google Colab, Kaggle or any platform. Add your dataset, click "Run All", and you'll get a 2x faster finetuned model which can be exported to GGUF, Ollama, vLLM or uploaded to Hugging Face.
 
 ## Kaggle Notebooks
 | Notebook | Link |
