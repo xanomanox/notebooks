@@ -45,7 +45,7 @@
 | Qwen2 VL (7B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_VL_(7B)-Vision.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Kaggle-Qwen2_VL_(7B)-Vision.ipynb&accelerator=nvidiaTeslaT4)
 | Llama3 2 (11B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_2_(11B)-Vision.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Kaggle-Llama3_2_(11B)-Vision.ipynb&accelerator=nvidiaTeslaT4)
 | Pixtral (12B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Pixtral_(12B)-Vision.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Kaggle-Pixtral_(12B)-Vision.ipynb&accelerator=nvidiaTeslaT4)
-<!-- Last updated on: 2024-12-23 22:16:00 -->
+<!-- Last updated on: 2024-12-24 00:13:25 -->
 <!-- End of Notebook Links -->
 
 ## 🌱 Contributing to Notebooks

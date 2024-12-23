@@ -328,6 +328,8 @@ def copy_and_update_notebooks(
     """Copies notebooks from template_dir to destination_dir, updates them, and renames them."""
     template_notebooks = glob(os.path.join(template_dir, "*.ipynb"))
 
+    os.makedirs(destination_dir, exist_ok=True)
+
     for template_notebook_path in template_notebooks:
         notebook_name = os.path.basename(template_notebook_path)
 
