@@ -13,52 +13,67 @@
 </div>
 
 # ✨ Fine-tuning Notebooks
-Below are all our notebooks which you can use on Colab, Kaggle etc. Add your dataset, click "Run All", and you'll get a 2x faster finetuned model which can be exported to GGUF, Ollama, vLLM or uploaded to Hugging Face.
-
-## Kaggle Notebooks
-| Notebook | Link |
-| --- | --- |
-| notebook835b159edd.ipynb | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Kaggle/notebook835b159edd.ipynb&accelerator=nvidiaTeslaT4) |
 ## LLM Notebooks
-| Notebook | Link |
-| --- | --- |
-| Llama_3_2_1B_and_3B_Conversational_+_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Llama_3_2_1B_and_3B_Conversational_+_2x_faster_finetuning.ipynb) |
-| Alpaca_and_Llama_3_8b_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Alpaca_and_Llama_3_8b_Unsloth_2x_faster_finetuning.ipynb) |
-| Mistral_7b_Text_Completion_Raw_Text_training_full_example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Mistral_7b_Text_Completion_Raw_Text_training_full_example.ipynb) |
-| Mistral_Small_22b_and_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Mistral_Small_22b_and_Unsloth_2x_faster_finetuning.ipynb) |
-| Llama_3_1_8b_and_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Llama_3_1_8b_and_Unsloth_2x_faster_finetuning.ipynb) |
-| Llama_3_1_8b_2x_faster_inference.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Llama_3_1_8b_2x_faster_inference.ipynb) |
-| Gemma_2_2b_and_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Gemma_2_2b_and_Unsloth_2x_faster_finetuning.ipynb) |
-| KTO-Unsloth-Example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/KTO-Unsloth-Example.ipynb) |
-| Phi_3_5_Instruct_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Phi_3_5_Instruct_Unsloth_2x_faster_finetuning.ipynb) |
-| Qwen_2_5_and_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Qwen_2_5_and_Unsloth_2x_faster_finetuning.ipynb) |
-| Alpaca_and_Qwen2_7b_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Alpaca_and_Qwen2_7b_Unsloth_2x_faster_finetuning.ipynb) |
-| Qwen_2_5_Coder_14B_Conversational_and_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Qwen_2_5_Coder_14B_Conversational_and_2x_faster_finetuning.ipynb) |
-| Alpaca_and_Gemma2_9b_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Alpaca_and_Gemma2_9b_Unsloth_2x_faster_finetuning.ipynb) |
-| Alpaca_and_Mistral_Nemo_12b_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Alpaca_and_Mistral_Nemo_12b_Unsloth_2x_faster_finetuning.ipynb) |
-| Alpaca_and_TinyLlama_and_RoPE_Scaling_full_example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Alpaca_and_TinyLlama_and_RoPE_Scaling_full_example.ipynb) |
-| Phi_3_Medium_4K_Instruct_Unsloth_2x_faster_finetuning.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Phi_3_Medium_4K_Instruct_Unsloth_2x_faster_finetuning.ipynb) |
-| Alpaca_and_Mistral_v3_7b_full_example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/LLM/Alpaca_and_Mistral_v3_7b_full_example.ipynb) |
-## Others Notebooks
-| Notebook | Link |
-| --- | --- |
-| Unsloth_Studio_Chat_Llama_3_1_8b_Instruct.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/Unsloth_Studio_Chat_Llama_3_1_8b_Instruct.ipynb) |
-| Continued_pretraining_Korean_and_Unsloth.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/Continued_pretraining_Korean_and_Unsloth.ipynb) |
-| ChatML_and_CodeGemma_7b_full_example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/ChatML_and_CodeGemma_7b_full_example.ipynb) |
-| test_local_notebooks.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/test_local_notebooks.ipynb) |
-| DPO_Zephyr_Unsloth_Example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/DPO_Zephyr_Unsloth_Example.ipynb) |
-| Ollama_and_Unsloth_and_Llama_3_and_Alpaca.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/Ollama_and_Unsloth_and_Llama_3_and_Alpaca.ipynb) |
-| ChatML_and_chat_templates_and_Mistral_v3_7b_full_example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/ChatML_and_chat_templates_and_Mistral_v3_7b_full_example.ipynb) |
-| ORPO_Unsloth_Example.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/ORPO_Unsloth_Example.ipynb) |
-| Unsloth_SFT.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Others/Unsloth_SFT.ipynb) |
-## VLM Notebooks
-| Notebook | Link |
-| --- | --- |
-| Pixtral_Vision_Finetuning_Unsloth_General_Dataset.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/VLM/Pixtral_Vision_Finetuning_Unsloth_General_Dataset.ipynb) |
-| Llama_3_2_Vision_Finetuning_Unsloth_Radiography.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/VLM/Llama_3_2_Vision_Finetuning_Unsloth_Radiography.ipynb) |
-| Qwen2_Vision_Finetuning_Unsloth_Maths_OCR.ipynb | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/VLM/Qwen2_Vision_Finetuning_Unsloth_Maths_OCR.ipynb) |
-<!-- Last updated on: 2024-12-20 17:58:35 -->
+| Model | Type | Notebook Link |
+| --- | --- | --- |
+| Gemma2 (2B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Gemma2_(2B)-Alpaca.ipynb) |
+| Mistral Small (22B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_Small_(22B)-Alpaca.ipynb) |
+| Qwen2 5 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_5_(7B)-Alpaca.ipynb) |
+| TinyLlama (1.1B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/TinyLlama_(1.1B)-Alpaca.ipynb) |
+| Qwen2 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_(7B)-Alpaca.ipynb) |
+| Llama3 (8B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-Alpaca.ipynb) |
+| Gemma2 (9B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Gemma2_(9B)-Alpaca.ipynb) |
+| Mistral v0 3 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v0_3_(7B)-Alpaca.ipynb) |
+| Llama3 1 (8B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_1_(8B)-Alpaca.ipynb) |
+| Mistral Nemo (12B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_Nemo_(12B)-Alpaca.ipynb) |
+| Llama3 2 (1B and 3B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_2_(1B_and_3B)-Conversational.ipynb) |
+| Qwen2 5 Coder (14B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_5_Coder_(14B)-Conversational.ipynb) |
+| Phi 3 Medium | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Phi_3_Medium-Conversational.ipynb) |
+| Mistral v3 (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v3_(7B)-Conversational.ipynb) |
+| Phi 3 5 Mini | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Phi_3_5_Mini-Conversational.ipynb) |
+| CodeGemma (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/CodeGemma_(7B)-Conversational.ipynb) |
+| Zephyr (7B) | DPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Zephyr_(7B)-DPO.ipynb) |
+| Llama3 (8B) | ORPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-ORPO.ipynb) |
+| Mistral v0 3 (7B) | CPT | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v0_3_(7B)-CPT.ipynb) |
+| Llama3 (8B) | CSV | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-CSV.ipynb) |
+| Mistral (7B) | Text Completion | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_(7B)-Text_Completion.ipynb) |
+| Llama3 1 (8B) | Inference | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_1_(8B)-Inference.ipynb) |
+| Unsloth Studio | Unsloth Studio | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Unsloth_Studio.ipynb) |
+## Kaggle Notebooks
+| Model | Type | Notebook Link |
+| --- | --- | --- |
+| Gemma2 (9B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Kaggle-Gemma2_(9B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4) |
+## Vision Notebooks
+| Model | Type | Notebook Link |
+| --- | --- | --- |
+| Qwen2 VL (7B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_VL_(7B)-Vision.ipynb) |
+| Llama3 2 (11B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_2_(11B)-Vision.ipynb) |
+| Pixtral (12B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Pixtral_(12B)-Vision.ipynb) |
+<!-- Last updated on: 2024-12-23 14:38:13 -->
 <!-- End of Notebook Links -->
 
-# Outro
-Test
+# ✨ Contributing Notebooks
+We're thrilled that you're interested in contributing your notebooks to this project! Your contributions help make this resource even better for everyone.
+
+Here's how you can contribute:
+
+1. **Find the Template:**  We've provided a template notebook called `Template_Notebook.ipynb` in the root directory of this project. This template contains the basic structure and formatting guidelines for all notebooks in this collection.
+2. **Create Your Notebook:**
+    *   Make a copy of `Template_Notebook.ipynb`.
+    *   Rename the copied file to follow this naming convention:
+        *   **LLM Notebooks:** `<Model Name>-<Type>.ipynb` (e.g., `Mistral_v3_(7B)-Alpaca.ipynb`)
+        *   **Kaggle Notebooks:** `Kaggle-<Model Name>-<Type>.ipynb` (e.g., `Kaggle-Gemma_(7B)-Alpaca.ipynb`)
+        *   **Vision Notebooks:** `<Model Name>-Vision.ipynb` (e.g., `Llava_v1_6_(7B)-Vision.ipynb`)
+        *   **Example of `<Type>`:** `Alpaca`, `Conversational`, `CPT`, `DPO`, `ORPO`, `Text_Completion`, `CSV`, `Inference`, `Unsloth_Studio`
+    <!-- *   Modify the content of your notebook, adding your code, explanations, and any other relevant information. Make sure to follow the structure and guidelines from the template. -->
+3. **Place in `original_template`:** Once your notebook is ready, move it to the `original_template` directory.
+4. **Update Notebooks:** Run the following command in your terminal:
+    ```bash
+    python update_all_notebooks.py
+    ```
+    This script will automatically:
+    *   Copy your notebook from `original_template` to the `notebooks` directory.
+    *   Update the notebook's internal sections (like Installation, News) to ensure consistency.
+    *   Add your notebook to the appropriate list in this `README.md` file.
+5. **Create a Pull Request:** After that, just create a pull request (PR) to merge your changes, making it available for everyone!
+    *   We appreciate your contributions and look forward to reviewing your notebooks!

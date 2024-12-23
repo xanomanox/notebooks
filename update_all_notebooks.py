@@ -5,6 +5,38 @@ import shutil
 from datetime import datetime
 from glob import glob
 
+general_announcement_content = """To run this, press "*Runtime*" and press "*Run all*" on a **free** Tesla T4 Google Colab instance!
+<div class="align-center">
+<a href="https://github.com/unslothai/unsloth"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
+<a href="https://discord.gg/unsloth"><img src="https://github.com/unslothai/unsloth/raw/main/images/Discord button.png" width="145"></a>
+<a href="https://docs.unsloth.ai/"><img src="https://github.com/unslothai/unsloth/blob/main/images/documentation%20green%20button.png?raw=true" width="125"></a></a> Join Discord if you need help + ⭐ <i>Star us on <a href="https://github.com/unslothai/unsloth">Github</a> </i> ⭐
+</div>
+
+To install Unsloth on your own computer, follow the installation instructions on our Github page [here](https://github.com/unslothai/unsloth?tab=readme-ov-file#-installation-instructions).
+
+**[NEW] As of Novemeber 2024, Unsloth now supports vision finetuning!**
+
+You will learn how to do [data prep](#Data), how to [train](#Train), how to [run the model](#Inference), & [how to save it](#Save)"""
+
+installation_content = """%%capture
+!pip install unsloth
+# Also get the latest nightly Unsloth!
+!pip uninstall unsloth -y && pip install --upgrade --no-cache-dir --no-deps git+https://github.com/unslothai/unsloth.git
+"""
+
+installation_kaggle_content = """%%capture
+# Install kaggle
+!pip install unsloth
+# Also get the latest nightly Unsloth!
+!pip uninstall unsloth -y && pip install --upgrade --no-cache-dir --no-deps git+https://github.com/unslothai/unsloth.git
+"""
+
+new_announcement_content_non_vlm = """* We support Llama 3.2 Vision 11B, 90B; Pixtral; Qwen2VL 2B, 7B, 72B; and any Llava variant like Llava NeXT!
+* We support 16bit LoRA via `load_in_4bit=False` or 4bit QLoRA. Both are accelerated and use much less memory!
+"""
+
+new_announcement_content_vlm = """**We also support finetuning ONLY the vision part of the model, or ONLY the language part. Or you can select both! You can also select to finetune the attention or the MLP layers!**"""
+
 
 def copy_folder(source_path, new_name, destination_path=None, replace=False):
     if destination_path is None:
@@ -25,8 +57,8 @@ def copy_folder(source_path, new_name, destination_path=None, replace=False):
         print(f"An error occurred: {str(e)}")
 
 
-def is_kaggle_path_regex(file_path):
-    return bool(re.search(r"kaggle", file_path, re.IGNORECASE))
+def is_path_contains_any(file_path, words):
+    return any(re.search(word, file_path, re.IGNORECASE) for word in words)
 
 
 def update_notebook_sections(
@@ -34,7 +66,8 @@ def update_notebook_sections(
     general_announcement,
     installation_steps,
     installation_steps_kaggle,
-    new_announcement,
+    new_announcement_non_vlm,
+    new_announcement_vlm,
 ):
     try:
         with open(notebook_path, "r", encoding="utf-8") as f:
@@ -63,8 +96,12 @@ def update_notebook_sections(
                         i + 1 < len(notebook_content["cells"])
                         and notebook_content["cells"][i + 1]["cell_type"] == "markdown"
                     ):
+                        if is_path_contains_any(notebook_path, ["Vision"]):
+                            announcement = new_announcement_vlm
+                        else:
+                            announcement = new_announcement_non_vlm
                         notebook_content["cells"][i + 1]["source"] = [
-                            f"{line}\n" for line in new_announcement.splitlines()
+                            f"{line}\n" for line in announcement.splitlines()
                         ]
                         updated = True
                         i += 1
@@ -73,15 +110,13 @@ def update_notebook_sections(
                         i + 1 < len(notebook_content["cells"])
                         and notebook_content["cells"][i + 1]["cell_type"] == "code"
                     ):
-                        if is_kaggle_path_regex(notebook_path):
-                            notebook_content["cells"][i + 1]["source"] = [
-                                f"{line}\n"
-                                for line in installation_steps_kaggle.splitlines()
-                            ]
+                        if is_path_contains_any(notebook_path, ["kaggle"]):
+                            installation = installation_steps_kaggle
                         else:
-                            notebook_content["cells"][i + 1]["source"] = [
-                                f"{line}\n" for line in installation_steps.splitlines()
-                            ]
+                            installation = installation_steps
+                        notebook_content["cells"][i + 1]["source"] = [
+                            f"{line}\n" for line in installation.splitlines()
+                        ]
                         updated = True
                         i += 1
 
@@ -119,40 +154,10 @@ def update_notebook_sections(
 
 
 def main():
-    general_announcement_content = """To run this, press "*Runtime*" and press "*Run all*" on a **free** Tesla T4 Google Colab instance!
-<div class="align-center">
-  <a href="https://github.com/unslothai/unsloth"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
-  <a href="https://discord.gg/unsloth"><img src="https://github.com/unslothai/unsloth/raw/main/images/Discord button.png" width="145"></a>
-  <a href="https://docs.unsloth.ai/"><img src="https://github.com/unslothai/unsloth/blob/main/images/documentation%20green%20button.png?raw=true" width="125"></a></a> Join Discord if you need help + ⭐ <i>Star us on <a href="https://github.com/unslothai/unsloth">Github</a> </i> ⭐
-</div>
-
-To install Unsloth on your own computer, follow the installation instructions on our Github page [here](https://github.com/unslothai/unsloth?tab=readme-ov-file#-installation-instructions).
-
-**[NEW] As of Novemeber 2024, Unsloth now supports vision finetuning!**
-
-You will learn how to do [data prep](#Data), how to [train](#Train), how to [run the model](#Inference), & [how to save it](#Save)"""
-
-    installation_content = """%%capture
-!pip install unsloth
-# Also get the latest nightly Unsloth!
-!pip uninstall unsloth -y && pip install --upgrade --no-cache-dir --no-deps git+https://github.com/unslothai/unsloth.git
-"""
-
-    installation_kaggle_content = """%%capture
-# Install kaggle
-!pip install unsloth
-# Also get the latest nightly Unsloth!
-!pip uninstall unsloth -y && pip install --upgrade --no-cache-dir --no-deps git+https://github.com/unslothai/unsloth.git
-"""
-
-    new_announcement_content = """* We support Llama 3.2 Vision 11B, 90B; Pixtral; Qwen2VL 2B, 7B, 72B; and any Llava variant like Llava NeXT!
-* We support 16bit LoRA via `load_in_4bit=False` or 4bit QLoRA. Both are accelerated and use much less memory!
-"""
-
     notebook_directory = "notebooks"
     notebook_pattern = "*.ipynb"
 
-    notebook_files = glob(os.path.join(notebook_directory, "*", notebook_pattern))
+    notebook_files = glob(os.path.join(notebook_directory, notebook_pattern))
 
     if not notebook_files:
         print(
@@ -166,56 +171,75 @@ You will learn how to do [data prep](#Data), how to [train](#Train), how to [run
             general_announcement_content,
             installation_content,
             installation_kaggle_content,
-            new_announcement_content,
+            new_announcement_content_non_vlm,
+            new_announcement_content_vlm,
         )
 
 
-def update_readme(readme_path, notebooks_dir):
+def update_readme(readme_path, notebooks_dir, type_order=None):
     base_url_colab = (
         "https://colab.research.google.com/github/unslothai/notebooks/blob/main/"
     )
     base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/"
 
-    paths = glob(os.path.join(notebooks_dir, "*", "*.ipynb"))
+    paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
 
-    sections = {}  # Dynamically create sections based on subfolders
+    sections = {
+        "LLM": {"header": "## LLM Notebooks\n", "subsections": {}},
+        "Kaggle": {"header": "## Kaggle Notebooks\n", "rows": ""},
+        "Vision": {"header": "## Vision Notebooks\n", "rows": ""},
+    }
 
-    table_header = "| Notebook | Link |\n| --- | --- |\n"
+    table_header = "| Model | Type | Notebook Link |\n| --- | --- | --- |\n"
 
     for path in paths:
         notebook_name = os.path.basename(path)
-        section_name = os.path.basename(os.path.dirname(path))
+        model = ""
+        type_ = ""
+        link = ""
 
-        # Create section if it doesn't exist
-        if section_name not in sections:
-            sections[section_name] = {
-                "header": f"## {section_name} Notebooks\n",
-                "rows": "",
-            }
-
-        if section_name == "Kaggle":
-            notebook_link = base_url_kaggle + path + "&accelerator=nvidiaTeslaT4"
-            sections[section_name]["rows"] += (
-                f"| {notebook_name} | [Open in Kaggle]({notebook_link}) |\n"
+        if is_path_contains_any(path, ["kaggle"]):
+            section_name = "Kaggle"
+            link = (
+                f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
             )
+            parts = notebook_name.replace(".ipynb", "").split("-")
+            model = parts[1].replace("_", " ")
+            type_ = parts[-1]
+
+            sections[section_name]["rows"] += f"| {model} | {type_} | {link} |\n"
+
+        elif is_path_contains_any(path, ["vision"]):
+            section_name = "Vision"
+            link = f"[Open in Colab]({base_url_colab}{path})"
+            parts = notebook_name.replace(".ipynb", "").split("-")
+            model = parts[0].replace("_", " ")
+            type_ = parts[-1].replace("_", " ")
+
+            sections[section_name]["rows"] += f"| {model} | {type_} | {link} |\n"
         else:
-            notebook_link = base_url_colab + path
-            sections[section_name]["rows"] += (
-                f"| {notebook_name} | [Open in Colab]({notebook_link}) |\n"
+            section_name = "LLM"
+            link = f"[Open in Colab]({base_url_colab}{path})"
+            parts = notebook_name.replace(".ipynb", "").split("-")
+            model = parts[0].replace("_", " ")
+            type_ = parts[-1].replace("_", " ")
+
+            if type_ not in sections[section_name]["subsections"]:
+                sections[section_name]["subsections"][type_] = ""
+            sections[section_name]["subsections"][type_] += (
+                f"| {model} | {type_} | {link} |\n"
             )
 
     try:
         with open(readme_path, "r", encoding="utf-8") as f:
             readme_content = f.read()
 
-        # Sort sections alphabetically
-        sorted_sections = dict(sorted(sections.items()))
-
-        # Find the start and end of the "Notebooks Links" section
-        start_marker = "# Notebooks Links"
+        start_marker = "# ✨ Fine-tuning Notebooks"
         start_index = readme_content.find(start_marker)
         if start_index == -1:
-            raise ValueError("Start marker '# Notebooks Links' not found in README.")
+            raise ValueError(
+                "Start marker '# ✨ Fine-tuning Notebooks' not found in README."
+            )
         start_index += len(start_marker)
 
         end_marker = "<!-- End of Notebook Links -->"
@@ -225,21 +249,38 @@ def update_readme(readme_path, notebooks_dir):
                 "End marker '<!-- End of Notebook Links -->' not found in README."
             )
 
-        # Extract the content before and after the "Notebooks Links" section
         content_before = readme_content[:start_index]
         content_after = readme_content[end_index:]
 
-        # Construct the updated "Notebooks Links" section
         updated_notebooks_links = ""
-        for section_name, section_data in sorted_sections.items():
-            updated_notebooks_links += (
-                section_data["header"] + table_header + section_data["rows"]
-            )
 
-        # Add the "Last updated" timestamp
+        if sections["LLM"]["subsections"]:
+            updated_notebooks_links += sections["LLM"]["header"] + table_header
+
+            if type_order:
+                sorted_types = sorted(
+                    sections["LLM"]["subsections"].keys(),
+                    key=lambda x: type_order.index(x)
+                    if x in type_order
+                    else float("inf"),
+                )
+            else:
+                sorted_types = sorted(sections["LLM"]["subsections"].keys())
+
+            for type_ in sorted_types:
+                rows = sections["LLM"]["subsections"][type_]
+                updated_notebooks_links += rows
+
+        for section_name in ["Kaggle", "Vision"]:
+            if sections[section_name]["rows"]:
+                updated_notebooks_links += (
+                    sections[section_name]["header"]
+                    + table_header
+                    + sections[section_name]["rows"]
+                )
+
         timestamp = f"<!-- Last updated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} -->\n"
 
-        # Combine all the parts
         updated_readme_content = (
             content_before + "\n" + updated_notebooks_links + timestamp + content_after
         )
@@ -261,4 +302,18 @@ if __name__ == "__main__":
 
     notebook_directory = "notebooks"
     readme_path = "README.md"
-    update_readme(readme_path, notebook_directory)
+    update_readme(
+        readme_path,
+        notebook_directory,
+        type_order=[
+            "Alpaca",
+            "Conversational",
+            "DPO",
+            "ORPO",
+            "CPT",
+            "CSV",
+            "Text Completion",
+            "Inference",
+            "Unsloth Studio",
+        ],
+    )
