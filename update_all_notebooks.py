@@ -25,11 +25,11 @@ installation_content = """%%capture
 """
 
 installation_kaggle_content = """%%capture
-# Install kaggle
-!pip install unsloth
-# Also get the latest nightly Unsloth!
-!pip uninstall unsloth -y && pip install --upgrade --no-cache-dir --no-deps git+https://github.com/unslothai/unsloth.git
-"""
+# Kaggle is slow - you'll have to wait 5 minutes for it to install.
+!pip install pip3-autoremove
+!pip-autoremove torch torchvision torchaudio -y
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
+!pip install unsloth"""
 
 new_announcement_content_non_vlm = """* We support Llama 3.2 Vision 11B, 90B; Pixtral; Qwen2VL 2B, 7B, 72B; and any Llava variant like Llava NeXT!
 * We support 16bit LoRA via `load_in_4bit=False` or 4bit QLoRA. Both are accelerated and use much less memory!
@@ -197,6 +197,7 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
 
     for path in paths:
         notebook_name = os.path.basename(path)
+        kaggle_path = path.replace("notebooks/", "notebooks/Kaggle-")
         model = ""
         type_ = ""
         colab_link = ""
@@ -225,9 +226,7 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
         elif is_path_contains_any(path, ["vision"]):
             section_name = "Vision"
             colab_link = f"[Open in Colab]({base_url_colab}{path})"
-            kaggle_link = (
-                f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
-            )
+            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}{kaggle_path}?accelerator=nvidiaTeslaT4)"
             parts = notebook_name.replace(".ipynb", "").split("-")
             model = parts[0].replace("_", " ")
             type_ = parts[-1].replace("_", " ")
@@ -239,7 +238,7 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
         else:
             section_name = "LLM"
             colab_link = f"[Open in Colab]({base_url_colab}{path})"
-            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}Kaggle-{path}?accelerator=nvidiaTeslaT4)"
+            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}{kaggle_path}?accelerator=nvidiaTeslaT4)"
             parts = notebook_name.replace(".ipynb", "").split("-")
             model = parts[0].replace("_", " ")
             type_ = parts[-1].replace("_", " ")
