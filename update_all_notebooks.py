@@ -110,6 +110,8 @@ def update_notebook_sections(
                         i + 1 < len(notebook_content["cells"])
                         and notebook_content["cells"][i + 1]["cell_type"] == "code"
                     ):
+                        # Use installation_steps_kaggle if "Kaggle" is in the path,
+                        # otherwise use installation_steps
                         if is_path_contains_any(notebook_path, ["kaggle"]):
                             installation = installation_steps_kaggle
                         else:
@@ -186,7 +188,6 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
 
     sections = {
         "LLM": {"header": "## LLM Notebooks\n", "subsections": {}},
-        "Kaggle": {"header": "## Kaggle Notebooks\n", "rows": ""},
         "Vision": {"header": "## Vision Notebooks\n", "rows": ""},
     }
 
@@ -202,16 +203,24 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
         kaggle_link = ""
 
         if is_path_contains_any(path, ["kaggle"]):
-            pass
+            continue
             # section_name = "Kaggle"
-            # link = (
+            # kaggle_link = (
             #     f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
             # )
-            # parts = notebook_name.replace(".ipynb", "").split("-")
-            # model = parts[1].replace("_", " ")
-            # type_ = parts[-1]
 
-            # sections[section_name]["rows"] += f"| {model} | {type_} | {link} |\n"
+            # parts = notebook_name.replace(".ipynb", "").split("-")
+            # # Special handling for Kaggle names
+            # if len(parts) >= 2 and parts[0].lower() == "kaggle":
+            #     model = parts[1].replace("_", " ")
+            #     type_ = parts[2].replace("_", " ") if len(parts) >= 3 else ""
+            # else:
+            #     model = parts[0].replace("_", " ")
+            #     type_ = parts[-1].replace("_", " ")
+
+            # sections[section_name]["rows"] += (
+            #     f"| {model} | {type_} | {colab_link} | {kaggle_link}\n"
+            # )
 
         elif is_path_contains_any(path, ["vision"]):
             section_name = "Vision"
@@ -226,12 +235,11 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
             sections[section_name]["rows"] += (
                 f"| {model} | {type_} | {colab_link} | {kaggle_link}\n"
             )
+
         else:
             section_name = "LLM"
             colab_link = f"[Open in Colab]({base_url_colab}{path})"
-            kaggle_link = (
-                f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
-            )
+            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}Kaggle-{path}?accelerator=nvidiaTeslaT4)"
             parts = notebook_name.replace(".ipynb", "").split("-")
             model = parts[0].replace("_", " ")
             type_ = parts[-1].replace("_", " ")
@@ -283,7 +291,7 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
                 rows = sections["LLM"]["subsections"][type_]
                 updated_notebooks_links += rows
 
-        for section_name in ["Kaggle", "Vision"]:
+        for section_name in ["Vision"]:
             if sections[section_name]["rows"]:
                 updated_notebooks_links += (
                     sections[section_name]["header"]
@@ -305,27 +313,79 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
     except FileNotFoundError:
         print(f"Error: {readme_path} not found.")
     except Exception as e:
-        print(f"An error occurred while updating {readme_path}: {e}")
+        raise e
+        # print(f"An error occurred while updating {readme_path}: {e}")
+
+
+def copy_and_update_notebooks(
+    template_dir,
+    destination_dir,
+    general_announcement,
+    installation,
+    installation_kaggle,
+    new_announcement_non_vlm,
+    new_announcement_vlm,
+):
+    """Copies notebooks from template_dir to destination_dir, updates them, and renames them."""
+    template_notebooks = glob(os.path.join(template_dir, "*.ipynb"))
+
+    for template_notebook_path in template_notebooks:
+        notebook_name = os.path.basename(template_notebook_path)
+
+        colab_notebook_name = notebook_name
+        destination_notebook_path = os.path.join(destination_dir, colab_notebook_name)
+
+        shutil.copy2(template_notebook_path, destination_notebook_path)
+        print(f"Copied '{colab_notebook_name}' to '{destination_dir}'")
+
+        update_notebook_sections(
+            destination_notebook_path,
+            general_announcement,
+            installation,
+            installation_kaggle,
+            new_announcement_non_vlm,
+            new_announcement_vlm,
+        )
+
+        kaggle_notebook_name = "Kaggle-" + notebook_name
+        destination_notebook_path = os.path.join(destination_dir, kaggle_notebook_name)
+
+        shutil.copy2(template_notebook_path, destination_notebook_path)
+        print(f"Copied '{kaggle_notebook_name}' to '{destination_dir}'")
+
+        update_notebook_sections(
+            destination_notebook_path,
+            general_announcement,
+            installation_kaggle,
+            installation_kaggle,
+            new_announcement_non_vlm,
+            new_announcement_vlm,
+        )
 
 
 if __name__ == "__main__":
-    copy_folder("original_template", "notebooks", replace=True)
+    copy_and_update_notebooks(
+        "original_template",
+        "notebooks",
+        general_announcement_content,
+        installation_content,
+        installation_kaggle_content,
+        new_announcement_content_non_vlm,
+        new_announcement_content_vlm,
+    )
     main()
 
     notebook_directory = "notebooks"
     readme_path = "README.md"
-    update_readme(
-        readme_path,
-        notebook_directory,
-        type_order=[
-            "Alpaca",
-            "Conversational",
-            "DPO",
-            "ORPO",
-            "CPT",
-            "CSV",
-            "Text Completion",
-            "Inference",
-            "Unsloth Studio",
-        ],
-    )
+    type_order = [
+        "Alpaca",
+        "Conversational",
+        "CPT",
+        "DPO",
+        "ORPO",
+        "Text_Completion",
+        "CSV",
+        "Inference",
+        "Unsloth_Studio",
+    ]  # Define your desired order here
+    update_readme(readme_path, notebook_directory, type_order)
