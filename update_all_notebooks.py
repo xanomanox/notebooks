@@ -226,7 +226,7 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
         elif is_path_contains_any(path, ["vision"]):
             section_name = "Vision"
             colab_link = f"[Open in Colab]({base_url_colab}{path})"
-            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}{kaggle_path}?accelerator=nvidiaTeslaT4)"
+            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}{kaggle_path}&accelerator=nvidiaTeslaT4)"
             parts = notebook_name.replace(".ipynb", "").split("-")
             model = parts[0].replace("_", " ")
             type_ = parts[-1].replace("_", " ")
@@ -238,7 +238,7 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
         else:
             section_name = "LLM"
             colab_link = f"[Open in Colab]({base_url_colab}{path})"
-            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}{kaggle_path}?accelerator=nvidiaTeslaT4)"
+            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}{kaggle_path}&accelerator=nvidiaTeslaT4)"
             parts = notebook_name.replace(".ipynb", "").split("-")
             model = parts[0].replace("_", " ")
             type_ = parts[-1].replace("_", " ")
