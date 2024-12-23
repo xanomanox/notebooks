@@ -190,36 +190,48 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
         "Vision": {"header": "## Vision Notebooks\n", "rows": ""},
     }
 
-    table_header = "| Model | Type | Notebook Link |\n| --- | --- | --- |\n"
+    table_header = (
+        "| Model | Type | Colab Link | Kaggle Link |\n| --- | --- | --- | --- |\n"
+    )
 
     for path in paths:
         notebook_name = os.path.basename(path)
         model = ""
         type_ = ""
-        link = ""
+        colab_link = ""
+        kaggle_link = ""
 
         if is_path_contains_any(path, ["kaggle"]):
-            section_name = "Kaggle"
-            link = (
-                f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
-            )
-            parts = notebook_name.replace(".ipynb", "").split("-")
-            model = parts[1].replace("_", " ")
-            type_ = parts[-1]
+            pass
+            # section_name = "Kaggle"
+            # link = (
+            #     f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
+            # )
+            # parts = notebook_name.replace(".ipynb", "").split("-")
+            # model = parts[1].replace("_", " ")
+            # type_ = parts[-1]
 
-            sections[section_name]["rows"] += f"| {model} | {type_} | {link} |\n"
+            # sections[section_name]["rows"] += f"| {model} | {type_} | {link} |\n"
 
         elif is_path_contains_any(path, ["vision"]):
             section_name = "Vision"
-            link = f"[Open in Colab]({base_url_colab}{path})"
+            colab_link = f"[Open in Colab]({base_url_colab}{path})"
+            kaggle_link = (
+                f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
+            )
             parts = notebook_name.replace(".ipynb", "").split("-")
             model = parts[0].replace("_", " ")
             type_ = parts[-1].replace("_", " ")
 
-            sections[section_name]["rows"] += f"| {model} | {type_} | {link} |\n"
+            sections[section_name]["rows"] += (
+                f"| {model} | {type_} | {colab_link} | {kaggle_link}\n"
+            )
         else:
             section_name = "LLM"
-            link = f"[Open in Colab]({base_url_colab}{path})"
+            colab_link = f"[Open in Colab]({base_url_colab}{path})"
+            kaggle_link = (
+                f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
+            )
             parts = notebook_name.replace(".ipynb", "").split("-")
             model = parts[0].replace("_", " ")
             type_ = parts[-1].replace("_", " ")
@@ -227,7 +239,7 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
             if type_ not in sections[section_name]["subsections"]:
                 sections[section_name]["subsections"][type_] = ""
             sections[section_name]["subsections"][type_] += (
-                f"| {model} | {type_} | {link} |\n"
+                f"| {model} | {type_} | {colab_link} | {kaggle_link}\n"
             )
 
     try:

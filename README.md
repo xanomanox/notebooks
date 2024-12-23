@@ -14,42 +14,38 @@
 
 # ✨ Fine-tuning Notebooks
 ## LLM Notebooks
-| Model | Type | Notebook Link |
-| --- | --- | --- |
-| Gemma2 (2B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Gemma2_(2B)-Alpaca.ipynb) |
-| Mistral Small (22B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_Small_(22B)-Alpaca.ipynb) |
-| Qwen2 5 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_5_(7B)-Alpaca.ipynb) |
-| TinyLlama (1.1B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/TinyLlama_(1.1B)-Alpaca.ipynb) |
-| Qwen2 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_(7B)-Alpaca.ipynb) |
-| Llama3 (8B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-Alpaca.ipynb) |
-| Gemma2 (9B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Gemma2_(9B)-Alpaca.ipynb) |
-| Mistral v0 3 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v0_3_(7B)-Alpaca.ipynb) |
-| Llama3 1 (8B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_1_(8B)-Alpaca.ipynb) |
-| Mistral Nemo (12B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_Nemo_(12B)-Alpaca.ipynb) |
-| Llama3 2 (1B and 3B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_2_(1B_and_3B)-Conversational.ipynb) |
-| Qwen2 5 Coder (14B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_5_Coder_(14B)-Conversational.ipynb) |
-| Phi 3 Medium | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Phi_3_Medium-Conversational.ipynb) |
-| Mistral v3 (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v3_(7B)-Conversational.ipynb) |
-| Phi 3 5 Mini | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Phi_3_5_Mini-Conversational.ipynb) |
-| CodeGemma (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/CodeGemma_(7B)-Conversational.ipynb) |
-| Zephyr (7B) | DPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Zephyr_(7B)-DPO.ipynb) |
-| Llama3 (8B) | ORPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-ORPO.ipynb) |
-| Mistral v0 3 (7B) | CPT | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v0_3_(7B)-CPT.ipynb) |
-| Llama3 (8B) | CSV | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-CSV.ipynb) |
-| Mistral (7B) | Text Completion | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_(7B)-Text_Completion.ipynb) |
-| Llama3 1 (8B) | Inference | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_1_(8B)-Inference.ipynb) |
-| Unsloth Studio | Unsloth Studio | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Unsloth_Studio.ipynb) |
-## Kaggle Notebooks
-| Model | Type | Notebook Link |
-| --- | --- | --- |
-| Gemma2 (9B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Kaggle-Gemma2_(9B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4) |
+| Model | Type | Colab Link | Kaggle Link |
+| --- | --- | --- | --- |
+| Gemma2 (2B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Gemma2_(2B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Gemma2_(2B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Mistral Small (22B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_Small_(22B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Mistral_Small_(22B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Qwen2 5 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_5_(7B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Qwen2_5_(7B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| TinyLlama (1.1B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/TinyLlama_(1.1B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/TinyLlama_(1.1B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Qwen2 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_(7B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Qwen2_(7B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Llama3 (8B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Gemma2 (9B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Gemma2_(9B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Gemma2_(9B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Mistral v0 3 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v0_3_(7B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Mistral_v0_3_(7B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Llama3 1 (8B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_1_(8B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Llama3_1_(8B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Mistral Nemo (12B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_Nemo_(12B)-Alpaca.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Mistral_Nemo_(12B)-Alpaca.ipynb?accelerator=nvidiaTeslaT4)
+| Llama3 2 (1B and 3B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_2_(1B_and_3B)-Conversational.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Llama3_2_(1B_and_3B)-Conversational.ipynb?accelerator=nvidiaTeslaT4)
+| Qwen2 5 Coder (14B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_5_Coder_(14B)-Conversational.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Qwen2_5_Coder_(14B)-Conversational.ipynb?accelerator=nvidiaTeslaT4)
+| Phi 3 Medium | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Phi_3_Medium-Conversational.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Phi_3_Medium-Conversational.ipynb?accelerator=nvidiaTeslaT4)
+| Mistral v3 (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v3_(7B)-Conversational.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Mistral_v3_(7B)-Conversational.ipynb?accelerator=nvidiaTeslaT4)
+| Phi 3 5 Mini | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Phi_3_5_Mini-Conversational.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Phi_3_5_Mini-Conversational.ipynb?accelerator=nvidiaTeslaT4)
+| CodeGemma (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/CodeGemma_(7B)-Conversational.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/CodeGemma_(7B)-Conversational.ipynb?accelerator=nvidiaTeslaT4)
+| Zephyr (7B) | DPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Zephyr_(7B)-DPO.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Zephyr_(7B)-DPO.ipynb?accelerator=nvidiaTeslaT4)
+| Llama3 (8B) | ORPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-ORPO.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-ORPO.ipynb?accelerator=nvidiaTeslaT4)
+| Mistral v0 3 (7B) | CPT | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_v0_3_(7B)-CPT.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Mistral_v0_3_(7B)-CPT.ipynb?accelerator=nvidiaTeslaT4)
+| Llama3 (8B) | CSV | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-CSV.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Llama3_(8B)-CSV.ipynb?accelerator=nvidiaTeslaT4)
+| Mistral (7B) | Text Completion | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Mistral_(7B)-Text_Completion.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Mistral_(7B)-Text_Completion.ipynb?accelerator=nvidiaTeslaT4)
+| Llama3 1 (8B) | Inference | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_1_(8B)-Inference.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Llama3_1_(8B)-Inference.ipynb?accelerator=nvidiaTeslaT4)
+| Unsloth Studio | Unsloth Studio | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Unsloth_Studio.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Unsloth_Studio.ipynb?accelerator=nvidiaTeslaT4)
 ## Vision Notebooks
-| Model | Type | Notebook Link |
-| --- | --- | --- |
-| Qwen2 VL (7B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_VL_(7B)-Vision.ipynb) |
-| Llama3 2 (11B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_2_(11B)-Vision.ipynb) |
-| Pixtral (12B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Pixtral_(12B)-Vision.ipynb) |
-<!-- Last updated on: 2024-12-23 14:38:13 -->
+| Model | Type | Colab Link | Kaggle Link |
+| --- | --- | --- | --- |
+| Qwen2 VL (7B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Qwen2_VL_(7B)-Vision.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Qwen2_VL_(7B)-Vision.ipynb?accelerator=nvidiaTeslaT4)
+| Llama3 2 (11B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Llama3_2_(11B)-Vision.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Llama3_2_(11B)-Vision.ipynb?accelerator=nvidiaTeslaT4)
+| Pixtral (12B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Pixtral_(12B)-Vision.ipynb) | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/notebooks/Pixtral_(12B)-Vision.ipynb?accelerator=nvidiaTeslaT4)
+<!-- Last updated on: 2024-12-23 14:48:44 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing Notebooks
