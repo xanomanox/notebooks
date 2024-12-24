@@ -12,7 +12,7 @@
 
 </div>
 
-## 📒 Fine-tuning Notebooks
+# 📒 Fine-tuning Notebooks
 Here are our notebooks for Google Colab. Add your dataset, run all cells, and get a 2x faster fine-tuned model ready for export to GGUF, Ollama, vLLM, or Hugging Face. You can view our [Kaggle notebooks here](https://github.com/unslothai/notebooks/#Kaggle-Notebooks).
 ### Llama
 | Model | Type | Colab Link |
@@ -64,7 +64,7 @@ Here are our notebooks for Google Colab. Add your dataset, run all cells, and ge
 | TinyLlama (1.1B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/TinyLlama_(1.1B)-Alpaca.ipynb) |
 | Unsloth Studio | Unsloth Studio | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/notebooks/Unsloth_Studio.ipynb) |
 
-## 📒 Kaggle Notebooks
+# 📒 Kaggle Notebooks
 <details>
   <summary>
 Click for all our Kaggle notebooks:
@@ -124,7 +124,7 @@ Click for all our Kaggle notebooks:
 <!-- Last updated on: 2024-12-24 00:13:25 -->
 <!-- End of Notebook Links -->
 
-## ✨ Contributing to Notebooks
+# ✨ Contributing to Notebooks
 If you'd like to contribute to our notebooks, here's a guide to get you started:
 
 1. **Find the Template:**  We've provided a template notebook called `Template_Notebook.ipynb` in the root directory of this project. This template contains the basic structure and formatting guidelines for all notebooks in this collection.
