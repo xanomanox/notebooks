@@ -13,7 +13,8 @@
 </div>
 
 # 📒 Fine-tuning Notebooks
-Below are our notebooks for Google Colab categorized by model. You can also view our [Kaggle notebooks here](https://github.com/unslothai/notebooks/#Kaggle-Notebooks).
+Below are our notebooks for Google Colab categorized by model.
+You can also view our [Kaggle notebooks here](https://github.com/unslothai/notebooks/#Kaggle-Notebooks).
 
 ### Llama
 | Model | Type | Colab Link |
