@@ -37,6 +37,8 @@ new_announcement_content_non_vlm = """* We support Llama 3.2 Vision 11B, 90B; Pi
 
 new_announcement_content_vlm = """**We also support finetuning ONLY the vision part of the model, or ONLY the language part. Or you can select both! You can also select to finetune the attention or the MLP layers!**"""
 
+naming_mapping = {"mistral": ["pixtral"]}
+
 
 def copy_folder(source_path, new_name, destination_path=None, replace=False):
     if destination_path is None:
@@ -209,10 +211,6 @@ def update_readme(
         is_kaggle = is_path_contains_any(path.lower(), ["kaggle"])
 
         section_name = "Other notebooks"
-        for sect in sections:
-            if is_path_contains_any(path, [sect]):
-                section_name = sect
-                break
 
         if is_kaggle:
             link = f"[Open in Kaggle]({base_url_kaggle}{path}"
@@ -227,6 +225,13 @@ def update_readme(
             model = parts[1].replace("_", " ")
         else:
             model = parts[0].replace("_", " ")
+
+        for sect in sections:
+            check = [sect.lower()]
+            check.extend(naming_mapping.get(sect.lower(), []))
+            if is_path_contains_any(path.lower(), check):
+                section_name = sect
+                break
         type_ = parts[-1].replace("_", " ")
         if is_path_contains_any(path.lower(), ["vision"]):
             type_ = f"**{type_}**"
@@ -345,6 +350,8 @@ def copy_and_update_notebooks(
     """Copies notebooks from template_dir to destination_dir, updates them, and renames them."""
     template_notebooks = glob(os.path.join(template_dir, "*.ipynb"))
 
+    if os.path.exists(destination_dir):
+        shutil.rmtree(destination_dir)
     os.makedirs(destination_dir, exist_ok=True)
 
     for template_notebook_path in template_notebooks:
