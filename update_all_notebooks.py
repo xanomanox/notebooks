@@ -178,7 +178,9 @@ def main():
         )
 
 
-def update_readme(readme_path, notebooks_dir, type_order=None):
+def update_readme(
+    readme_path, notebooks_dir, type_order=None, kaggle_accelerator="nvidiaTeslaT4"
+):
     base_url_colab = (
         "https://colab.research.google.com/github/unslothai/notebooks/blob/main/"
     )
@@ -186,122 +188,138 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
 
     paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
 
-    sections = {
-        "LLM": {"header": "## LLM Notebooks\n", "subsections": {}},
-        "Vision": {"header": "## Vision Notebooks\n", "rows": ""},
-    }
+    list_models = ["Llama", "Phi", "Mistral", "Qwen", "Gemma", "Other notebooks"]
+    sections = {}
+    for section in list_models:
+        sections[section] = {
+            "Colab": {
+                "header": f"### {section} Notebooks\n",
+                "rows": [],
+            },
+            "Kaggle": {"header": f"### {section} Notebooks\n", "rows": []},
+        }
 
-    table_header = (
-        "| Model | Type | Colab Link | Kaggle Link |\n| --- | --- | --- | --- |\n"
-    )
+    colab_table_header = "| Model | Type | Colab Link | \n| --- | --- | --- | \n"
+    kaggle_table_header = "| Model | Type | Kaggle Link | \n| --- | --- | --- | \n"  # Fixed: Colab to Kaggle
+
+    notebook_data = []  # List to store notebook data for sorting
 
     for path in paths:
         notebook_name = os.path.basename(path)
-        kaggle_path = path.replace("notebooks/", "notebooks/Kaggle-")
-        model = ""
-        type_ = ""
-        colab_link = ""
-        kaggle_link = ""
+        is_kaggle = is_path_contains_any(path.lower(), ["kaggle"])
 
-        if is_path_contains_any(path, ["kaggle"]):
-            continue
-            # section_name = "Kaggle"
-            # kaggle_link = (
-            #     f"[Open in Kaggle]({base_url_kaggle}{path}?accelerator=nvidiaTeslaT4)"
-            # )
+        section_name = "Other notebooks"
+        for sect in sections:
+            if is_path_contains_any(path, [sect]):
+                section_name = sect
+                break
 
-            # parts = notebook_name.replace(".ipynb", "").split("-")
-            # # Special handling for Kaggle names
-            # if len(parts) >= 2 and parts[0].lower() == "kaggle":
-            #     model = parts[1].replace("_", " ")
-            #     type_ = parts[2].replace("_", " ") if len(parts) >= 3 else ""
-            # else:
-            #     model = parts[0].replace("_", " ")
-            #     type_ = parts[-1].replace("_", " ")
-
-            # sections[section_name]["rows"] += (
-            #     f"| {model} | {type_} | {colab_link} | {kaggle_link}\n"
-            # )
-
-        elif is_path_contains_any(path, ["vision"]):
-            section_name = "Vision"
-            colab_link = f"[Open in Colab]({base_url_colab}{path})"
-            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}{kaggle_path}&accelerator=nvidiaTeslaT4)"
-            parts = notebook_name.replace(".ipynb", "").split("-")
-            model = parts[0].replace("_", " ")
-            type_ = parts[-1].replace("_", " ")
-
-            sections[section_name]["rows"] += (
-                f"| {model} | {type_} | {colab_link} | {kaggle_link}\n"
-            )
-
+        if is_kaggle:
+            link = f"[Open in Kaggle]({base_url_kaggle}{path}"
+            if kaggle_accelerator:
+                link += f"&accelerator={kaggle_accelerator})"
+            else:
+                link += ")"
         else:
-            section_name = "LLM"
-            colab_link = f"[Open in Colab]({base_url_colab}{path})"
-            kaggle_link = f"[Open in Kaggle]({base_url_kaggle}{kaggle_path}&accelerator=nvidiaTeslaT4)"
-            parts = notebook_name.replace(".ipynb", "").split("-")
+            link = f"[Open in Colab]({base_url_colab}{path})"
+        parts = notebook_name.replace(".ipynb", "").split("-")
+        if is_kaggle:
+            model = parts[1].replace("_", " ")
+        else:
             model = parts[0].replace("_", " ")
-            type_ = parts[-1].replace("_", " ")
+        type_ = parts[-1].replace("_", " ")
+        if is_path_contains_any(path.lower(), ["vision"]):
+            type_ = f"**{type_}**"
 
-            if type_ not in sections[section_name]["subsections"]:
-                sections[section_name]["subsections"][type_] = ""
-            sections[section_name]["subsections"][type_] += (
-                f"| {model} | {type_} | {colab_link} | {kaggle_link}\n"
+        notebook_data.append(
+            {
+                "model": model,
+                "type": type_,
+                "link": link,
+                "section": section_name,
+                "path": path,
+            }
+        )
+
+    if type_order:
+        notebook_data.sort(
+            key=lambda x: (
+                list_models.index(x["section"]),
+                type_order.index(x["type"])
+                if x["type"] in type_order
+                else float("inf"),
+            )
+        )
+    else:
+        notebook_data.sort(key=lambda x: (list_models.index(x["section"]), x["type"]))
+
+    for data in notebook_data:
+        if is_path_contains_any(data["path"].lower(), ["kaggle"]):
+            sections[data["section"]]["Kaggle"]["rows"].append(
+                f"| {data['model']} | {data['type']} | {data['link']}\n"
+            )
+        else:
+            sections[data["section"]]["Colab"]["rows"].append(
+                f"| {data['model']} | {data['type']} | {data['link']}\n"
             )
 
     try:
         with open(readme_path, "r", encoding="utf-8") as f:
             readme_content = f.read()
 
-        start_marker = "# ✨ Fine-tuning Notebooks"
+        start_marker = "# 📒 Fine-tuning Notebooks"
         start_index = readme_content.find(start_marker)
         if start_index == -1:
-            raise ValueError(
-                "Start marker '# ✨ Fine-tuning Notebooks' not found in README."
-            )
+            raise ValueError(f"Start marker '{start_marker}' not found in README.")
         start_index += len(start_marker)
 
         end_marker = "<!-- End of Notebook Links -->"
         end_index = readme_content.find(end_marker)
         if end_index == -1:
-            raise ValueError(
-                "End marker '<!-- End of Notebook Links -->' not found in README."
-            )
+            raise ValueError(f"End marker '{end_marker}' not found in README.")
 
         content_before = readme_content[:start_index]
         content_after = readme_content[end_index:]
 
-        updated_notebooks_links = ""
+        colab_updated_notebooks_links = (
+            "Below are our notebooks for Google Colab categorized by model.\n"
+            "You can also view our [Kaggle notebooks here]"
+            "(https://github.com/unslothai/notebooks/#Kaggle-Notebooks).\n\n"
+        )
 
-        if sections["LLM"]["subsections"]:
-            updated_notebooks_links += sections["LLM"]["header"] + table_header
+        kaggle_updated_notebooks_links = (
+            "# 📒 Kaggle Notebooks\n"
+            "<details>\n  <summary>   \n"
+            "Click for all our Kaggle notebooks categorized by model:\n  "
+            "</summary>\n\n"
+        )
 
-            if type_order:
-                sorted_types = sorted(
-                    sections["LLM"]["subsections"].keys(),
-                    key=lambda x: type_order.index(x)
-                    if x in type_order
-                    else float("inf"),
-                )
-            else:
-                sorted_types = sorted(sections["LLM"]["subsections"].keys())
+        for section in list_models:
+            colab_updated_notebooks_links += (
+                sections[section]["Colab"]["header"] + colab_table_header
+            )
+            colab_updated_notebooks_links += (
+                "".join(sections[section]["Colab"]["rows"]) + "\n"
+            )
 
-            for type_ in sorted_types:
-                rows = sections["LLM"]["subsections"][type_]
-                updated_notebooks_links += rows
+            kaggle_updated_notebooks_links += (
+                sections[section]["Kaggle"]["header"] + kaggle_table_header
+            )
+            kaggle_updated_notebooks_links += (
+                "".join(sections[section]["Kaggle"]["rows"]) + "\n"
+            )
 
-        for section_name in ["Vision"]:
-            if sections[section_name]["rows"]:
-                updated_notebooks_links += (
-                    sections[section_name]["header"]
-                    + table_header
-                    + sections[section_name]["rows"]
-                )
+        kaggle_updated_notebooks_links += "</details>\n\n"
 
         timestamp = f"<!-- Last updated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} -->\n"
 
         updated_readme_content = (
-            content_before + "\n" + updated_notebooks_links + timestamp + content_after
+            content_before
+            + "\n"
+            + colab_updated_notebooks_links
+            + kaggle_updated_notebooks_links
+            + timestamp
+            + content_after
         )
 
         with open(readme_path, "w", encoding="utf-8") as f:
@@ -312,8 +330,7 @@ def update_readme(readme_path, notebooks_dir, type_order=None):
     except FileNotFoundError:
         print(f"Error: {readme_path} not found.")
     except Exception as e:
-        raise e
-        # print(f"An error occurred while updating {readme_path}: {e}")
+        print(f"An error occurred while updating {readme_path}: {e}")
 
 
 def copy_and_update_notebooks(
