@@ -128,14 +128,18 @@ Click for all our Kaggle notebooks categorized by model:
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks
+
+> ⚠️ **Important:** This repository is a subtree of the main [unsloth](https://github.com/unslothai/unsloth) repository, specifically for notebooks. Please submit your pull requests to this notebooks repository ([unslothai/notebooks](https://github.com/unslothai/notebooks)) rather than the main unsloth repository. Changes in `notebooks` repository will be synchronized with the `unsloth` repository.
+
+
 If you'd like to contribute to our notebooks, here's a guide to get you started:
 
 1. **Find the Template:**  We've provided a template notebook called `Template_Notebook.ipynb` in the root directory of this project. This template contains the basic structure and formatting guidelines for all notebooks in this collection.
 2. **Create Your Notebook:**
     *   Make a copy of `Template_Notebook.ipynb`.
     *   Rename the copied file to follow this naming convention:
-        *   **LLM Notebooks:** `<Model Name>-<Type>.ipynb` (e.g., `Mistral_v3_(7B)-Alpaca.ipynb`)
-        *   **Vision Notebooks:** `<Model Name>-Vision.ipynb` (e.g., `Llava_v1_6_(7B)-Vision.ipynb`)
+        *   **LLM Notebooks:** `<Model Name>-<Type>.ipynb` (e.g., `Mistral_v0.3_(7B)-Alpaca.ipynb`)
+        *   **Vision Notebooks:** `<Model Name>-Vision.ipynb` (e.g., `Llava_v1.6_(7B)-Vision.ipynb`)
         *   **Example of `<Type>`:** `Alpaca`, `Conversational`, `CPT`, `DPO`, `ORPO`, `Text_Completion`, `CSV`, `Inference`, `Unsloth_Studio`
     <!-- *   Modify the content of your notebook, adding your code, explanations, and any other relevant information. Make sure to follow the structure and guidelines from the template. -->
 3. **Place in `original_template`:** Once your notebook is ready, move it to the `original_template` directory.
