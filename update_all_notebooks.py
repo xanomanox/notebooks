@@ -112,8 +112,6 @@ def update_notebook_sections(
                         i + 1 < len(notebook_content["cells"])
                         and notebook_content["cells"][i + 1]["cell_type"] == "code"
                     ):
-                        # Use installation_steps_kaggle if "Kaggle" is in the path,
-                        # otherwise use installation_steps
                         if is_path_contains_any(notebook_path, ["kaggle"]):
                             installation = installation_steps_kaggle
                         else:
@@ -126,7 +124,7 @@ def update_notebook_sections(
 
             i += 1
 
-        # Ensure GPU metadata is set
+        # Ensure GPU metadata is set for Colab
         if "metadata" not in notebook_content:
             notebook_content["metadata"] = {}
         if "accelerator" not in notebook_content["metadata"]:
@@ -184,9 +182,9 @@ def update_readme(
     readme_path, notebooks_dir, type_order=None, kaggle_accelerator="nvidiaTeslaT4"
 ):
     base_url_colab = (
-        "https://colab.research.google.com/github/unslothai/notebooks/blob/main/"
+        "https://colab.research.google.com/github/unslothai/unsloth/notebooks/"
     )
-    base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/"
+    base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/unsloth/notebooks/"
 
     paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
 
@@ -202,9 +200,9 @@ def update_readme(
         }
 
     colab_table_header = "| Model | Type | Colab Link | \n| --- | --- | --- | \n"
-    kaggle_table_header = "| Model | Type | Kaggle Link | \n| --- | --- | --- | \n"  # Fixed: Colab to Kaggle
+    kaggle_table_header = "| Model | Type | Kaggle Link | \n| --- | --- | --- | \n"
 
-    notebook_data = []  # List to store notebook data for sorting
+    notebook_data = []
 
     for path in paths:
         notebook_name = os.path.basename(path)
@@ -214,6 +212,7 @@ def update_readme(
 
         if is_kaggle:
             link = f"[Open in Kaggle]({base_url_kaggle}{path}"
+            # Force to use GPU on start for Kaggle
             if kaggle_accelerator:
                 link += f"&accelerator={kaggle_accelerator})"
             else:
