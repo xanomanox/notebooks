@@ -132,9 +132,6 @@ Click for all our Kaggle notebooks categorized by model:
 
 # ✨ Contributing to Notebooks
 
-> ⚠️ **Important:** This repository is a subtree of the main [unsloth](https://github.com/unslothai/unsloth) repository, specifically for notebooks. Please submit your pull requests to this notebooks repository ([unslothai/notebooks](https://github.com/unslothai/notebooks)) rather than the main unsloth repository. Changes in `notebooks` repository will be synchronized with the `unsloth` repository.
-
-
 If you'd like to contribute to our notebooks, here's a guide to get you started:
 
 1. **Find the Template:**  We've provided a template notebook called `Template_Notebook.ipynb` in the root directory of this project. This template contains the basic structure and formatting guidelines for all notebooks in this collection.
