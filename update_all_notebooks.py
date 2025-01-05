@@ -297,9 +297,9 @@ def update_readme(
         content_after = readme_content[end_index:]
 
         temp = (
-            "(https://github.com/unslothai/unsloth/notebooks/#Kaggle-Notebooks).\n\n"
+            "(https://github.com/unslothai/unsloth/nb/#-kaggle-notebooks).\n\n"
             if args.to_main_repo
-            else "(https://github.com/unslothai/notebooks/#Kaggle-Notebooks).\n\n"
+            else "(https://github.com/unslothai/notebooks/#-kaggle-notebooks).\n\n"
         )
 
         colab_updated_notebooks_links = (
