@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import re
@@ -156,7 +157,7 @@ def update_notebook_sections(
 
 
 def main():
-    notebook_directory = "notebooks"
+    notebook_directory = "nb"
     notebook_pattern = "*.ipynb"
 
     notebook_files = glob(os.path.join(notebook_directory, notebook_pattern))
@@ -179,10 +180,22 @@ def main():
 
 
 def update_readme(
-    readme_path, notebooks_dir, type_order=None, kaggle_accelerator="nvidiaTeslaT4"
+    args,
+    readme_path,
+    notebooks_dir,
+    type_order=None,
+    kaggle_accelerator="nvidiaTeslaT4",
 ):
-    base_url_colab = "https://colab.research.google.com/github/unslothai/unsloth/blob/main/notebooks/"
-    base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/unsloth/blob/main/notebooks/"
+    if args.to_main_repo:
+        base_url_colab = (
+            "https://colab.research.google.com/github/unslothai/unsloth/blob/main/nb/"
+        )
+        base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/unsloth/blob/main/nb/"
+    else:
+        base_url_colab = (
+            "https://colab.research.google.com/github/unslothai/notebooks/blob/main/"
+        )
+        base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/"
 
     paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
 
@@ -283,10 +296,16 @@ def update_readme(
         content_before = readme_content[:start_index]
         content_after = readme_content[end_index:]
 
+        temp = (
+            "(https://github.com/unslothai/unsloth/notebooks/#Kaggle-Notebooks).\n\n"
+            if args.to_main_repo
+            else "(https://github.com/unslothai/notebooks/#Kaggle-Notebooks).\n\n"
+        )
+
         colab_updated_notebooks_links = (
             "Below are our notebooks for Google Colab categorized by model.\n"
             "You can also view our [Kaggle notebooks here]"
-            "(https://github.com/unslothai/notebooks/#Kaggle-Notebooks).\n\n"
+            f"{temp}"
         )
 
         kaggle_updated_notebooks_links = (
@@ -360,15 +379,6 @@ def copy_and_update_notebooks(
         shutil.copy2(template_notebook_path, destination_notebook_path)
         print(f"Copied '{colab_notebook_name}' to '{destination_dir}'")
 
-        update_notebook_sections(
-            destination_notebook_path,
-            general_announcement,
-            installation,
-            installation_kaggle,
-            new_announcement_non_vlm,
-            new_announcement_vlm,
-        )
-
         kaggle_notebook_name = "Kaggle-" + notebook_name
         destination_notebook_path = os.path.join(destination_dir, kaggle_notebook_name)
 
@@ -386,9 +396,16 @@ def copy_and_update_notebooks(
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--to_main_repo",
+        action="store_true",
+        help="Whether update notebooks and README.md for Unsloth main repository or not. Default is False.",
+    )
+    args = parser.parse_args()
     copy_and_update_notebooks(
         "original_template",
-        "notebooks",
+        "nb",
         general_announcement_content,
         installation_content,
         installation_kaggle_content,
@@ -397,7 +414,7 @@ if __name__ == "__main__":
     )
     main()
 
-    notebook_directory = "notebooks"
+    notebook_directory = "nb"
     readme_path = "README.md"
     type_order = [
         "Alpaca",
@@ -410,4 +427,4 @@ if __name__ == "__main__":
         "Inference",
         "Unsloth_Studio",
     ]  # Define your desired order here
-    update_readme(readme_path, notebook_directory, type_order)
+    update_readme(args, readme_path, notebook_directory, type_order)
