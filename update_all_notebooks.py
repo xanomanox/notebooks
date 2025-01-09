@@ -31,15 +31,15 @@ installation_kaggle_content = """%%capture
 
 new_announcement_content_non_vlm = """**[NEW] We've fixed many bugs in Phi-4** which greatly increases Phi-4's accuracy. See our [blogpost](https://unsloth.ai/blog/phi4)
 
-[NEW] You can view all Phi-4 model uploads with our bug fixes including [dynamic 4-bit quants](https://unsloth.ai/blog/dynamic-4bit), GGUF & more [here](https://huggingface.co/collections/unsloth/phi-4-all-versions-677eecf93784e61afe762afa"""
+[NEW] You can view all Phi-4 model uploads with our bug fixes including [dynamic 4-bit quants](https://unsloth.ai/blog/dynamic-4bit), GGUF & more [here](https://huggingface.co/collections/unsloth/phi-4-all-versions-677eecf93784e61afe762afa)"""
 
 new_announcement_content_vlm = """**[NEW] We've fixed many bugs in Phi-4** which greatly increases Phi-4's accuracy. See our [blogpost](https://unsloth.ai/blog/phi4)
 
-[NEW] You can view all Phi-4 model uploads with our bug fixes including [dynamic 4-bit quants](https://unsloth.ai/blog/dynamic-4bit), GGUF & more [here](https://huggingface.co/collections/unsloth/phi-4-all-versions-677eecf93784e61afe762afa
+[NEW] You can view all Phi-4 model uploads with our bug fixes including [dynamic 4-bit quants](https://unsloth.ai/blog/dynamic-4bit), GGUF & more [here](https://huggingface.co/collections/unsloth/phi-4-all-versions-677eecf93784e61afe762afa)
 
 **We also support finetuning ONLY the vision part of the model, or ONLY the language part. Or you can select both! You can also select to finetune the attention or the MLP layers!**"""
 
-text_for_last_cell_gguf = """Now, use the model-unsloth.gguf file or model-unsloth-Q4_K_M.gguf file in llama.cpp or a UI based system like Jan or Open WebUI. You can install Jan [here](https://github.com/janhq/jan) and Open WebUI [here](https://github.com/open-webui/open-webui)
+text_for_last_cell_gguf = """Now, use the `model-unsloth.gguf` file or `model-unsloth-Q4_K_M.gguf` file in llama.cpp or a UI based system like Jan or Open WebUI. You can install Jan [here](https://github.com/janhq/jan) and Open WebUI [here](https://github.com/open-webui/open-webui)
 
 And we're done! If you have any questions on Unsloth, we have a [Discord](https://discord.gg/unsloth) channel! If you find any bugs or want to keep updated with the latest LLM stuff, or need help, join projects etc, feel free to join our Discord!
 
