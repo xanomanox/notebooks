@@ -8,7 +8,7 @@ from glob import glob
 
 general_announcement_content = """To run this, press "*Runtime*" and press "*Run all*" on a **free** Tesla T4 Google Colab instance!
 <div class="align-center">
-<a href="https://github.com/unslothai/unsloth"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
+<a href="https://unsloth.ai/"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
 <a href="https://discord.gg/unsloth"><img src="https://github.com/unslothai/unsloth/raw/main/images/Discord button.png" width="145"></a>
 <a href="https://docs.unsloth.ai/"><img src="https://github.com/unslothai/unsloth/blob/main/images/documentation%20green%20button.png?raw=true" width="125"></a></a> Join Discord if you need help + ⭐ <i>Star us on <a href="https://github.com/unslothai/unsloth">Github</a> </i> ⭐
 </div>
@@ -20,23 +20,60 @@ To install Unsloth on your own computer, follow the installation instructions on
 You will learn how to do [data prep](#Data), how to [train](#Train), how to [run the model](#Inference), & [how to save it](#Save)"""
 
 installation_content = """%%capture
-!pip install unsloth
-# Also get the latest nightly Unsloth!
-!pip uninstall unsloth -y && pip install --upgrade --no-cache-dir --no-deps git+https://github.com/unslothai/unsloth.git
-"""
+!pip install --upgrade --force-reinstall --no-cache-dir --no-deps unsloth unsloth_zoo"""
 
 installation_kaggle_content = """%%capture
 # Kaggle is slow - you'll have to wait 5 minutes for it to install.
 !pip install pip3-autoremove
 !pip-autoremove torch torchvision torchaudio -y
 !pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
-!pip install unsloth"""
+!pip install --upgrade --force-reinstall --no-cache-dir --no-deps unsloth unsloth_zoo"""
 
-new_announcement_content_non_vlm = """* We support Llama 3.2 Vision 11B, 90B; Pixtral; Qwen2VL 2B, 7B, 72B; and any Llava variant like Llava NeXT!
-* We support 16bit LoRA via `load_in_4bit=False` or 4bit QLoRA. Both are accelerated and use much less memory!
-"""
+new_announcement_content_non_vlm = """**[NEW] We've fixed many bugs in Phi-4** which greatly increases Phi-4's accuracy. See our [blogpost](https://unsloth.ai/blog/phi4)
 
-new_announcement_content_vlm = """**We also support finetuning ONLY the vision part of the model, or ONLY the language part. Or you can select both! You can also select to finetune the attention or the MLP layers!**"""
+[NEW] You can view all Phi-4 model uploads with our bug fixes including [dynamic 4-bit quants](https://unsloth.ai/blog/dynamic-4bit), GGUF & more [here](https://huggingface.co/collections/unsloth/phi-4-all-versions-677eecf93784e61afe762afa"""
+
+new_announcement_content_vlm = """**[NEW] We've fixed many bugs in Phi-4** which greatly increases Phi-4's accuracy. See our [blogpost](https://unsloth.ai/blog/phi4)
+
+[NEW] You can view all Phi-4 model uploads with our bug fixes including [dynamic 4-bit quants](https://unsloth.ai/blog/dynamic-4bit), GGUF & more [here](https://huggingface.co/collections/unsloth/phi-4-all-versions-677eecf93784e61afe762afa
+
+**We also support finetuning ONLY the vision part of the model, or ONLY the language part. Or you can select both! You can also select to finetune the attention or the MLP layers!**"""
+
+text_for_last_cell_gguf = """Now, use the model-unsloth.gguf file or model-unsloth-Q4_K_M.gguf file in llama.cpp or a UI based system like Jan or Open WebUI. You can install Jan [here](https://github.com/janhq/jan) and Open WebUI [here](https://github.com/open-webui/open-webui)
+
+And we're done! If you have any questions on Unsloth, we have a [Discord](https://discord.gg/unsloth) channel! If you find any bugs or want to keep updated with the latest LLM stuff, or need help, join projects etc, feel free to join our Discord!
+
+Some other links:
+1. Llama 3.2 Conversational notebook. [Free Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B_and_3B)-Conversational.ipynb)
+2. Saving finetunes to Ollama. [Free notebook](https://colab.research.google.com/drive/1WZDi7APtQ9VsvOrQSSC5DDtxq159j8iZ?usp=sharing)
+3. Llama 3.2 Vision finetuning - Radiography use case. [Free Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(11B)-Vision.ipynb)
+6. More notebooks for DPO, ORPO, Continued pretraining, conversational finetuning and more on our [documentation](https://docs.unsloth.ai/get-started/unsloth-notebooks)!
+
+<div class="align-center">
+  <a href="https://unsloth.ai"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
+  <a href="https://discord.gg/unsloth"><img src="https://github.com/unslothai/unsloth/raw/main/images/Discord.png" width="145"></a>
+  <a href="https://docs.unsloth.ai/"><img src="https://github.com/unslothai/unsloth/blob/main/images/documentation%20green%20button.png?raw=true" width="125"></a></a> Join Discord if you need help + ⭐️ <i>Star us on <a href="https://github.com/unslothai/unsloth">Github</a> </i> ⭐️
+</div>"""
+
+text_for_last_cell_non_gguf = """And we're done! If you have any questions on Unsloth, we have a [Discord](https://discord.gg/u54VK8m8tk) channel! If you find any bugs or want to keep updated with the latest LLM stuff, or need help, join projects etc, feel free to join our Discord!
+
+If you want to finetune Llama-3 2x faster and use 70% less VRAM, go to our [finetuning notebook](https://colab.research.google.com/drive/135ced7oHytdxu3N2DNe1Z0kqjyYIkDXp?usp=sharing)!
+
+Some other links:
+1. Zephyr DPO 2x faster [free Colab](https://colab.research.google.com/drive/15vttTpzzVXv_tJwEk-hIcQ0S9FcEWvwP?usp=sharing)
+2. Llama 7b 2x faster [free Colab](https://colab.research.google.com/drive/1lBzz5KeZJKXjvivbYvmGarix9Ao6Wxe5?usp=sharing)
+3. TinyLlama 4x faster full Alpaca 52K in 1 hour [free Colab](https://colab.research.google.com/drive/1AZghoNBQaMDgWJpi4RbffGM1h6raLUj9?usp=sharing)
+4. CodeLlama 34b 2x faster [A100 on Colab](https://colab.research.google.com/drive/1y7A0AxE3y8gdj4AVkl2aZX47Xu3P1wJT?usp=sharing)
+5. Mistral 7b [free Kaggle version](https://www.kaggle.com/code/danielhanchen/kaggle-mistral-7b-unsloth-notebook)
+6. We also did a [blog](https://huggingface.co/blog/unsloth-trl) with 🤗 HuggingFace, and we're in the TRL [docs](https://huggingface.co/docs/trl/main/en/sft_trainer#accelerate-fine-tuning-2x-using-unsloth)!
+7. Text completions like novel writing [notebook](https://colab.research.google.com/drive/1ef-tab5bhkvWmBOObepl1WgJvfvSzn5Q?usp=sharing)
+9. Gemma 6 trillion tokens is 2.5x faster! [free Colab](https://colab.research.google.com/drive/10NbwlsRChbma1v55m8LAPYG15uQv6HLo?usp=sharing)
+
+<div class="align-center">
+  <a href="https://unsloth.ai"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
+  <a href="https://discord.gg/u54VK8m8tk"><img src="https://github.com/unslothai/unsloth/raw/main/images/Discord.png" width="145"></a>
+<a href="https://docs.unsloth.ai/"><img src="https://github.com/unslothai/unsloth/blob/main/images/documentation%20green%20button.png?raw=true" width="125"></a></a> Join Discord if you need help + ⭐ <i>Star us on <a href="https://github.com/unslothai/unsloth">Github</a> </i> ⭐
+</div>"""
 
 naming_mapping = {"mistral": ["pixtral"]}
 
@@ -77,24 +114,77 @@ def update_notebook_sections(
             notebook_content = json.load(f)
 
         updated = False
-        i = 0
+
+        first_markdown_index = -1
+        news_markdown_index = -1
+
+        for i, cell in enumerate(notebook_content["cells"]):
+            if cell["cell_type"] == "markdown":
+                if first_markdown_index == -1:
+                    first_markdown_index = i
+
+                source_str = "".join(cell["source"]).strip()
+
+                if "###" in source_str:
+                    news_markdown_index = i
+                    break
+
+        # Update the general announcement section
+        if first_markdown_index != -1:
+            if news_markdown_index == first_markdown_index:
+                # "# News" is the first markdown, insert above it
+                if first_markdown_index >= 0:
+                    notebook_content["cells"].insert(
+                        first_markdown_index,
+                        {
+                            "cell_type": "markdown",
+                            "metadata": {},
+                            "source": [
+                                f"{line}\n"
+                                for line in general_announcement.splitlines()
+                            ],
+                        },
+                    )
+                    updated = True
+                    news_markdown_index += 1  # Adjust index since a new cell is added
+                else:
+                    notebook_content["cells"][first_markdown_index]["source"] = [
+                        f"{line}\n" for line in general_announcement.splitlines()
+                    ]
+                    updated = True
+            elif not "".join(
+                notebook_content["cells"][first_markdown_index]["source"]
+            ).strip():
+                # First markdown is empty, replace it
+                notebook_content["cells"][first_markdown_index]["source"] = [
+                    f"{line}\n" for line in general_announcement.splitlines()
+                ]
+                updated = True
+
+        i = 0 if news_markdown_index == -1 else news_markdown_index
+
+        is_gguf = False
+
         while i < len(notebook_content["cells"]):
             cell = notebook_content["cells"][i]
 
             if cell["cell_type"] == "markdown":
                 source_str = "".join(cell["source"]).strip()
 
-                if source_str == "# General":
-                    if (
-                        i + 1 < len(notebook_content["cells"])
-                        and notebook_content["cells"][i + 1]["cell_type"] == "markdown"
-                    ):
-                        notebook_content["cells"][i + 1]["source"] = [
-                            f"{line}\n" for line in general_announcement.splitlines()
-                        ]
-                        updated = True
-                        i += 1
-                elif source_str == "# News":
+                if "gguf" in source_str:
+                    is_gguf = True
+
+                # if source_str == "# General":
+                #     if (
+                #         i + 1 < len(notebook_content["cells"])
+                #         and notebook_content["cells"][i + 1]["cell_type"] == "markdown"
+                #     ):
+                #         notebook_content["cells"][i + 1]["source"] = [
+                #             f"{line}\n" for line in general_announcement.splitlines()
+                #         ]
+                #         updated = True
+                #         i += 1
+                if source_str == "### News":
                     if (
                         i + 1 < len(notebook_content["cells"])
                         and notebook_content["cells"][i + 1]["cell_type"] == "markdown"
@@ -108,7 +198,7 @@ def update_notebook_sections(
                         ]
                         updated = True
                         i += 1
-                elif source_str == "# Installation":
+                elif source_str == "### Installation":
                     if (
                         i + 1 < len(notebook_content["cells"])
                         and notebook_content["cells"][i + 1]["cell_type"] == "code"
@@ -124,6 +214,28 @@ def update_notebook_sections(
                         i += 1
 
             i += 1
+
+        # Add text to the last cell
+        if notebook_content["cells"]:
+            last_cell = notebook_content["cells"][-1]
+            text_for_last_cell = (
+                text_for_last_cell_gguf if is_gguf else text_for_last_cell_non_gguf
+            )
+            if last_cell["cell_type"] == "markdown":
+                last_cell["source"].extend(
+                    [f"\n{line}\n" for line in text_for_last_cell.splitlines()]
+                )
+            else:
+                notebook_content["cells"].append(
+                    {
+                        "cell_type": "markdown",
+                        "metadata": {},
+                        "source": [
+                            f"{line}\n" for line in text_for_last_cell.splitlines()
+                        ],
+                    }
+                )
+            updated = True
 
         # Ensure GPU metadata is set for Colab
         if "metadata" not in notebook_content:
