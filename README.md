@@ -36,6 +36,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | --- | --- | --- | 
 | Phi 3 Medium | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_3_Medium-Conversational.ipynb)
 | Phi 3.5 Mini | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_3.5_Mini-Conversational.ipynb)
+| Phi 4 | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4-Conversational.ipynb)
 
 ### Mistral Notebooks
 | Model | Type | Colab Link | 
@@ -91,6 +92,7 @@ Click for all our Kaggle notebooks categorized by model:
 | Model | Type | Kaggle Link | 
 | --- | --- | --- | 
 | Phi 3.5 Mini | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Phi_3.5_Mini-Conversational.ipynb&accelerator=nvidiaTeslaT4)
+| Phi 4 | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Phi_4-Conversational.ipynb&accelerator=nvidiaTeslaT4)
 | Phi 3 Medium | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Phi_3_Medium-Conversational.ipynb&accelerator=nvidiaTeslaT4)
 
 ### Mistral Notebooks
@@ -127,7 +129,7 @@ Click for all our Kaggle notebooks categorized by model:
 
 </details>
 
-<!-- Last updated on: 2025-01-06 03:18:20 -->
+<!-- Last updated on: 2025-01-09 15:28:40 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks
