@@ -20,15 +20,24 @@ You will learn how to do [data prep](#Data), how to [train](#Train), how to [run
 Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
 
 installation_content = """%%capture
-!pip install unsloth
-# Also get the latest nightly Unsloth!
-!pip install --force-reinstall --no-cache-dir --no-deps git+https://github.com/unslothai/unsloth.git"""
+# Normally using pip install unsloth is enough
+
+# Temporarily as of Jan 31st 2025, Colab has some issues with Pytorch
+# Using pip install unsloth will take 3 minutes, whilst the below takes <1 minute:
+!pip install --no-deps bitsandbytes accelerate xformers peft trl triton
+!pip install --no-deps cut_cross_entropy unsloth_zoo
+!pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
+!pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
-!pip install unsloth
-# Also get the latest nightly Unsloth if you want!
-# !pip install --force-reinstall --no-cache-dir --no-deps git+https://github.com/unslothai/unsloth.git
-"""
+# Normally using pip install unsloth is enough
+
+# Temporarily as of Jan 31st 2025, Colab has some issues with Pytorch
+# Using pip install unsloth will take 3 minutes, whilst the below takes <1 minute:
+!pip install --no-deps bitsandbytes accelerate xformers peft trl triton
+!pip install --no-deps cut_cross_entropy unsloth_zoo
+!pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
+!pip install --no-deps unsloth"""
 
 new_announcement_content_non_vlm = """**[NEW] We've fixed many bugs in Phi-4** which greatly increases Phi-4's accuracy. See our [blogpost](https://unsloth.ai/blog/phi4)
 
