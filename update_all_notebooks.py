@@ -34,7 +34,7 @@ installation_kaggle_content = """%%capture
 
 # Temporarily as of Jan 31st 2025, Colab has some issues with Pytorch
 # Using pip install unsloth will take 3 minutes, whilst the below takes <1 minute:
-!pip install --no-deps bitsandbytes accelerate xformers peft trl triton
+!pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft trl triton
 !pip install --no-deps cut_cross_entropy unsloth_zoo
 !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
 !pip install --no-deps unsloth"""
