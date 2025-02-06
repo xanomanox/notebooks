@@ -22,6 +22,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 ### GRPO Notebooks
 | Model | Type | Colab Link | 
 | --- | --- | --- | 
+| Phi 4 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4-GRPO.ipynb)
 | Qwen 2.5 (3B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_(3B)-GRPO.ipynb)
 
 ### Llama Notebooks
@@ -84,6 +85,7 @@ Click for all our Kaggle notebooks categorized by model:
 ### GRPO Notebooks
 | Model | Type | Kaggle Link | 
 | --- | --- | --- | 
+| Phi 4 | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Phi_4-GRPO.ipynb&accelerator=nvidiaTeslaT4)
 | Qwen 2.5 (3B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen2.5_(3B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
 
 ### Llama Notebooks
@@ -139,7 +141,7 @@ Click for all our Kaggle notebooks categorized by model:
 
 </details>
 
-<!-- Last updated on: 2025-02-06 20:41:25 -->
+<!-- Last updated on: 2025-02-06 21:05:53 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks
