@@ -22,7 +22,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 ### GRPO Notebooks
 | Model | Type | Colab Link | 
 | --- | --- | --- | 
-| Phi 4 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4-GRPO.ipynb)
+| Phi 4 (14B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4_(14B)-GRPO.ipynb)
 | Llama 3.1 (8B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-GRPO.ipynb)
 | Qwen 2.5 (3B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_(3B)-GRPO.ipynb)
 
@@ -86,7 +86,7 @@ Click for all our Kaggle notebooks categorized by model:
 ### GRPO Notebooks
 | Model | Type | Kaggle Link | 
 | --- | --- | --- | 
-| Phi 4 | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Phi_4-GRPO.ipynb&accelerator=nvidiaTeslaT4)
+| Phi 4 (14B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Phi_4_(14B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
 | Llama 3.1 (8B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3.1_(8B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
 | Qwen 2.5 (3B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen2.5_(3B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
 
@@ -143,7 +143,7 @@ Click for all our Kaggle notebooks categorized by model:
 
 </details>
 
-<!-- Last updated on: 2025-02-06 21:52:23 -->
+<!-- Last updated on: 2025-02-06 21:56:07 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks
