@@ -70,6 +70,11 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | TinyLlama (1.1B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/TinyLlama_(1.1B)-Alpaca.ipynb)
 | Unsloth Studio |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb)
 
+### GRPO Notebooks
+| Model | Type | Colab Link | 
+| --- | --- | --- | 
+| Qwen 2.5 (3B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_(3B)-GRPO.ipynb)
+
 # 📒 Kaggle Notebooks
 <details>
   <summary>   
@@ -127,9 +132,14 @@ Click for all our Kaggle notebooks categorized by model:
 | TinyLlama (1.1B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-TinyLlama_(1.1B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 | Unsloth Studio |  | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Unsloth_Studio.ipynb&accelerator=nvidiaTeslaT4)
 
+### GRPO Notebooks
+| Model | Type | Kaggle Link | 
+| --- | --- | --- | 
+| Qwen 2.5 (3B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen2.5_(3B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
+
 </details>
 
-<!-- Last updated on: 2025-02-01 15:10:51 -->
+<!-- Last updated on: 2025-02-06 20:38:55 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks

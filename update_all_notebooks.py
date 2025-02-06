@@ -39,19 +39,32 @@ installation_kaggle_content = """%%capture
 !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
 !pip install --no-deps unsloth"""
 
-new_announcement_content_non_vlm = """**[NEW] We've fixed many bugs in Phi-4** which greatly increases Phi-4's accuracy. See our [blogpost](https://unsloth.ai/blog/phi4)
+installation_grpo_content = """%%capture
+# Skip restarting message in Colab
+import sys; modules = list(sys.modules.keys())
+for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
 
-[NEW] You can view all Phi-4 model uploads with our bug fixes including [dynamic 4-bit quants](https://unsloth.ai/blog/dynamic-4bit), GGUF & more [here](https://huggingface.co/collections/unsloth/phi-4-all-versions-677eecf93784e61afe762afa)
+!pip install unsloth vllm
+!pip install --upgrade pillow
+!pip install git+https://github.com/huggingface/trl.git"""
 
-[NEW] As of Novemeber 2024, Unsloth now supports [vision finetuning](https://unsloth.ai/blog/vision)!"""
+installation_grpo_kaggle_content = """%%capture
+# Skip restarting message in Colab
+import sys; modules = list(sys.modules.keys())
+for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
 
-new_announcement_content_vlm = """**[NEW] We've fixed many bugs in Phi-4** which greatly increases Phi-4's accuracy. See our [blogpost](https://unsloth.ai/blog/phi4)
+!pip install unsloth vllm
+!pip install --upgrade pillow
+!pip install git+https://github.com/huggingface/trl.git"""
 
-[NEW] You can view all Phi-4 model uploads with our bug fixes including [dynamic 4-bit quants](https://unsloth.ai/blog/dynamic-4bit), GGUF & more [here](https://huggingface.co/collections/unsloth/phi-4-all-versions-677eecf93784e61afe762afa)
 
-[NEW] As of Novemeber 2024, Unsloth now supports [vision finetuning](https://unsloth.ai/blog/vision)!
+new_announcement_content_non_vlm = """**Read our [blog post](https://unsloth.ai/blog/r1-reasoning) for guidance to train reasoning model.** GRPO notebook is inspired by [@shxf0072](https://x.com/shxf0072/status/1886085377146180091), [@Teknium1](https://x.com/Teknium1/status/1885077369142337550), [@willccbb](https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb)
 
-**We also support finetuning ONLY the vision part of the model, or ONLY the language part. Or you can select both! You can also select to finetune the attention or the MLP layers!**"""
+Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
+
+new_announcement_content_vlm = """**Read our [blog post](https://unsloth.ai/blog/r1-reasoning) for guidance to train reasoning model.** GRPO notebook is inspired by [@shxf0072](https://x.com/shxf0072/status/1886085377146180091), [@Teknium1](https://x.com/Teknium1/status/1885077369142337550), [@willccbb](https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb)
+
+Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
 
 text_for_last_cell_gguf = """Now, use the `model-unsloth.gguf` file or `model-unsloth-Q4_K_M.gguf` file in llama.cpp or a UI based system like Jan or Open WebUI. You can install Jan [here](https://github.com/janhq/jan) and Open WebUI [here](https://github.com/open-webui/open-webui)
 
@@ -98,7 +111,8 @@ Some other links:
 naming_mapping = {
     "mistral": ["pixtral", "mistral"],
     "other notebooks": ["TinyLlama"],
-    "llama": ["Llama"]
+    "llama": ["Llama"],
+    "grpo" : ["GRPO"],
 }
 
 
@@ -231,16 +245,6 @@ def update_notebook_sections(
                 elif "gguf" in source_str:
                     is_gguf = True
 
-                # if source_str == "# General":
-                #     if (
-                #         i + 1 < len(notebook_content["cells"])
-                #         and notebook_content["cells"][i + 1]["cell_type"] == "markdown"
-                #     ):
-                #         notebook_content["cells"][i + 1]["source"] = [
-                #             f"{line}\n" for line in general_announcement.splitlines()
-                #         ]
-                #         updated = True
-                #         i += 1
                 if source_str == "### News":
                     if (
                         i + 1 < len(notebook_content["cells"])
@@ -264,6 +268,15 @@ def update_notebook_sections(
                             installation = installation_steps_kaggle
                         else:
                             installation = installation_steps
+
+                        # GRPO specific installation
+                        if is_path_contains_any(notebook_path.lower(), ["grpo"]):
+                            if is_path_contains_any(notebook_path, ["kaggle"]):
+                                installation = installation_grpo_kaggle_content
+                            else:
+                                installation = installation_grpo_content
+
+
                         notebook_content["cells"][i + 1]["source"] = installation
                         updated = True
                         i += 1
@@ -281,9 +294,13 @@ def update_notebook_sections(
                 text_for_last_cell = text_for_last_cell_non_gguf
 
             if last_cell["cell_type"] == "markdown":
-                last_cell["source"].extend(
-                    [f"{line}\n" for line in text_for_last_cell.splitlines()]
-                )
+                # Check if the last cell already contains the text
+                existing_text = "".join(last_cell["source"])
+                if text_for_last_cell not in existing_text:
+                  last_cell["source"].extend(
+                      [f"{line}\n" for line in text_for_last_cell.splitlines()]
+                  )
+                  updated = True  # Mark as updated only if content was added
             else:
                 notebook_content["cells"].append(
                     {
@@ -294,7 +311,7 @@ def update_notebook_sections(
                         ],
                     }
                 )
-            updated = True
+                updated = True
 
         # Ensure GPU metadata is set for Colab
         if "metadata" not in notebook_content:
@@ -370,7 +387,7 @@ def update_readme(
 
     paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
 
-    list_models = ["Llama", "Phi", "Mistral", "Qwen", "Gemma", "Other notebooks"]
+    list_models = ["Llama", "Phi", "Mistral", "Qwen", "Gemma", "Other notebooks", "GRPO"] # Added GRPO
     sections = {}
     for section in list_models:
         sections[section] = {
@@ -395,10 +412,13 @@ def update_readme(
         # Prioritize "Other Notebooks" section
         if is_path_contains_any(path.lower(), naming_mapping["other notebooks"]):
             section_name = "Other notebooks"
+        # Prioritize GRPO
+        elif is_path_contains_any(path.lower(), naming_mapping["grpo"]):
+            section_name = "GRPO"
         else:
             for sect in sections:
-                if sect.lower() == "other notebooks":
-                    continue  # Skip "Other Notebooks" as it's already handled
+                if sect.lower() in ["other notebooks", "grpo"]: # Skip these
+                    continue
 
                 check = naming_mapping.get(sect.lower(), [])
                 if not check:
@@ -431,7 +451,7 @@ def update_readme(
         model_parts = model.split(" ", 1)  # Split into two parts at the first space
         if len(model_parts) > 1:
             model_parts[0] = re.sub(r"([A-Za-z])(\d)", r"\1 \2", model_parts[0])  # Apply regex to the first part only
-            model = " ".join(model_parts)  # Rejoin the parts
+            model = " ".join(model_parts)
 
         if is_path_contains_any(path.lower(), ["vision"]):
             type_ = f"**{type_}**"
@@ -587,6 +607,15 @@ def copy_and_update_notebooks(
         print(f"Copied '{kaggle_notebook_name}' to '{destination_dir}'")
 
         update_notebook_sections(
+            os.path.join(destination_dir, colab_notebook_name),
+            general_announcement,
+            installation,
+            installation_kaggle,
+            new_announcement_non_vlm,
+            new_announcement_vlm,
+        )
+
+        update_notebook_sections(
             destination_notebook_path,
             general_announcement,
             installation_kaggle,
@@ -594,7 +623,7 @@ def copy_and_update_notebooks(
             new_announcement_non_vlm,
             new_announcement_vlm,
         )
-
+        
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -627,5 +656,6 @@ if __name__ == "__main__":
         "CSV",
         "Inference",
         "Unsloth_Studio",
+        "GRPO"
     ]  # Define your desired order here
     update_readme(args, readme_path, notebook_directory, type_order)
