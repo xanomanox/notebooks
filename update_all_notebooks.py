@@ -387,7 +387,7 @@ def update_readme(
 
     paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
 
-    list_models = ["Llama", "Phi", "Mistral", "Qwen", "Gemma", "Other notebooks", "GRPO"] # Added GRPO
+    list_models = ["GRPO", "Llama", "Phi", "Mistral", "Qwen", "Gemma", "Other notebooks"]
     sections = {}
     for section in list_models:
         sections[section] = {
