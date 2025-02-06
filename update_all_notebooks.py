@@ -46,6 +46,8 @@ for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
 
 !pip install unsloth vllm
 !pip install --upgrade pillow
+# If you are running this notebook on local, you need to install `diffusers` too
+# !pip install diffusers
 # Temporarily install a specific TRL nightly version
 !pip install git+https://github.com/huggingface/trl.git@e95f9fb74a3c3647b86f251b7e230ec51c64b72b"""
 
