@@ -46,7 +46,8 @@ for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
 
 !pip install unsloth vllm
 !pip install --upgrade pillow
-!pip install git+https://github.com/huggingface/trl.git"""
+# Temporarily install a specific TRL nightly version
+!pip install git+https://github.com/huggingface/trl.git@e95f9fb74a3c3647b86f251b7e230ec51c64b72b"""
 
 installation_grpo_kaggle_content = """%%capture
 # Skip restarting message in Colab
@@ -55,7 +56,8 @@ for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
 
 !pip install unsloth vllm
 !pip install --upgrade pillow
-!pip install git+https://github.com/huggingface/trl.git"""
+# Temporarily install a specific TRL nightly version
+!pip install git+https://github.com/huggingface/trl.git@e95f9fb74a3c3647b86f251b7e230ec51c64b72b"""
 
 
 new_announcement_content_non_vlm = """**Read our [blog post](https://unsloth.ai/blog/r1-reasoning) for guidance to train reasoning model.** GRPO notebook is inspired by [@shxf0072](https://x.com/shxf0072/status/1886085377146180091), [@Teknium1](https://x.com/Teknium1/status/1885077369142337550), [@willccbb](https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb)
