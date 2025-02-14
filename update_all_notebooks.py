@@ -386,6 +386,7 @@ def update_readme(
         base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/"
 
     paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
+    paths = [x.replace("\\", "/") for x in paths]
 
     list_models = ["GRPO", "Llama", "Phi", "Mistral", "Qwen", "Gemma", "Other notebooks"]
     sections = {}
