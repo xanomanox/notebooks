@@ -344,6 +344,57 @@ def update_notebook_sections(
         print(f"An unexpected error occurred while processing {notebook_path}: {e}")
 
 
+import re
+
+def replace(text, g, f):
+    text = text.replace("(", "\(")
+    text = text.replace(")", "\)")
+    if g == "":
+        g = g + "\n"
+    else:
+        g = "\1" + g + "\2"
+    f = re.sub(
+        r"([\s]{1,})([\"\'][ ]{0,})" + text + r"(\\n[\"\']\,\n)",
+        g,
+        f,
+        flags = re.MULTILINE,
+    )
+    if " = " not in text:
+        # Also replace x=x and x = x
+        text = text.replace("=", " = ")
+        f = re.sub(
+            r"([\s]{1,})([\"\'][ ]{0,})" + text + r"(\\n[\"\']\,\n)",
+            g,
+            f,
+            flags = re.MULTILINE,
+        )
+    return f
+pass
+
+def update_unsloth_config(filename):
+    with open(filename, "r", encoding = "utf-8") as f: f = f.read()
+    if "from transformers import TrainingArguments\\n" not in f: return
+    if "from trl import SFTTrainer\\n" not in f: return
+    if "SFTConfig" in f: return
+    if "UnslothTrainingArguments" in f: return
+
+    f = replace("from unsloth import is_bfloat16_supported", "", f)
+    f = replace("from transformers import TrainingArguments", "", f)
+    f = f.replace("from trl import SFTTrainer", "from trl import SFTTrainer, SFTConfig")
+    f = f.replace("TrainingArguments(\\n", "SFTConfig(\\n")
+    f = replace("fp16=not is_bfloat16_supported(),", "", f)
+    f = replace("bf16=is_bfloat16_supported(),", "", f)
+    f = replace("logging_steps=1,", "", f)
+    f = replace("dataset_num_proc=2,", "", f)
+
+    # Fix all spacings x=x to x = x
+    spaces = r'(\"[ ]{4,}[^\<\n]{1,}[^ \=\'\"])\=([^ \=\'\"].*?\,\n)'
+    f = re.sub(spaces, r"\1 = \2", f)
+
+    with open(filename, "w", encoding = "utf-8") as w: w.write(f)
+pass
+
+
 def main():
     notebook_directory = "nb"
     notebook_pattern = "*.ipynb"
@@ -365,6 +416,7 @@ def main():
             new_announcement_content_non_vlm,
             new_announcement_content_vlm,
         )
+        # update_unsloth_config(notebook_file)
 
 
 def update_readme(
