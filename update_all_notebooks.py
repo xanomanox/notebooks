@@ -22,7 +22,7 @@ installation_content = """%%capture
 
 # Temporarily as of Jan 31st 2025, Colab has some issues with Pytorch
 # Using pip install unsloth will take 3 minutes, whilst the below takes <1 minute:
-!pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft "trl<0.15.0" triton
+!pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft trl triton
 !pip install --no-deps cut_cross_entropy unsloth_zoo
 !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
 !pip install --no-deps unsloth"""
@@ -32,7 +32,7 @@ installation_kaggle_content = """%%capture
 
 # Temporarily as of Jan 31st 2025, Colab has some issues with Pytorch
 # Using pip install unsloth will take 3 minutes, whilst the below takes <1 minute:
-!pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft "trl<0.15.0" triton
+!pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft trl triton
 !pip install --no-deps cut_cross_entropy unsloth_zoo
 !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
 !pip install --no-deps unsloth"""
@@ -42,17 +42,11 @@ installation_grpo_content = """%%capture
 import sys; modules = list(sys.modules.keys())
 for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
 
-!pip install "unsloth==2025.2.4" vllm
-!pip install --upgrade pillow
-# If you are running this notebook on local, you need to install `diffusers` too
-# !pip install diffusers
-# Temporarily install a specific TRL nightly version
-!pip install git+https://github.com/huggingface/trl.git@e95f9fb74a3c3647b86f251b7e230ec51c64b72b"""
+!pip install unsloth vllm
+!pip install --upgrade pillow"""
 
 installation_grpo_kaggle_content = """ %%capture
-!pip install "unsloth==2025.2.4" vllm
-# Temporarily install a specific TRL nightly version
-!pip install git+https://github.com/huggingface/trl.git@e95f9fb74a3c3647b86f251b7e230ec51c64b72b
+!pip install unsloth vllm
 !pip install triton==3.1.0
 !pip install -U pynvml"""
 
