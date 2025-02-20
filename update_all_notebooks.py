@@ -18,14 +18,15 @@ To install Unsloth on your own computer, follow the installation instructions on
 You will learn how to do [data prep](#Data), how to [train](#Train), how to [run the model](#Inference), & [how to save it](#Save)"""
 
 installation_content = """%%capture
-# Normally using pip install unsloth is enough
-
-# Temporarily as of Jan 31st 2025, Colab has some issues with Pytorch
-# Using pip install unsloth will take 3 minutes, whilst the below takes <1 minute:
-!pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft trl triton
-!pip install --no-deps cut_cross_entropy unsloth_zoo
-!pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
-!pip install --no-deps unsloth"""
+import os
+if "COLAB_" not in "\n".join(os.environ.keys()):
+    !pip install unsloth
+else:
+    # Do this only in Colab notebooks and Kaggle notebooks!
+    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft trl triton
+    !pip install --no-deps cut_cross_entropy unsloth_zoo
+    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
+    !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
 # Normally using pip install unsloth is enough
