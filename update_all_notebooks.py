@@ -19,10 +19,10 @@ You will learn how to do [data prep](#Data), how to [train](#Train), how to [run
 
 installation_content = """%%capture
 import os
-if "COLAB_" not in "\n".join(os.environ.keys()):
+if "COLAB_" not in "\\n".join(os.environ.keys()):
     !pip install unsloth
 else:
-    # Do this only in Colab notebooks and Kaggle notebooks!
+    # Do this only in Colab and Kaggle notebooks! Otherwise use pip install unsloth
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft trl triton
     !pip install --no-deps cut_cross_entropy unsloth_zoo
     !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
