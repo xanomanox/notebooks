@@ -51,8 +51,6 @@ installation_grpo_kaggle_content = """ %%capture
 !pip install triton==3.1.0
 !pip install -U pynvml"""
 
-
-
 new_announcement_content_non_vlm = """**Read our [blog post](https://unsloth.ai/blog/r1-reasoning) for guidance on how to train reasoning models.**
 
 Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
