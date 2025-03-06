@@ -17,12 +17,17 @@ To install Unsloth on your own computer, follow the installation instructions on
 
 You will learn how to do [data prep](#Data), how to [train](#Train), how to [run the model](#Inference), & [how to save it](#Save)"""
 
+hf_course_separation = '<div class="align-center">'
+
+general_announcement_content_hf_course = general_announcement_content.split(hf_course_separation)
+general_announcement_content_hf_course = general_announcement_content_hf_course[0] + hf_course_separation + '<a href="https://huggingface.co/learn/nlp-course/en/chapter12/"><img src="https://github.com/unslothai/notebooks/raw/main/assets/hf%20course.png" width="165"></a>' + general_announcement_content_hf_course[1]
+
 installation_content = """%%capture
 import os
 if "COLAB_" not in "".join(os.environ.keys()):
     !pip install unsloth
 else:
-    # Do this only in Colab and Kaggle notebooks! Otherwise use pip install unsloth
+    # Do this only in Colab notebooks! Otherwise use pip install unsloth
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29 peft trl triton
     !pip install --no-deps cut_cross_entropy unsloth_zoo
     !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
@@ -108,6 +113,8 @@ naming_mapping = {
     "grpo" : ["GRPO"],
 }
 
+hf_course_name = "HuggingFace Course"
+
 
 def copy_folder(source_path, new_name, destination_path=None, replace=False):
     if destination_path is None:
@@ -189,6 +196,9 @@ def update_notebook_sections(
                 if "###" in source_str:
                     news_markdown_index = i
                     break
+
+        if f"{hf_course_name}-" in notebook_path: 
+            general_announcement = general_announcement_content_hf_course
 
         # Update the general announcement section
         if first_markdown_index != -1:
@@ -450,6 +460,8 @@ def update_readme(
     notebook_data = []
 
     for path in paths:
+        if is_path_contains_any(path.lower(), [hf_course_name.lower()]):
+            continue
         notebook_name = os.path.basename(path)
         is_kaggle = is_path_contains_any(path.lower(), ["kaggle"])
 
@@ -650,7 +662,14 @@ def copy_and_update_notebooks(
         destination_notebook_path = os.path.join(destination_dir, kaggle_notebook_name)
 
         shutil.copy2(template_notebook_path, destination_notebook_path)
+
         print(f"Copied '{kaggle_notebook_name}' to '{destination_dir}'")
+
+        if "GRPO" in template_notebook_path:
+            hf_course_notebook_name = f"{hf_course_name}-" + notebook_name
+            destination_notebook_path = os.path.join(destination_dir, hf_course_notebook_name)
+            shutil.copy2(template_notebook_path, destination_notebook_path)
+            print(f"Copied f'{hf_course_name}-{notebook_name}' to '{destination_notebook_path}'")
 
         update_notebook_sections(
             os.path.join(destination_dir, colab_notebook_name),
