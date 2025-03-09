@@ -67,8 +67,8 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Model | Type | Colab Link | 
 | --- | --- | --- | 
 | CodeGemma (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeGemma_(7B)-Conversational.ipynb)
-| Gemma 2 (2B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(2B)-Alpaca.ipynb)
 | Gemma 2 (9B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(9B)-Alpaca.ipynb)
+| Gemma 2 (2B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(2B)-Alpaca.ipynb)
 
 ### Other notebooks Notebooks
 | Model | Type | Colab Link | 
@@ -131,8 +131,8 @@ Click for all our Kaggle notebooks categorized by model:
 | Model | Type | Kaggle Link | 
 | --- | --- | --- | 
 | CodeGemma (7B) | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-CodeGemma_(7B)-Conversational.ipynb&accelerator=nvidiaTeslaT4)
-| Gemma 2 (9B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(9B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 | Gemma 2 (2B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
+| Gemma 2 (9B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(9B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 
 ### Other notebooks Notebooks
 | Model | Type | Kaggle Link | 
@@ -143,7 +143,7 @@ Click for all our Kaggle notebooks categorized by model:
 
 </details>
 
-<!-- Last updated on: 2025-03-06 15:29:46 -->
+<!-- Last updated on: 2025-03-09 11:25:40 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks
