@@ -67,8 +67,8 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Model | Type | Colab Link | 
 | --- | --- | --- | 
 | CodeGemma (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeGemma_(7B)-Conversational.ipynb)
-| Gemma 2 (9B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(9B)-Alpaca.ipynb)
 | Gemma 2 (2B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(2B)-Alpaca.ipynb)
+| Gemma 2 (9B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(9B)-Alpaca.ipynb)
 
 ### Other notebooks Notebooks
 | Model | Type | Colab Link | 
@@ -143,7 +143,7 @@ Click for all our Kaggle notebooks categorized by model:
 
 </details>
 
-<!-- Last updated on: 2025-03-09 22:09:28 -->
+<!-- Last updated on: 2025-03-14 10:30:02 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks
