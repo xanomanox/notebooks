@@ -58,13 +58,8 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-Write-Host "Downloading Triton wheel file..."
-$tritonWheelUrl = "https://github.com/woct0rdho/triton-windows/releases/download/v3.1.0-windows.post5/triton-3.1.0-cp311-cp311-win_amd64.whl"
-$tritonWheelPath = "$env:TEMP\triton-3.1.0-cp311-cp311-win_amd64.whl" # Save to a temporary directory
-Invoke-WebRequest -Uri $tritonWheelUrl -OutFile $tritonWheelPath
-
 Write-Host "Installing Triton from wheel file..."
-pip install $tritonWheelPath
+pip install -U triton-windows
 
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Failed to install Triton."
