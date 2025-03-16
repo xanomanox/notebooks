@@ -67,6 +67,13 @@ else:
 # Install latest Hugging Face for Gemma-3!
 !pip install --no-deps git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3"""
 
+installation_gemma_kaggle_content = """%%capture
+!pip install unsloth vllm
+!pip install triton==3.1.0
+!pip install -U pynvml
+# Install latest Hugging Face for Gemma-3!
+!pip install --no-deps git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3"""
+
 new_announcement_content_non_vlm = """**Read our [Gemma 3 blog](https://unsloth.ai/blog/gemma3) for what's new in Unsloth and our [Reasoning blog](https://unsloth.ai/blog/r1-reasoning) on how to train reasoning models.**
 
 Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
@@ -282,13 +289,16 @@ def update_notebook_sections(
 
                         # GRPO specific installation
                         if is_path_contains_any(notebook_path.lower(), ["grpo"]):
-                            if is_path_contains_any(notebook_path, ["kaggle"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
                                 installation = installation_grpo_kaggle_content
                             else:
                                 installation = installation_grpo_content
 
                         if is_path_contains_any(notebook_path.lower(), ["gemma3"]):
-                            installation = installation_gemma_content
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_gemma_kaggle_content
+                            else:
+                                installation = installation_gemma_content
 
 
                         notebook_content["cells"][i + 1]["source"] = installation
