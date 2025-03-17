@@ -42,7 +42,8 @@ installation_kaggle_content = """%%capture
 !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
 !pip install --no-deps unsloth"""
 
-installation_grpo_content = r"""%%capture
+installation_grpo_content = r"""#@title '' { display-mode: "form" }
+%%capture
 import os
 if "COLAB_" not in "".join(os.environ.keys()):
     !pip install unsloth vllm
