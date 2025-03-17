@@ -48,7 +48,12 @@ import sys; modules = list(sys.modules.keys())
 for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
 
 !pip install unsloth vllm
-!pip install --upgrade pillow"""
+!pip install --upgrade pillow
+
+# This will force restart the colab notebook, you can go to the next code without running
+# this cellblock
+import os
+os.kill(os.getpid(), 9)"""
 
 installation_grpo_kaggle_content = """%%capture
 !pip install unsloth vllm
