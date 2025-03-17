@@ -346,7 +346,11 @@ def update_notebook_sections(
             notebook_content["metadata"]["accelerator"] = "GPU"
             updated = True
         if "colab" not in notebook_content["metadata"]:
-            notebook_content["metadata"]["colab"] = {"provenance": []}
+            # TODO: Temporary since there's a bug in the FP16 bug for Gemma3
+            if is_path_contains_any(notebook_path.lower(), ["gemma3"]):
+                notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "L4"}
+            else:
+                notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "T4"}
             updated = True
         if "kernelspec" not in notebook_content["metadata"]:
             notebook_content["metadata"]["kernelspec"] = {
@@ -354,6 +358,11 @@ def update_notebook_sections(
                 "name": "python3",
             }
             updated = True
+
+        if is_path_contains_any(notebook_path.lower(), ["gemma3"]):
+            notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "L4", "include_colab_link": True}
+        else:
+            notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "T4", "include_colab_link": True}
 
         if updated:
             with open(notebook_path, "w", encoding="utf-8") as f:
