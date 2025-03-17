@@ -42,7 +42,15 @@ installation_kaggle_content = """%%capture
 !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
 !pip install --no-deps unsloth"""
 
-installation_grpo_content = r"""#@title '' { display-mode: "form" }
+installation_grpo_content = """%%capture
+import os
+if "COLAB_" not in "".join(os.environ.keys()):
+    !pip install unsloth vllm
+else:
+    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
+    !pip install --no-deps unsloth vllm"""
+
+installation_extra_grpo_content = r"""#@title Colab Extra Install { display-mode: "form" }
 %%capture
 import os
 if "COLAB_" not in "".join(os.environ.keys()):
@@ -303,8 +311,14 @@ def update_notebook_sections(
                         if is_path_contains_any(notebook_path.lower(), ["grpo"]):
                             if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
                                 installation = installation_grpo_kaggle_content
+                                # Kaggle will delete the second cell instead -> Need to check
+                                del notebook_content["cells"][i + 2]
                             else:
                                 installation = installation_grpo_content
+                                # TODO: Remove after GRPO numpy bug fixed!
+                                # Error : ValueError: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+                                notebook_content["cells"][i + 2]["source"] = installation_extra_grpo_content
+
 
                         if is_path_contains_any(notebook_path.lower(), ["gemma3"]):
                             if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
@@ -315,7 +329,12 @@ def update_notebook_sections(
 
                         notebook_content["cells"][i + 1]["source"] = installation
                         updated = True
-                        i += 1
+                        # TODO: Remove after GRPO numpy bug fixed! 
+                        # Error: ValueError: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+                        if is_path_contains_any(notebook_path.lower(), ["grpo"]) and not is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                            i += 2
+                        else:
+                            i += 1
 
             i += 1
 
