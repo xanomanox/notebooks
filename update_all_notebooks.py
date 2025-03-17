@@ -42,18 +42,24 @@ installation_kaggle_content = """%%capture
 !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
 !pip install --no-deps unsloth"""
 
-installation_grpo_content = """%%capture
-# Skip restarting message in Colab
-import sys; modules = list(sys.modules.keys())
-for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
-
-!pip install unsloth vllm
-!pip install --upgrade pillow
-
-# This will force restart the colab notebook, you can go to the next code without running
-# this cellblock
+installation_grpo_content = r"""%%capture
 import os
-os.kill(os.getpid(), 9)"""
+if "COLAB_" not in "".join(os.environ.keys()):
+    !pip install unsloth vllm
+else:
+    !pip install --no-deps unsloth vllm
+    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
+    # Skip restarting message in Colab
+    import sys, re, requests; modules = list(sys.modules.keys())
+    for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
+    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
+    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
+    
+    # vLLM requirements - vLLM breaks Colab due to reinstalling numpy
+    f = requests.get("https://raw.githubusercontent.com/vllm-project/vllm/refs/heads/main/requirements/common.txt").content
+    with open("vllm_requirements.txt", "wb") as file:
+        file.write(re.sub(rb"(transformers|numpy|xformers)[^\n]{1,}\n", b"", f))
+    !pip install -r vllm_requirements.txt"""
 
 installation_grpo_kaggle_content = """%%capture
 !pip install unsloth vllm
