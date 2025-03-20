@@ -6,6 +6,8 @@ import shutil
 from datetime import datetime
 from glob import glob
 
+badge_section = '<a href="{link_colab}" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>'
+
 general_announcement_content = """To run this, press "*Runtime*" and press "*Run all*" on a **free** Tesla T4 Google Colab instance!
 <div class="align-center">
 <a href="https://unsloth.ai/"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
@@ -20,7 +22,15 @@ You will learn how to do [data prep](#Data), how to [train](#Train), how to [run
 hf_course_separation = '<div class="align-center">'
 
 general_announcement_content_hf_course = general_announcement_content.split(hf_course_separation)
-general_announcement_content_hf_course = general_announcement_content_hf_course[0] + hf_course_separation + '<a href="https://huggingface.co/learn/nlp-course/en/chapter12/"><img src="https://github.com/unslothai/notebooks/raw/main/assets/hf%20course.png" width="165"></a>' + general_announcement_content_hf_course[1]
+general_announcement_content_hf_course = general_announcement_content_hf_course[0] + hf_course_separation + '<a href="https://huggingface.co/learn/nlp-course/en/chapter12/6?fw=pt"><img src="https://github.com/unslothai/notebooks/raw/main/assets/hf%20course.png" width="165"></a>' + general_announcement_content_hf_course[1]
+general_announcement_content_hf_course = general_announcement_content_hf_course.split("To install Unsloth")
+hf_additional_string_announcement = "In this [Hugging Face](https://huggingface.co/learn/nlp-course/en/chapter12/6?fw=pt) and Unsloth notebook, you will learn to transform {full_model_name} into a Reasoning model using GRPO."
+general_announcement_content_hf_course = (
+    general_announcement_content_hf_course[0] + 
+    hf_additional_string_announcement + 
+    "\n\n" +
+    "To install Unsloth" + general_announcement_content_hf_course[1]
+)
 
 installation_content = """%%capture
 import os
@@ -75,19 +85,17 @@ installation_grpo_kaggle_content = """%%capture
 !pip install triton==3.1.0
 !pip install -U pynvml"""
 
-installation_gemma_content = """%%capture
+installation_gemma3_content = """%%capture
 import os
 if "COLAB_" not in "".join(os.environ.keys()):
-    !pip install unsloth
+    !pip install unsloth vllm
 else:
-    # Do this only in Colab notebooks! Otherwise use pip install unsloth
-    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
-    !pip install --no-deps unsloth
+    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
+    !pip install --no-deps unsloth vllm
 # Install latest Hugging Face for Gemma-3!
 !pip install --no-deps git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3"""
 
-installation_gemma_kaggle_content = """%%capture
+installation_gemma3_kaggle_content = """%%capture
 !pip install unsloth vllm
 !pip install triton==3.1.0
 !pip install -U pynvml
@@ -232,7 +240,10 @@ def update_notebook_sections(
                     break
 
         if f"{hf_course_name}-" in notebook_path: 
-            general_announcement = general_announcement_content_hf_course
+            full_model_name = notebook_path.split("/")[-1].replace(".ipynb", "")
+            full_model_name = full_model_name.split("-")
+            full_model_name = " ".join(full_model_name[1:]).replace("_", " ")
+            general_announcement = general_announcement_content_hf_course.format(full_model_name=full_model_name)
 
         # Update the general announcement section
         if first_markdown_index != -1:
@@ -322,9 +333,9 @@ def update_notebook_sections(
 
                         if is_path_contains_any(notebook_path.lower(), ["gemma3"]):
                             if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
-                                installation = installation_gemma_kaggle_content
+                                installation = installation_gemma3_kaggle_content
                             else:
-                                installation = installation_gemma_content
+                                installation = installation_gemma3_content
 
 
                         notebook_content["cells"][i + 1]["source"] = installation
@@ -377,11 +388,7 @@ def update_notebook_sections(
             notebook_content["metadata"]["accelerator"] = "GPU"
             updated = True
         if "colab" not in notebook_content["metadata"]:
-            # TODO: Temporary since there's a bug in the FP16 bug for Gemma3
-            if is_path_contains_any(notebook_path.lower(), ["gemma3"]):
-                notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "L4"}
-            else:
-                notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "T4"}
+            notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "T4", "include_colab_link": True}
             updated = True
         if "kernelspec" not in notebook_content["metadata"]:
             notebook_content["metadata"]["kernelspec"] = {
@@ -389,11 +396,6 @@ def update_notebook_sections(
                 "name": "python3",
             }
             updated = True
-
-        if is_path_contains_any(notebook_path.lower(), ["gemma3"]):
-            notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "L4", "include_colab_link": True}
-        else:
-            notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "T4", "include_colab_link": True}
 
         if updated:
             with open(notebook_path, "w", encoding="utf-8") as f:
@@ -483,6 +485,33 @@ def main():
             new_announcement_content_vlm,
         )
         # update_unsloth_config(notebook_file)
+
+def add_colab_badge(notebooks_dir):
+    paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
+    paths = [x.replace("\\", "/") for x in paths]
+
+    for path in paths:
+        is_kaggle = is_path_contains_any(path.lower(), ["kaggle"])
+        is_colab = not is_kaggle
+        if is_colab:
+            with open(path, "r", encoding="utf-8") as f:
+                notebook_content = json.load(f)
+
+            badge = badge_section.format(link_colab=(f"https://colab.research.google.com/github/unslothai/notebooks/blob/main/"+path).replace(" ", "%20"))
+            notebook_content["cells"].insert(
+                0,
+                {
+                    "cell_type": "markdown",
+                    "metadata": {},
+                    "source": [
+                        f"{line}\n"
+                        for line in badge.splitlines()
+                    ],
+                },
+            )
+
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(notebook_content, f, indent=1)
 
 
 def update_readme(
@@ -787,3 +816,4 @@ if __name__ == "__main__":
         "GRPO"
     ]  # Define your desired order here
     update_readme(args, readme_path, notebook_directory, type_order)
+    add_colab_badge(notebook_directory)

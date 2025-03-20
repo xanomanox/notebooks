@@ -24,6 +24,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | --- | --- | --- | 
 | Phi 4 (14B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4_(14B)-GRPO.ipynb)
 | Llama 3.1 (8B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-GRPO.ipynb)
+| Gemma 3 (1B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_(1B)-GRPO.ipynb)
 | Qwen 2.5 (3B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_(3B)-GRPO.ipynb)
 
 ### Llama Notebooks
@@ -76,6 +77,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | --- | --- | --- | 
 | Zephyr (7B) | DPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Zephyr_(7B)-DPO.ipynb)
 | TinyLlama (1.1B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/TinyLlama_(1.1B)-Alpaca.ipynb)
+| CodeForces | cot | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb)
 | Unsloth Studio |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb)
 
 # 📒 Kaggle Notebooks
@@ -89,6 +91,7 @@ Click for all our Kaggle notebooks categorized by model:
 | --- | --- | --- | 
 | Phi 4 (14B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Phi_4_(14B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
 | Llama 3.1 (8B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3.1_(8B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
+| Gemma 3 (1B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3_(1B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
 | Qwen 2.5 (3B) | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen2.5_(3B)-GRPO.ipynb&accelerator=nvidiaTeslaT4)
 
 ### Llama Notebooks
@@ -133,8 +136,8 @@ Click for all our Kaggle notebooks categorized by model:
 | --- | --- | --- | 
 | CodeGemma (7B) | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-CodeGemma_(7B)-Conversational.ipynb&accelerator=nvidiaTeslaT4)
 | Gemma 3 (4B) |  | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3_(4B).ipynb&accelerator=nvidiaTeslaT4)
-| Gemma 2 (2B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 | Gemma 2 (9B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(9B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
+| Gemma 2 (2B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 
 ### Other notebooks Notebooks
 | Model | Type | Kaggle Link | 
@@ -142,10 +145,11 @@ Click for all our Kaggle notebooks categorized by model:
 | Zephyr (7B) | DPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Zephyr_(7B)-DPO.ipynb&accelerator=nvidiaTeslaT4)
 | TinyLlama (1.1B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-TinyLlama_(1.1B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 | Unsloth Studio |  | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Unsloth_Studio.ipynb&accelerator=nvidiaTeslaT4)
+| CodeForces | cot | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb&accelerator=nvidiaTeslaT4)
 
 </details>
 
-<!-- Last updated on: 2025-03-17 22:05:42 -->
+<!-- Last updated on: 2025-03-20 05:25:03 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks
