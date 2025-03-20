@@ -816,4 +816,3 @@ if __name__ == "__main__":
         "GRPO"
     ]  # Define your desired order here
     update_readme(args, readme_path, notebook_directory, type_order)
-    add_colab_badge(notebook_directory)
