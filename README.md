@@ -30,6 +30,8 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 ### Llama Notebooks
 | Model | Type | Colab Link | 
 | --- | --- | --- | 
+
+| Orpheus (3B) | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Orpheus_TTS_(3B).ipynb)
 | Llama 3.2 (1B and 3B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B_and_3B)-Conversational.ipynb)
 | Llama 3.2 (11B) | **Vision** | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(11B)-Vision.ipynb)
 | Llama 3.1 (8B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-Alpaca.ipynb)
