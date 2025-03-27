@@ -43,14 +43,11 @@ else:
     !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
-# Normally using pip install unsloth is enough
 
-# Temporarily as of Jan 31st 2025, Colab has some issues with Pytorch
-# Using pip install unsloth will take 3 minutes, whilst the below takes <1 minute:
-!pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton
-!pip install --no-deps cut_cross_entropy unsloth_zoo
-!pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
-!pip install --no-deps unsloth"""
+!pip install pip3-autoremove
+!pip-autoremove torch torchvision torchaudio -y
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
+!pip install unsloth"""
 
 installation_grpo_content = """%%capture
 import os
@@ -80,7 +77,11 @@ else:
         file.write(re.sub(rb"(transformers|numpy|xformers)[^\n]{1,}\n", b"", f))
     !pip install -r vllm_requirements.txt"""
 
+
 installation_grpo_kaggle_content = """%%capture
+!pip install pip3-autoremove
+!pip-autoremove torch torchvision torchaudio -y
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
 !pip install unsloth vllm
 !pip install triton==3.1.0
 !pip install -U pynvml"""
@@ -94,6 +95,10 @@ else:
     !pip install --no-deps unsloth vllm
 # Install latest Hugging Face for Gemma-3!
 !pip install --no-deps git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3"""
+
+# Add install snac under install unsloth
+installation_orpheus_content = installation_content + """\n!pip install snac"""
+installation_orpheus_kaggle_content = installation_kaggle_content + """\n!pip install snac"""
 
 installation_gemma3_kaggle_content = """%%capture
 !pip install unsloth vllm
@@ -319,7 +324,7 @@ def update_notebook_sections(
                             installation = installation_steps
 
                         # GRPO specific installation
-                        if is_path_contains_any(notebook_path.lower(), ["grpo"]):
+                        if is_path_contains_any(notebook_path.lower(), ["grpo", "gemma3"]):
                             if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
                                 installation = installation_grpo_kaggle_content
                                 # Kaggle will delete the second cell instead -> Need to check
@@ -336,6 +341,12 @@ def update_notebook_sections(
                                 installation = installation_gemma3_kaggle_content
                             else:
                                 installation = installation_gemma3_content
+
+                        if is_path_contains_any(notebook_path.lower(), ["orpheus"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_orpheus_kaggle_content
+                            else:
+                                installation = installation_orpheus_content
 
 
                         notebook_content["cells"][i + 1]["source"] = installation
