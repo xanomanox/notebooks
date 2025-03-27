@@ -68,10 +68,10 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 ### Gemma Notebooks
 | Model | Type | Colab Link | 
 | --- | --- | --- | 
-| CodeGemma (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeGemma_(7B)-Conversational.ipynb)
 | Gemma 3 (4B) |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_(4B).ipynb)
 | Gemma 2 (9B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(9B)-Alpaca.ipynb)
 | Gemma 2 (2B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(2B)-Alpaca.ipynb)
+| CodeGemma (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeGemma_(7B)-Conversational.ipynb)
 
 ### Other notebooks Notebooks
 | Model | Type | Colab Link | 
