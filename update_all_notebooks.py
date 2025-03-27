@@ -155,8 +155,8 @@ Some other links:
 
 naming_mapping = {
     "mistral": ["pixtral", "mistral"],
-    "other notebooks": ["TinyLlama"],
-    "llama": ["Llama"],
+    "other notebooks": ["TinyLlama", "Advanced"],
+    "llama": ["Llama", "Orpheus"],
     "grpo" : ["GRPO"],
 }
 
