@@ -37,8 +37,8 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Llama 3 (8B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Alpaca.ipynb)
 | Llama 3 (8B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Conversational.ipynb)
 | Llama 3 (8B) | ORPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-ORPO.ipynb)
-| Llama 3 (8B) | Ollama | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Ollama.ipynb)
 | Orpheus (3B) | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Orpheus_(3B)-TTS.ipynb)
+| Llama 3 (8B) | Ollama | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Ollama.ipynb)
 
 ### Phi Notebooks
 | Model | Type | Colab Link | 
@@ -81,8 +81,8 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Zephyr (7B) | DPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Zephyr_(7B)-DPO.ipynb)
 | Advanced Llama3 1 (3B) GRPO LoRA |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Advanced_Llama3_1_(3B)_GRPO_LoRA.ipynb)
 | TinyLlama (1.1B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/TinyLlama_(1.1B)-Alpaca.ipynb)
-| Unsloth Studio |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb)
 | CodeForces | cot | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb)
+| Unsloth Studio |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb)
 
 # 📒 Kaggle Notebooks
 <details>
@@ -108,8 +108,8 @@ Click for all our Kaggle notebooks categorized by model:
 | Llama 3 (8B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3_(8B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 | Llama 3 (8B) | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3_(8B)-Conversational.ipynb&accelerator=nvidiaTeslaT4)
 | Llama 3 (8B) | ORPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3_(8B)-ORPO.ipynb&accelerator=nvidiaTeslaT4)
-| Llama 3 (8B) | Ollama | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3_(8B)-Ollama.ipynb&accelerator=nvidiaTeslaT4)
 | Orpheus (3B) | TTS | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Orpheus_(3B)-TTS.ipynb&accelerator=nvidiaTeslaT4)
+| Llama 3 (8B) | Ollama | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3_(8B)-Ollama.ipynb&accelerator=nvidiaTeslaT4)
 
 ### Phi Notebooks
 | Model | Type | Kaggle Link | 
@@ -143,8 +143,8 @@ Click for all our Kaggle notebooks categorized by model:
 | --- | --- | --- | 
 | CodeGemma (7B) | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-CodeGemma_(7B)-Conversational.ipynb&accelerator=nvidiaTeslaT4)
 | Gemma 3 (4B) |  | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3_(4B).ipynb&accelerator=nvidiaTeslaT4)
-| Gemma 2 (2B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 | Gemma 2 (9B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(9B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
+| Gemma 2 (2B) | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4)
 
 ### Other notebooks Notebooks
 | Model | Type | Kaggle Link | 
@@ -157,7 +157,7 @@ Click for all our Kaggle notebooks categorized by model:
 
 </details>
 
-<!-- Last updated on: 2025-03-28 05:09:40 -->
+<!-- Last updated on: 2025-04-07 19:53:57 -->
 <!-- End of Notebook Links -->
 
 # ✨ Contributing to Notebooks
