@@ -39,7 +39,7 @@ if "COLAB_" not in "".join(os.environ.keys()):
 else:
     # Do this only in Colab notebooks! Otherwise use pip install unsloth
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl==0.15.2 triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf datasets huggingface_hub[hf_xet] hf_transfer
     !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
@@ -69,12 +69,12 @@ else:
     import sys, re, requests; modules = list(sys.modules.keys())
     for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft "trl==0.15.2" triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf datasets huggingface_hub[hf_xet] hf_transfer
     
     # vLLM requirements - vLLM breaks Colab due to reinstalling numpy
     f = requests.get("https://raw.githubusercontent.com/vllm-project/vllm/refs/heads/main/requirements/common.txt").content
     with open("vllm_requirements.txt", "wb") as file:
-        file.write(re.sub(rb"(transformers|numpy|xformers)[^\n]{1,}\n", b"", f))
+        file.write(re.sub(rb"(transformers|numpy|xformers|importlib_metadata)[^\n]{0,}\n", b"", f))
     !pip install -r vllm_requirements.txt"""
 
 
