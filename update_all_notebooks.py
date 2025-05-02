@@ -39,7 +39,7 @@ if "COLAB_" not in "".join(os.environ.keys()):
 else:
     # Do this only in Colab notebooks! Otherwise use pip install unsloth
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl==0.15.2 triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf datasets huggingface_hub[hf_xet] hf_transfer
+    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
     !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
@@ -69,7 +69,7 @@ else:
     import sys, re, requests; modules = list(sys.modules.keys())
     for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft "trl==0.15.2" triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf datasets huggingface_hub[hf_xet] hf_transfer
+    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
     
     # vLLM requirements - vLLM breaks Colab due to reinstalling numpy
     f = requests.get("https://raw.githubusercontent.com/vllm-project/vllm/refs/heads/main/requirements/common.txt").content
@@ -107,11 +107,11 @@ installation_gemma3_kaggle_content = """%%capture
 # Install latest Hugging Face for Gemma-3!
 !pip install --no-deps git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3"""
 
-new_announcement_content_non_vlm = """**Read our [Gemma 3 blog](https://unsloth.ai/blog/gemma3) for what's new in Unsloth and our [Reasoning blog](https://unsloth.ai/blog/r1-reasoning) on how to train reasoning models.**
+new_announcement_content_non_vlm = """**Read our [Qwen 3 blog](https://docs.unsloth.ai/basics/qwen3-how-to-run-and-fine-tune)** and check out our new **[Dynamic V2](https://unsloth.ai/blog/dynamic-v2)** quants for Scout and Maverick!
 
 Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
 
-new_announcement_content_vlm = """**Read our [Gemma 3 blog](https://unsloth.ai/blog/gemma3) for what's new in Unsloth and our [Reasoning blog](https://unsloth.ai/blog/r1-reasoning) on how to train reasoning models.**
+new_announcement_content_vlm = """**Read our [Qwen 3 blog](https://docs.unsloth.ai/basics/qwen3-how-to-run-and-fine-tune)** and check out our new **[Dynamic V2](https://unsloth.ai/blog/dynamic-v2)** quants for Scout and Maverick!
 
 Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
 
