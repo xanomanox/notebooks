@@ -60,7 +60,8 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 
 ### Qwen Notebooks
 | Model | Type | Colab Link | 
-| --- | --- | --- | 
+| --- | --- | --- |
+| Qwen 3 (14B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(14B)-Reasoning-Conversational.ipynb)
 | Qwen 2.5 (7B) | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_(7B)-Alpaca.ipynb)
 | Qwen 2.5 Coder (14B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_Coder_(14B)-Conversational.ipynb)
 | Qwen 2.5 VL (7B) | **Vision** | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_VL_(7B)-Vision.ipynb)
