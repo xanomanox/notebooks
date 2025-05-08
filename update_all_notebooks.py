@@ -289,10 +289,26 @@ installation_spark_content = installation_content + """\n!git clone https://gith
 installation_spark_kaggle_content = installation_kaggle_content + """\n!git clone https://github.com/SparkAudio/Spark-TTS
 !pip install omegaconf einx"""
 
-installation_oute_content = installation_content + """\n!git clone https://github.com/SparkAudio/Spark-TTS
-!pip install omegaconf einx"""
-installation_oute_kaggle_content = installation_kaggle_content + """\n!git clone https://github.com/SparkAudio/Spark-TTS
-!pip install omegaconf einx"""
+installation_oute_content = installation_content + """\n!pip install omegaconf  einx,
+!git clone https://github.com/edwko/OuteTTS,
+import os
+os.remove("/content/OuteTTS/outetts/models/gguf_model.py")
+os.remove("/content/OuteTTS/outetts/interface.py")
+os.remove("/content/OuteTTS/outetts/__init__.py")
+!pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken
+!pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
+%env UNSLOTH_COMPILE_DISABLE = 1
+%env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
+installation_oute_kaggle_content = installation_kaggle_content + """\n!pip install omegaconf  einx,
+!git clone https://github.com/edwko/OuteTTS,
+import os
+os.remove("/content/OuteTTS/outetts/models/gguf_model.py")
+os.remove("/content/OuteTTS/outetts/interface.py")
+os.remove("/content/OuteTTS/outetts/__init__.py")
+!pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken
+!pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
+%env UNSLOTH_COMPILE_DISABLE = 1
+%env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
 
 installation_llasa_content = installation_content + """\n!pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
 !pip install transformers==4.48 omegaconfx"""
