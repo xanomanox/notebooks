@@ -281,8 +281,12 @@ installation_grpo_kaggle_content = """%%capture
 installation_orpheus_content = installation_content + """\n!pip install snac"""
 installation_orpheus_kaggle_content = installation_kaggle_content + """\n!pip install snac"""
 
-installation_whisper_content = installation_content + """\n!pip install librosa soundfile evaluate jiwer"""
-installation_whisper_kaggle_content = installation_kaggle_content + """\n!pip install librosa soundfile evaluate jiwer"""
+installation_whisper_content = installation_content + """\n!pip install librosa soundfile evaluate jiwer
+%env UNSLOTH_DISABLE_FAST_GENERATION = 1
+"""
+installation_whisper_kaggle_content = installation_kaggle_content + """\n!pip install librosa soundfile evaluate jiwer
+%env UNSLOTH_DISABLE_FAST_GENERATION = 1
+"""
 
 installation_spark_content = installation_content + """\n!git clone https://github.com/SparkAudio/Spark-TTS
 !pip install omegaconf einx"""
