@@ -6,6 +6,171 @@ import shutil
 from datetime import datetime
 from glob import glob
 
+ARCHITECTURE_MAPPING = {
+    # Gemma Family
+    'gemma': 'Gemma',
+    'codegemma': 'Gemma', # Explicitly map specific models if needed
+
+    # Llama Family
+    'llama': 'Llama',
+    'tinylama': 'Llama',
+
+    # Qwen Family
+    'qwen': 'Qwen',
+
+    # Phi Family
+    'phi': 'Phi',
+
+    # Mistral Family
+    'mistral': 'Mistral',
+    'pixtral': 'Mistral',
+    'zephyr': 'Mistral',
+
+    # Whisper
+    'whisper': 'Whisper',
+
+    # Text-to-Speech Models (Group or keep separate?)
+    'oute': 'Oute', 
+    'llasa': 'Llama',
+    'spark': 'Spark',
+    'orpheus': 'Orpheus',
+
+    # Other Models (Assign architecture or keep specific)
+    # 'codeforces': 'CodeForces Model', # Example
+    # 'unsloth': 'Unsloth Model',     # Example
+    'meta synthetic data': 'Llama'
+}
+
+KNOWN_TYPES_ORDERED = [
+    'Tool Calling',          
+    'Text Completion',       
+    'Synthetic Data',        
+    'Reasoning Conversational',
+    'GRPO LoRA',             
+    
+    'Conversational',
+    'Alpaca',
+    'Vision',
+    'Reasoning',
+    'Completion',
+    'Finetune',             
+    'Studio',               
+    'Coder',                
+    'Inference',            
+    'Ollama',               
+    
+    'ORPO',
+    'GRPO',
+    'DPO',
+    'CPT',
+    'TTS',                  
+    'LoRA',
+    'VL',                   
+]
+
+def extract_model_info_refined(filename, architecture_mapping, known_types_ordered):
+    if not filename.endswith(".ipynb"):
+        return {'name': filename, 'size': None, 'type': None, 'architecture': None}
+    stem = filename[:-len(".ipynb")]
+    original_stem_parts = stem.replace('+', '_').split('_') 
+    type_ = None
+    stem_searchable = stem.lower().replace('_', ' ').replace('+', ' ')
+    found_type_indices = [] 
+
+    for type_keyword in known_types_ordered:
+        kw_lower = type_keyword.lower()
+        pattern = r'\b' + re.escape(kw_lower) + r'\b'
+        match = re.search(pattern, stem_searchable)
+        if match:
+            type_ = type_keyword 
+            try:
+                 
+                 kw_parts = type_keyword.split(' ')
+                 for i in range(len(original_stem_parts) - len(kw_parts) + 1):
+                     match_parts = True
+                     for j in range(len(kw_parts)):
+                         if original_stem_parts[i+j].lower() != kw_parts[j].lower():
+                             match_parts = False
+                             break
+                     if match_parts:
+                         found_type_indices = list(range(i, i + len(kw_parts)))
+                         break
+            except Exception:
+                pass 
+            break 
+    size = None
+    size_match = re.search(r'_\((.*?)\)', stem)
+    size_start_index = -1
+    if size_match:
+        size = size_match.group(1)
+        size_start_index = size_match.start() 
+    name = None
+    if size_start_index != -1:
+        name_part = stem[:size_start_index]
+        name = name_part.replace('_', ' ').strip()
+        if not name:
+             post_size_part = stem[size_match.end():]
+             if post_size_part.startswith('_'): post_size_part = post_size_part[1:]
+             if post_size_part.startswith('+'): post_size_part = post_size_part[1:]
+             name = post_size_part.replace('_', ' ').replace('+', ' ').strip()
+    else:
+        name = stem.replace('_', ' ').strip()
+        if type_ and name.lower().endswith(type_.lower()):
+            name = name[:-len(type_)].strip()
+
+    if not name:
+        name_parts_filtered = [p for i, p in enumerate(original_stem_parts) if i not in found_type_indices]
+        name = ' '.join(name_parts_filtered).strip()
+        if not name: 
+             name = stem.replace('_',' ').strip()
+
+    architecture = None
+    if name: 
+        name_lower_for_mapping = name.lower()
+        sorted_keys = sorted(architecture_mapping.keys(), key=len, reverse=True)
+        for key in sorted_keys:
+            
+            pattern = r'\b' + re.escape(key.lower()) + r'\b'
+            if re.search(pattern, name_lower_for_mapping):
+                architecture = architecture_mapping[key]
+                break
+            elif key.lower() in name_lower_for_mapping and architecture is None:
+               architecture = architecture_mapping[key]
+
+    if type_ == "Synthetic Data" or type_ == "GRPO LoRA":
+        type_ = "GRPO"
+
+    return {'name': name,
+            'size': size,
+            'type': type_,
+            'architecture': architecture}
+
+extracted_info_refined = {}
+original_template_path = os.path.abspath("original_template")
+list_files = [f for f in os.listdir(original_template_path) if f.endswith(".ipynb")]
+standardized_name = [f.replace("-", "_") for f in list_files]
+
+standard_to_original_name = {
+    k : v for k, v in zip(standardized_name, list_files)
+}
+original_to_standard_name = {
+    v : k for k, v in zip(standardized_name, list_files)
+}
+list_files = [f for f in os.listdir(original_template_path) if f.endswith(".ipynb")]
+for std_name in standard_to_original_name:
+    extracted_info_refined[std_name] = extract_model_info_refined(
+        std_name,
+        ARCHITECTURE_MAPPING,
+        KNOWN_TYPES_ORDERED  
+    )
+
+badge_section = '<a href="{link_colab}" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>'
+
+
+# =======================================================
+# ANNOUNCEMENTS
+# =======================================================
+
 general_announcement_content = """To run this, press "*Runtime*" and press "*Run all*" on a **free** Tesla T4 Google Colab instance!
 <div class="align-center">
 <a href="https://unsloth.ai/"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
@@ -17,10 +182,25 @@ To install Unsloth on your own computer, follow the installation instructions on
 
 You will learn how to do [data prep](#Data), how to [train](#Train), how to [run the model](#Inference), & [how to save it](#Save)"""
 
-hf_course_separation = '<div class="align-center">'
+announcement_separation = '<div class="align-center">'
 
-general_announcement_content_hf_course = general_announcement_content.split(hf_course_separation)
-general_announcement_content_hf_course = general_announcement_content_hf_course[0] + hf_course_separation + '<a href="https://huggingface.co/learn/nlp-course/en/chapter12/"><img src="https://github.com/unslothai/notebooks/raw/main/assets/hf%20course.png" width="165"></a>' + general_announcement_content_hf_course[1]
+general_announcement_content_hf_course = general_announcement_content.split(announcement_separation)
+general_announcement_content_hf_course = general_announcement_content_hf_course[0] + announcement_separation + '<a href="https://huggingface.co/learn/nlp-course/en/chapter12/6?fw=pt"><img src="https://github.com/unslothai/notebooks/raw/main/assets/hf%20course.png" width="165"></a>' + general_announcement_content_hf_course[1]
+general_announcement_content_hf_course = general_announcement_content_hf_course.split("To install Unsloth")
+hf_additional_string_announcement = "In this [Hugging Face](https://huggingface.co/learn/nlp-course/en/chapter12/6?fw=pt) and Unsloth notebook, you will learn to transform {full_model_name} into a Reasoning model using GRPO."
+general_announcement_content_hf_course = (
+    general_announcement_content_hf_course[0] + 
+    hf_additional_string_announcement + 
+    "\n\n" +
+    "To install Unsloth" + general_announcement_content_hf_course[1]
+)
+
+general_announcement_content_meta = general_announcement_content.split(announcement_separation)
+general_announcement_content_meta = general_announcement_content_meta[0] + "\n\n" + '<a href="https://github.com/meta-llama/synthetic-data-kit"><img src="https://raw.githubusercontent.com/unslothai/notebooks/refs/heads/main/assets/meta%20round%20logo.png" width="137"></a>' + general_announcement_content_meta[1]
+
+# =======================================================
+# GENERAL ANNOUNCEMENTS (THE VERY TOP)
+# =======================================================
 
 installation_content = """%%capture
 import os
@@ -28,59 +208,133 @@ if "COLAB_" not in "".join(os.environ.keys()):
     !pip install unsloth
 else:
     # Do this only in Colab notebooks! Otherwise use pip install unsloth
-    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
+    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl==0.15.2 triton cut_cross_entropy unsloth_zoo
     !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
     !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
-# Normally using pip install unsloth is enough
 
-# Temporarily as of Jan 31st 2025, Colab has some issues with Pytorch
-# Using pip install unsloth will take 3 minutes, whilst the below takes <1 minute:
-!pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton
-!pip install --no-deps cut_cross_entropy unsloth_zoo
-!pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
-!pip install --no-deps unsloth"""
+!pip install pip3-autoremove
+!pip-autoremove torch torchvision torchaudio -y
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
+!pip install unsloth"""
+
+installation_synthetic_data_content = """%%capture
+import os
+if "COLAB_" not in "".join(os.environ.keys()):
+    !pip install unsloth vllm==0.8.5
+    !pip install git+https://github.com/meta-llama/synthetic-data-kit.git
+else:
+    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
+    !pip install --no-deps unsloth vllm==0.8.5
+    !pip install git+https://github.com/meta-llama/synthetic-data-kit.git
+"""
+
+installation_grpo_synthetic_data_content = """%%capture
+!pip install pip3-autoremove
+!pip-autoremove torch torchvision torchaudio -y
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
+!pip install unsloth vllm
+!pip install triton==3.1.0
+!pip install -U pynvml
+!pip install git+https://github.com/meta-llama/synthetic-data-kit.git
+"""
 
 installation_grpo_content = """%%capture
-# Skip restarting message in Colab
-import sys; modules = list(sys.modules.keys())
-for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
+import os
+if "COLAB_" not in "".join(os.environ.keys()):
+    !pip install unsloth vllm
+else:
+    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
+    !pip install --no-deps unsloth vllm"""
 
-!pip install unsloth vllm
-!pip install --upgrade pillow"""
+installation_extra_grpo_content = r"""#@title Colab Extra Install { display-mode: "form" }
+%%capture
+import os
+if "COLAB_" not in "".join(os.environ.keys()):
+    !pip install unsloth vllm
+else:
+    !pip install --no-deps unsloth vllm
+    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
+    # Skip restarting message in Colab
+    import sys, re, requests; modules = list(sys.modules.keys())
+    for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
+    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft "trl==0.15.2" triton cut_cross_entropy unsloth_zoo
+    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
+    
+    # vLLM requirements - vLLM breaks Colab due to reinstalling numpy
+    f = requests.get("https://raw.githubusercontent.com/vllm-project/vllm/refs/heads/main/requirements/common.txt").content
+    with open("vllm_requirements.txt", "wb") as file:
+        file.write(re.sub(rb"(transformers|numpy|xformers)[^\n]{1,}\n", b"", f))
+    !pip install -r vllm_requirements.txt"""
+
 
 installation_grpo_kaggle_content = """%%capture
+!pip install pip3-autoremove
+!pip-autoremove torch torchvision torchaudio -y
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
 !pip install unsloth vllm
 !pip install triton==3.1.0
 !pip install -U pynvml"""
 
-installation_gemma_content = """%%capture
+# Add install snac under install unsloth
+installation_orpheus_content = installation_content + """\n!pip install snac"""
+installation_orpheus_kaggle_content = installation_kaggle_content + """\n!pip install snac"""
+
+installation_whisper_content = installation_content + """\n!pip install librosa soundfile evaluate jiwer
+%env UNSLOTH_DISABLE_FAST_GENERATION = 1
+"""
+installation_whisper_kaggle_content = installation_kaggle_content + """\n!pip install librosa soundfile evaluate jiwer
+%env UNSLOTH_DISABLE_FAST_GENERATION = 1
+"""
+
+installation_spark_content = installation_content + """\n!git clone https://github.com/SparkAudio/Spark-TTS
+!pip install omegaconf einx"""
+installation_spark_kaggle_content = installation_kaggle_content + """\n!git clone https://github.com/SparkAudio/Spark-TTS
+!pip install omegaconf einx"""
+
+installation_oute_content = installation_content + """\n!pip install omegaconf einx
+!git clone https://github.com/edwko/OuteTTS
 import os
-if "COLAB_" not in "".join(os.environ.keys()):
-    !pip install unsloth
-else:
-    # Do this only in Colab notebooks! Otherwise use pip install unsloth
-    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf datasets huggingface_hub hf_transfer
-    !pip install --no-deps unsloth
-# Install latest Hugging Face for Gemma-3!
-!pip install --no-deps git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3"""
+os.remove("/content/OuteTTS/outetts/models/gguf_model.py")
+os.remove("/content/OuteTTS/outetts/interface.py")
+os.remove("/content/OuteTTS/outetts/__init__.py")
+!pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken
+!pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
+%env UNSLOTH_COMPILE_DISABLE = 1
+%env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
+installation_oute_kaggle_content = installation_kaggle_content + """\n!pip install omegaconf  inx
+!git clone https://github.com/edwko/OuteTTS
+import os
+os.remove("/content/OuteTTS/outetts/models/gguf_model.py")
+os.remove("/content/OuteTTS/outetts/interface.py")
+os.remove("/content/OuteTTS/outetts/__init__.py")
+!pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken
+!pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
+%env UNSLOTH_COMPILE_DISABLE = 1
+%env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
 
-installation_gemma_kaggle_content = """%%capture
-!pip install unsloth vllm
-!pip install triton==3.1.0
-!pip install -U pynvml
-# Install latest Hugging Face for Gemma-3!
-!pip install --no-deps git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3"""
+installation_llasa_content = installation_content + """\n!pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
+!pip install transformers==4.48 omegaconfx"""
+installation_llasa_kaggle_content = installation_kaggle_content + """\n!pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
+!pip install transformers==4.48 omegaconfx"""
 
-new_announcement_content_non_vlm = """**Read our [Gemma 3 blog](https://unsloth.ai/blog/gemma3) for what's new in Unsloth and our [Reasoning blog](https://unsloth.ai/blog/r1-reasoning) on how to train reasoning models.**
+installation_tool_calling_content = installation_content + """\n!pip install protobuf==3.20.3 # required
+!pip install --no-deps transformers-cfg"""
+installation_tool_calling_kaggle_content = installation_kaggle_content + """\n!pip install protobuf==3.20.3 # required
+!pip install --no-deps transformers-cfg"""
+
+# =======================================================
+# NEWS (WILL KEEP CHANGING THIS)
+# =======================================================
+
+new_announcement = """Read our **[Qwen3 Guide](https://docs.unsloth.ai/basics/qwen3-how-to-run-and-fine-tune)** and check out our new **[Dynamic 2.0](https://docs.unsloth.ai/basics/unsloth-dynamic-2.0-ggufs)** quants which outperforms other quantization methods!
 
 Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
 
-new_announcement_content_vlm = """**Read our [Gemma 3 blog](https://unsloth.ai/blog/gemma3) for what's new in Unsloth and our [Reasoning blog](https://unsloth.ai/blog/r1-reasoning) on how to train reasoning models.**
-
-Visit our docs for all our [model uploads](https://docs.unsloth.ai/get-started/all-our-models) and [notebooks](https://docs.unsloth.ai/get-started/unsloth-notebooks)."""
+# =======================================================
+# LAST BLOCK CLOSE STATEMENT
+# =======================================================
 
 text_for_last_cell_gguf = """Now, use the `model-unsloth.gguf` file or `model-unsloth-Q4_K_M.gguf` file in llama.cpp or a UI based system like Jan or Open WebUI. You can install Jan [here](https://github.com/janhq/jan) and Open WebUI [here](https://github.com/open-webui/open-webui)
 
@@ -122,8 +376,8 @@ Some other links:
 
 naming_mapping = {
     "mistral": ["pixtral", "mistral"],
-    "other notebooks": ["TinyLlama"],
-    "llama": ["Llama"],
+    "other notebooks": ["TinyLlama", "Advanced"],
+    "llama": ["Llama", "Orpheus"],
     "grpo" : ["GRPO"],
 }
 
@@ -188,8 +442,7 @@ def update_notebook_sections(
     general_announcement,
     installation_steps,
     installation_steps_kaggle,
-    new_announcement_non_vlm,
-    new_announcement_vlm,
+    new_announcement,
 ):
     try:
         with open(notebook_path, "r", encoding="utf-8") as f:
@@ -212,7 +465,12 @@ def update_notebook_sections(
                     break
 
         if f"{hf_course_name}-" in notebook_path: 
-            general_announcement = general_announcement_content_hf_course
+            full_model_name = notebook_path.split("/")[-1].replace(".ipynb", "")
+            full_model_name = full_model_name.split("-")
+            full_model_name = " ".join(full_model_name[1:]).replace("_", " ")
+            general_announcement = general_announcement_content_hf_course.format(full_model_name=full_model_name)
+        elif "Meta" in notebook_path:
+            general_announcement = general_announcement_content_meta
 
         # Update the general announcement section
         if first_markdown_index != -1:
@@ -268,10 +526,7 @@ def update_notebook_sections(
                         i + 1 < len(notebook_content["cells"])
                         and notebook_content["cells"][i + 1]["cell_type"] == "markdown"
                     ):
-                        if is_path_contains_any(notebook_path, ["Vision"]):
-                            announcement = new_announcement_vlm
-                        else:
-                            announcement = new_announcement_non_vlm
+                        announcement = new_announcement
                         notebook_content["cells"][i + 1]["source"] = [
                             f"{line}\n" for line in announcement.splitlines()
                         ]
@@ -287,23 +542,80 @@ def update_notebook_sections(
                         else:
                             installation = installation_steps
 
-                        # GRPO specific installation
+                        # GRPO INSTALLATION
                         if is_path_contains_any(notebook_path.lower(), ["grpo"]):
                             if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
                                 installation = installation_grpo_kaggle_content
+                                # Kaggle will delete the second cell instead -> Need to check
+                                del notebook_content["cells"][i + 2]
                             else:
                                 installation = installation_grpo_content
+                                # TODO: Remove after GRPO numpy bug fixed!
+                                # Error : ValueError: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+                                notebook_content["cells"][i + 2]["source"] = installation_extra_grpo_content
 
-                        if is_path_contains_any(notebook_path.lower(), ["gemma3"]):
+                        # META INSTALLATION
+                        elif is_path_contains_any(notebook_path.lower(), ["Meta"]): 
                             if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
-                                installation = installation_gemma_kaggle_content
+                                installation = installation_grpo_synthetic_data_content
+                                # Kaggle will delete the second cell instead -> Need to check
+                                del notebook_content["cells"][i + 2]
                             else:
-                                installation = installation_gemma_content
+                                installation = installation_synthetic_data_content
+                                # TODO: Remove after GRPO numpy bug fixed!
+                                # Error : ValueError: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+                                notebook_content["cells"][i + 2]["source"] = installation_extra_grpo_content
+                        
+                        # ORPHEUS INSTALLATION
+                        if is_path_contains_any(notebook_path.lower(), ["orpheus"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_orpheus_kaggle_content
+                            else:
+                                installation = installation_orpheus_content
 
+                        # WHISPER INSTALLATION
+                        if is_path_contains_any(notebook_path.lower(), ["whisper"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_whisper_kaggle_content
+                            else:
+                                installation = installation_whisper_content
+
+                        # SPARK INSTALLATION
+                        if is_path_contains_any(notebook_path.lower(), ["spark"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_spark_kaggle_content
+                            else:
+                                installation = installation_spark_content
+
+                        # OUTE INSTALLATION
+                        if is_path_contains_any(notebook_path.lower(), ["oute"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_oute_kaggle_content
+                            else:
+                                installation = installation_oute_content
+
+                        # LLASA INSTALLATION
+                        if is_path_contains_any(notebook_path.lower(), ["llasa"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_llasa_kaggle_content
+                            else:
+                                installation = installation_llasa_content
+
+                        # TOOL CALLING INSTALLATION
+                        if is_path_contains_any(notebook_path.lower(), ["tool_calling"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_tool_calling_kaggle_content
+                            else:
+                                installation = installation_tool_calling_content
 
                         notebook_content["cells"][i + 1]["source"] = installation
                         updated = True
-                        i += 1
+                        # TODO: Remove after GRPO numpy bug fixed! 
+                        # Error: ValueError: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+                        if is_path_contains_any(notebook_path.lower(), ["grpo"]) and not is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                            i += 2
+                        else:
+                            i += 1
 
             i += 1
 
@@ -346,7 +658,7 @@ def update_notebook_sections(
             notebook_content["metadata"]["accelerator"] = "GPU"
             updated = True
         if "colab" not in notebook_content["metadata"]:
-            notebook_content["metadata"]["colab"] = {"provenance": []}
+            notebook_content["metadata"]["colab"] = {"provenance": [], "gpuType" : "T4", "include_colab_link": True}
             updated = True
         if "kernelspec" not in notebook_content["metadata"]:
             notebook_content["metadata"]["kernelspec"] = {
@@ -439,146 +751,153 @@ def main():
             general_announcement_content,
             installation_content,
             installation_kaggle_content,
-            new_announcement_content_non_vlm,
-            new_announcement_content_vlm,
+            new_announcement,
         )
         # update_unsloth_config(notebook_file)
+
+def add_colab_badge(notebooks_dir):
+    paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
+    paths = [x.replace("\\", "/") for x in paths]
+
+    for path in paths:
+        is_kaggle = is_path_contains_any(path.lower(), ["kaggle"])
+        is_colab = not is_kaggle
+        if is_colab:
+            with open(path, "r", encoding="utf-8") as f:
+                notebook_content = json.load(f)
+
+            badge = badge_section.format(link_colab=(f"https://colab.research.google.com/github/unslothai/notebooks/blob/main/"+path).replace(" ", "%20"))
+            notebook_content["cells"].insert(
+                0,
+                {
+                    "cell_type": "markdown",
+                    "metadata": {},
+                    "source": [
+                        f"{line}\n"
+                        for line in badge.splitlines()
+                    ],
+                },
+            )
+
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(notebook_content, f, indent=1)
 
 
 def update_readme(
     args,
     readme_path,
     notebooks_dir,
-    type_order=None,
+    architecture_mapping, 
+    known_types_ordered,  
+    type_order=None,      
     kaggle_accelerator="nvidiaTeslaT4",
 ):
     if args.to_main_repo:
-        base_url_colab = (
-            "https://colab.research.google.com/github/unslothai/unsloth/blob/main/nb/"
-        )
+        base_url_colab = "https://colab.research.google.com/github/unslothai/unsloth/blob/main/nb/"
         base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/unsloth/blob/main/nb/"
     else:
-        base_url_colab = (
-            "https://colab.research.google.com/github/unslothai/notebooks/blob/main/"
-        )
+        base_url_colab = "https://colab.research.google.com/github/unslothai/notebooks/blob/main/"
         base_url_kaggle = "https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/"
 
     paths = glob(os.path.join(notebooks_dir, "*.ipynb"))
     paths = [x.replace("\\", "/") for x in paths]
 
-    list_models = ["GRPO", "Llama", "Phi", "Mistral", "Qwen", "Gemma", "Other notebooks"]
+    list_models = ['GRPO'] 
+    unique_architectures = sorted(list(set(architecture_mapping.values())))
+    for arch in unique_architectures:
+        if arch not in list_models:
+            list_models.append(arch)
+    list_models.append('Other notebooks') 
+
     sections = {}
     for section in list_models:
         sections[section] = {
-            "Colab": {
-                "header": f"### {section} Notebooks\n",
-                "rows": [],
-            },
+            "Colab": {"header": f"### {section} Notebooks\n", "rows": []},
             "Kaggle": {"header": f"### {section} Notebooks\n", "rows": []},
         }
 
-    colab_table_header = "| Model | Type | Colab Link | \n| --- | --- | --- | \n"
-    kaggle_table_header = "| Model | Type | Kaggle Link | \n| --- | --- | --- | \n"
+    colab_table_header = "| Model | Type | Colab Link |\n| --- | --- | --- |\n"
+    kaggle_table_header = "| Model | Type | Kaggle Link |\n| --- | --- | --- |\n"
 
     notebook_data = []
 
+    print(f"Processing {len(paths)} notebooks...")
     for path in paths:
         if is_path_contains_any(path.lower(), [hf_course_name.lower()]):
             continue
+
         notebook_name = os.path.basename(path)
-        is_kaggle = is_path_contains_any(path.lower(), ["kaggle"])
+        std_notebook_name = notebook_name.replace("-", "_")
+        is_kaggle = is_path_contains_any(path.lower(), ["kaggle"]) 
 
-        section_name = "Other notebooks"  # Default to Other Notebooks
+        try:
+            info = extract_model_info_refined(
+                std_notebook_name,
+                architecture_mapping,
+                known_types_ordered
+            )
+        except Exception as e:
+            print(f"Error processing {notebook_name}: {e}")
+            info = {'name': notebook_name.replace('.ipynb',''), 'size': None, 'type': 'Error', 'architecture': None} # Fallback
 
-        # Prioritize "Other Notebooks" section
-        if is_path_contains_any(path.lower(), naming_mapping["other notebooks"]):
-            section_name = "Other notebooks"
-        # Prioritize GRPO
-        elif is_path_contains_any(path.lower(), naming_mapping["grpo"]):
-            section_name = "GRPO"
-        else:
-            for sect in sections:
-                if sect.lower() in ["other notebooks", "grpo"]: # Skip these
-                    continue
+        model_name = info['name'] if info and info['name'] else notebook_name.replace('.ipynb','') 
+        model_type = info['type'] if info and info['type'] else "" 
+        architecture = info['architecture'] if info else None
+        size = info['size'] 
 
-                check = naming_mapping.get(sect.lower(), [])
-                if not check:
-                    check = [sect.lower()]
-
-                if is_path_contains_any(path.lower(), check):
-                    section_name = sect
-                    break
-
-        if is_kaggle:
-            link = f"[Open in Kaggle]({base_url_kaggle}{path}"
-            # Force to use GPU on start for Kaggle
-            if kaggle_accelerator:
-                link += f"&accelerator={kaggle_accelerator})"
-            else:
-                link += ")"
-        else:
-            link = f"[Open in Colab]({base_url_colab}{path})"
-        
-        parts = notebook_name.replace(".ipynb", "").split("-")
-        
-        if is_kaggle:
-            model = parts[1].replace("_", " ") if len(parts) > 1 else ""
-            type_ = parts[2].replace("_", " ") if len(parts) > 2 else ""
-        else:
-            model = parts[0].replace("_", " ")
-            type_ = parts[1].replace("_", " ") if len(parts) > 1 else ""
-
-        # Add space before version number only if concatenated to the first word
-        model_parts = model.split(" ", 1)  # Split into two parts at the first space
-        if len(model_parts) > 1:
-            model_parts[0] = re.sub(r"([A-Za-z])(\d)", r"\1 \2", model_parts[0])  # Apply regex to the first part only
-            model = " ".join(model_parts)
-
-        if is_path_contains_any(path.lower(), ["vision"]):
-            type_ = f"**{type_}**"
+        section_name = "Other notebooks" 
+        if model_type == 'GRPO':
+            section_name = 'GRPO'
+        elif architecture and architecture in list_models:
+             section_name = architecture
+        link_base = base_url_kaggle if is_kaggle else base_url_colab
+        link_text = "Open in Kaggle" if is_kaggle else "Open in Colab"
+        link_url = f"{link_base}{path}"
+        if is_kaggle and kaggle_accelerator:
+             link_url += f"&accelerator={kaggle_accelerator}"
+        link = f"[{link_text}]({link_url})"
 
         notebook_data.append(
             {
-                "model": model,
-                "type": type_,
+                "model": model_name,
+                "type": model_type,
                 "link": link,
                 "section": section_name,
-                "path": path,
+                "path": path, 
+                "architecture" : architecture, 
+                "size" : size, 
             }
         )
 
-    if type_order:
-        notebook_data.sort(
-            key=lambda x: (
-                list_models.index(x["section"]),
-                type_order.index(x["type"])
-                if x["type"] in type_order
-                else float("inf"),
-            )
-        )
-    else:
-        notebook_data.sort(key=lambda x: (list_models.index(x["section"]), x["type"]))
+    def get_sort_key(x):
+        section_index = list_models.index(x["section"])
+        version_key = extract_version(x["model"]) 
 
-    for section in sections:
-        sections[section]["Colab"]["rows"] = []
-        sections[section]["Kaggle"]["rows"] = []
+        type_sort_val = float("inf") 
+        current_type = x["type"].strip('*') 
+        if type_order and current_type in type_order:
+            type_sort_val = type_order.index(current_type)
+        elif current_type: 
+             type_sort_val = current_type
+
+        return version_key
+
+    notebook_data.sort(key=get_sort_key)
 
     for data in notebook_data:
-        version = extract_version(data["model"])
-        data["sort_key"] = (list_models.index(data["section"]), version)
-
-        if is_path_contains_any(data["path"].lower(), ["kaggle"]):
-            sections[data["section"]]["Kaggle"]["rows"].append(
-                f"| {data['model']} | {data['type']} | {data['link']}\n"
-            )
-        else:
-            sections[data["section"]]["Colab"]["rows"].append(
-                f"| {data['model']} | {data['type']} | {data['link']}\n"
-            )
+        row = f"| {data['model']} | {data['type']} | {data['link']} |\n"
+        platform = "Kaggle" if "kaggle" in data['link'].lower() else "Colab"
+        sections[data["section"]][platform]["rows"].append(row)
 
     for section in sections:
-        sections[section]["Colab"]["rows"].sort(key=lambda x: extract_version_from_row(x), reverse=True)
-        sections[section]["Kaggle"]["rows"].sort(key=lambda x: extract_version_from_row(x), reverse=True)
+        try:
+            sections[section]["Colab"]["rows"].sort(key=lambda x: extract_version_from_row(x), reverse=True)
+        except Exception as e:
+            print(f"Warning: Could not sort Colab rows for section '{section}' by version: {e}")
+        try:
+            sections[section]["Kaggle"]["rows"].sort(key=lambda x: extract_version_from_row(x), reverse=True)
+        except Exception as e:
+            print(f"Warning: Could not sort Kaggle rows for section '{section}' by version: {e}")
 
     try:
         with open(readme_path, "r", encoding="utf-8") as f:
@@ -590,13 +909,16 @@ def update_readme(
             raise ValueError(f"Start marker '{start_marker}' not found in README.")
         start_index += len(start_marker)
 
+        end_marker_alt = None
         end_marker = "<!-- End of Notebook Links -->"
         end_index = readme_content.find(end_marker)
         if end_index == -1:
-            raise ValueError(f"End marker '{end_marker}' not found in README.")
-
+            end_marker_alt = "# 📒 Kaggle Notebooks"
+            end_index = readme_content.find(end_marker_alt)
+            if end_index == -1:
+                raise ValueError(f"End marker '{end_marker}' or '{end_marker_alt}' not found in README.")
         content_before = readme_content[:start_index]
-        content_after = readme_content[end_index:]
+        content_after = readme_content[end_index:] 
 
         temp = (
             "(https://github.com/unslothai/unsloth/nb/#-kaggle-notebooks).\n\n"
@@ -605,45 +927,63 @@ def update_readme(
         )
 
         colab_updated_notebooks_links = (
-            "Below are our notebooks for Google Colab categorized by model.\n"
+            "\nBelow are our notebooks for Google Colab categorized by model.\n"
             "You can also view our [Kaggle notebooks here]"
             f"{temp}"
         )
 
         kaggle_updated_notebooks_links = (
             "# 📒 Kaggle Notebooks\n"
-            "<details>\n  <summary>   \n"
-            "Click for all our Kaggle notebooks categorized by model:\n  "
+            "<details>\n  <summary>\n" 
+            "    Click for all our Kaggle notebooks categorized by model:\n  "
             "</summary>\n\n"
         )
 
         for section in list_models:
-            colab_updated_notebooks_links += (
-                sections[section]["Colab"]["header"] + colab_table_header
-            )
-            colab_updated_notebooks_links += (
-                "".join(sections[section]["Colab"]["rows"]) + "\n"
-            )
+            if sections[section]["Colab"]["rows"]:
+                colab_updated_notebooks_links += sections[section]["Colab"]["header"]
+                colab_updated_notebooks_links += colab_table_header
+                colab_updated_notebooks_links += "".join(sections[section]["Colab"]["rows"]) + "\n"
 
-            kaggle_updated_notebooks_links += (
-                sections[section]["Kaggle"]["header"] + kaggle_table_header
-            )
-            kaggle_updated_notebooks_links += (
-                "".join(sections[section]["Kaggle"]["rows"]) + "\n"
-            )
+            if sections[section]["Kaggle"]["rows"]:
+                kaggle_updated_notebooks_links += sections[section]["Kaggle"]["header"]
+                kaggle_updated_notebooks_links += kaggle_table_header
+                kaggle_updated_notebooks_links += "".join(sections[section]["Kaggle"]["rows"]) + "\n"
 
         kaggle_updated_notebooks_links += "</details>\n\n"
 
-        timestamp = f"<!-- Last updated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} -->\n"
+        now = datetime.now() 
+        timestamp = f"\n"
 
         updated_readme_content = (
             content_before
-            + "\n"
             + colab_updated_notebooks_links
-            + kaggle_updated_notebooks_links
+            + kaggle_updated_notebooks_links 
             + timestamp
-            + content_after
+            + content_after 
         )
+
+        if end_marker_alt and end_index != -1:
+             content_after = readme_content[end_index:]
+             next_section_index = content_after.find("\n#")
+             if next_section_index != -1:
+                 content_after = content_after[next_section_index:] 
+             else:
+                  
+                  explicit_end_marker_index = content_after.find("")
+                  if explicit_end_marker_index != -1:
+                      content_after = content_after[explicit_end_marker_index:]
+                  else:
+                      content_after = "" 
+
+             updated_readme_content = ( 
+                content_before
+                + colab_updated_notebooks_links
+                + kaggle_updated_notebooks_links 
+                + timestamp
+                + content_after
+             )
+
 
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(updated_readme_content)
@@ -651,9 +991,13 @@ def update_readme(
         print(f"Successfully updated {readme_path}")
 
     except FileNotFoundError:
-        print(f"Error: {readme_path} not found.")
+        print(f"Error: README file '{readme_path}' not found.")
+    except ValueError as ve:
+        print(f"Error processing README: {ve}")
     except Exception as e:
         print(f"An error occurred while updating {readme_path}: {e}")
+        import traceback
+        traceback.print_exc()
 
 
 def copy_and_update_notebooks(
@@ -662,8 +1006,7 @@ def copy_and_update_notebooks(
     general_announcement,
     installation,
     installation_kaggle,
-    new_announcement_non_vlm,
-    new_announcement_vlm,
+    new_announcement,
 ):
     """Copies notebooks from template_dir to destination_dir, updates them, and renames them."""
     template_notebooks = glob(os.path.join(template_dir, "*.ipynb"))
@@ -699,8 +1042,7 @@ def copy_and_update_notebooks(
             general_announcement,
             installation,
             installation_kaggle,
-            new_announcement_non_vlm,
-            new_announcement_vlm,
+            new_announcement,
         )
 
         update_notebook_sections(
@@ -708,10 +1050,22 @@ def copy_and_update_notebooks(
             general_announcement,
             installation_kaggle,
             installation_kaggle,
-            new_announcement_non_vlm,
-            new_announcement_vlm,
+            new_announcement,
         )
-        
+
+def missing_files(nb: str | os.PathLike, original_template: str | os.PathLike) -> list[str]:
+    nb_abs = os.path.abspath(nb)
+    original_template_abs = os.path.abspath(original_template)
+
+    files_in_nb = {f for f in os.listdir(nb_abs) if os.path.isfile(os.path.join(nb_abs, f))}
+    files_in_original_template = {f for f in os.listdir(original_template_abs) if os.path.isfile(os.path.join(original_template_abs, f))}
+
+    files_in_nb = {f for f in files_in_nb if not (f.startswith("Kaggle") or f.startswith("HuggingFace Course"))}
+    files_in_original_template = {f for f in files_in_original_template if not f.startswith("Kaggle")}
+
+    only_in_nb = files_in_nb - files_in_original_template
+    return sorted(list(only_in_nb))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -720,15 +1074,31 @@ if __name__ == "__main__":
         action="store_true",
         help="Whether update notebooks and README.md for Unsloth main repository or not. Default is False.",
     )
+    parser.add_argument(
+        "--check_missing_files",
+        action="store_true",
+        help="Check for missing files in the destination directory compared to the original template.",
+    )
     args = parser.parse_args()
+
+    if args.check_missing_files:
+        original_template = "original_template"
+        nb = "nb"
+        missing_files_list = missing_files(nb, original_template)
+        if not missing_files_list:
+            print("No missing files.")
+        else:
+            print(f"Missing files in {nb} compared to {original_template}:")
+            for file in missing_files_list:
+                print(file)
+        exit(0)
     copy_and_update_notebooks(
         "original_template",
         "nb",
         general_announcement_content,
         installation_content,
         installation_kaggle_content,
-        new_announcement_content_non_vlm,
-        new_announcement_content_vlm,
+        new_announcement,
     )
     main()
 
@@ -746,4 +1116,11 @@ if __name__ == "__main__":
         "Unsloth_Studio",
         "GRPO"
     ]  # Define your desired order here
-    update_readme(args, readme_path, notebook_directory, type_order)
+    update_readme(
+        args, 
+        readme_path, 
+        notebook_directory, 
+        ARCHITECTURE_MAPPING,
+        KNOWN_TYPES_ORDERED,
+        type_order
+    )
