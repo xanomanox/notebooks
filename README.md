@@ -29,6 +29,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Meta Synthetic Data Llama3 2 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Meta_Synthetic_Data_Llama3_2_(3B).ipynb) |
 | Gemma3 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_(1B)-GRPO.ipynb) |
 | Qwen2.5 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_(3B)-GRPO.ipynb) |
+| Mistral v0.3 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_(7B)-GRPO.ipynb) |
 
 ### Gemma Notebooks
 | Model | Type | Colab Link |
@@ -84,7 +85,6 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 ### Qwen Notebooks
 | Model | Type | Colab Link |
 | --- | --- | --- |
-| Qwen3 | Reasoning Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(14B)-Reasoning+Conversational.ipynb) |
 | Qwen3 | Reasoning Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(14B)-Reasoning-Conversational.ipynb) |
 | Qwen3 |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(14B).ipynb) |
 | Qwen3 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(14B)-Alpaca.ipynb) |
@@ -127,6 +127,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Kaggle Meta Synthetic Data Llama3 2 | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Meta_Synthetic_Data_Llama3_2_(3B).ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Advanced Llama3 1 | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Advanced_Llama3_1_(3B)_GRPO_LoRA.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Qwen2.5 | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen2.5_(3B)-GRPO.ipynb&accelerator=nvidiaTeslaT4) |
+| Kaggle Mistral v0.3 | GRPO | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Mistral_v0.3_(7B)-GRPO.ipynb&accelerator=nvidiaTeslaT4) |
 
 ### Gemma Notebooks
 | Model | Type | Kaggle Link |
@@ -183,7 +184,6 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Model | Type | Kaggle Link |
 | --- | --- | --- |
 | Kaggle Qwen3 | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen3_(14B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
-| Kaggle Qwen3 | Reasoning Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen3_(14B)-Reasoning+Conversational.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Qwen3 |  | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen3_(14B).ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Qwen3 | Reasoning Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen3_(14B)-Reasoning-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Qwen2.5 Coder | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen2.5_Coder_(14B)-Conversational.ipynb&accelerator=nvidiaTeslaT4) |

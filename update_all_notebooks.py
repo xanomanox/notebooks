@@ -303,7 +303,7 @@ os.remove("/content/OuteTTS/outetts/__init__.py")
 !pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
 %env UNSLOTH_COMPILE_DISABLE = 1
 %env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
-installation_oute_kaggle_content = installation_kaggle_content + """\n!pip install omegaconf  inx
+installation_oute_kaggle_content = installation_kaggle_content + """\n!pip install omegaconf einx
 !git clone https://github.com/edwko/OuteTTS
 import os
 os.remove("/content/OuteTTS/outetts/models/gguf_model.py")
