@@ -222,11 +222,11 @@ installation_kaggle_content = """%%capture
 installation_synthetic_data_content = """%%capture
 import os
 if "COLAB_" not in "".join(os.environ.keys()):
-    !pip install unsloth vllm==0.8.5
+    !pip install unsloth vllm
     !pip install git+https://github.com/meta-llama/synthetic-data-kit.git
 else:
     # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
-    !pip install --no-deps unsloth vllm==0.8.5
+    !pip install --no-deps unsloth vllm
     !pip install git+https://github.com/meta-llama/synthetic-data-kit.git
 """
 
