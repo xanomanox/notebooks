@@ -666,6 +666,17 @@ def update_notebook_sections(
                 "name": "python3",
             }
             updated = True
+        # Fix rendering in github
+        if "widgets" not in notebook_content["metadata"]:
+            notebook_content["metadata"]["widgets"] = {
+                "application/vnd.jupyter.widget-state+json" : {
+                    "state" : {}
+                }
+            }
+            updated = True
+        if notebook_content["metadata"]["widgets"].get("application/vnd.jupyter.widget-state+json", None) is not None:
+            notebook_content["metadata"]["widgets"]["application/vnd.jupyter.widget-state+json"]["state"] = {}
+            updated = True
 
         if updated:
             with open(notebook_path, "w", encoding="utf-8") as f:
