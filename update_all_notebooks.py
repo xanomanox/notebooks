@@ -508,7 +508,9 @@ def update_notebook_sections(
 
         is_gguf = False
         is_ollama = False
-        is_gemma3 = is_path_contains_any(notebook_path, ["gemma3"])
+        is_gemma3 = is_path_contains_any(notebook_path.lower(), ["gemma3"])
+        # NOTE: Temporary (I think), mainly because there is flashinfer installation
+        is_qwen3 = is_path_contains_any(notebook_path.lower(), ["qwen3"])
 
         while i < len(notebook_content["cells"]):
             cell = notebook_content["cells"][i]
@@ -544,7 +546,14 @@ def update_notebook_sections(
 
                         # GRPO INSTALLATION
                         if is_path_contains_any(notebook_path.lower(), ["grpo"]):
-                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                            # NOTE: Qwen3 GRPO TEMPORARY
+                            if is_qwen3:
+                                installation = installation_grpo_content
+                                notebook_content["cells"][i + 2]["source"] = installation_extra_grpo_content + """\n    !pip install "flashinfer-python<0.2.4" -i https://flashinfer.ai/whl/cu124/torch2.6"""
+                            elif is_qwen3 and is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_grpo_kaggle_content + """\n!pip install "flashinfer-python<0.2.4" -i https://flashinfer.ai/whl/cu124/torch2.6"""
+                                del notebook_content["cells"][i + 2]
+                            elif is_path_contains_any(notebook_path.lower(), ["kaggle"]):
                                 installation = installation_grpo_kaggle_content
                                 # Kaggle will delete the second cell instead -> Need to check
                                 del notebook_content["cells"][i + 2]
