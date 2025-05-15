@@ -223,11 +223,11 @@ installation_synthetic_data_content = """%%capture
 import os
 if "COLAB_" not in "".join(os.environ.keys()):
     !pip install unsloth vllm
-    !pip install git+https://github.com/meta-llama/synthetic-data-kit.git
+    !pip install synthetic-data-kit==0.0.3
 else:
     # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
     !pip install --no-deps unsloth vllm
-    !pip install git+https://github.com/meta-llama/synthetic-data-kit.git
+    !pip install synthetic-data-kit==0.0.3
 """
 
 installation_grpo_synthetic_data_content = """%%capture
@@ -237,7 +237,7 @@ installation_grpo_synthetic_data_content = """%%capture
 !pip install unsloth vllm
 !pip install triton==3.1.0
 !pip install -U pynvml
-!pip install git+https://github.com/meta-llama/synthetic-data-kit.git
+!pip install synthetic-data-kit==0.0.3
 """
 
 installation_grpo_content = """%%capture
