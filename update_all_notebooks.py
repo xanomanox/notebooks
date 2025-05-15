@@ -301,7 +301,6 @@ os.remove("/content/OuteTTS/outetts/interface.py")
 os.remove("/content/OuteTTS/outetts/__init__.py")
 !pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken
 !pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
-%env UNSLOTH_COMPILE_DISABLE = 1
 %env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
 installation_oute_kaggle_content = installation_kaggle_content + """\n!pip install omegaconf einx
 !git clone https://github.com/edwko/OuteTTS
@@ -311,13 +310,12 @@ os.remove("/content/OuteTTS/outetts/interface.py")
 os.remove("/content/OuteTTS/outetts/__init__.py")
 !pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken
 !pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
-%env UNSLOTH_COMPILE_DISABLE = 1
 %env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
 
 installation_llasa_content = installation_content + """\n!pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
-!pip install transformers==4.48 omegaconfx"""
+!pip install transformers==4.48 omegaconf\n%env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
 installation_llasa_kaggle_content = installation_kaggle_content + """\n!pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
-!pip install transformers==4.48 omegaconfx"""
+!pip install transformers==4.48 omegaconf\n%env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
 
 installation_tool_calling_content = installation_content + """\n!pip install protobuf==3.20.3 # required
 !pip install --no-deps transformers-cfg"""
