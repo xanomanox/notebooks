@@ -324,6 +324,7 @@ KNOWN_TYPES_ORDERED = [
     'TTS',                  
     'LoRA',
     'VL',                   
+    'RAFT'
 ]
 
 def extract_model_info_refined(filename, architecture_mapping, known_types_ordered):

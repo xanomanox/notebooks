@@ -44,7 +44,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | --- | --- | --- |
 | Llama3.2 | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B_and_3B)-Conversational.ipynb) |
 | Llama3.2 | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(11B)-Vision.ipynb) |
-| Llama3.2 |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B)-RAFT.ipynb) |
+| Llama3.2 | RAFT | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B)-RAFT.ipynb) |
 | Llama3.1 | Inference | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-Inference.ipynb) |
 | Llama3.1 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-Alpaca.ipynb) |
 | Llama3 | Ollama | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Ollama.ipynb) |
@@ -145,7 +145,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | --- | --- | --- |
 | Kaggle Llama3.2 | Vision | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3.2_(11B)-Vision.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Llama3.2 | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3.2_(1B_and_3B)-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
-| Kaggle Llama3.2 |  | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3.2_(1B)-RAFT.ipynb&accelerator=nvidiaTeslaT4) |
+| Kaggle Llama3.2 | RAFT | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3.2_(1B)-RAFT.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Llama3.1 | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3.1_(8B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Llama3.1 | Inference | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3.1_(8B)-Inference.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Llama3 | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Llama3_(8B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
