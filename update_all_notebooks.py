@@ -52,11 +52,10 @@ else:
     !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
-
 !pip install pip3-autoremove
-!pip-autoremove torch torchvision torchaudio -y
-!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
-!pip install unsloth"""
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
+!pip install unsloth
+# !pip install --upgrade transformers==4.52.3"""
 
 # =======================================================
 # GRPO Notebook
@@ -93,11 +92,9 @@ else:
 
 installation_grpo_kaggle_content = """%%capture
 !pip install pip3-autoremove
-!pip-autoremove torch torchvision torchaudio -y
-!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
 !pip install unsloth vllm
-!pip install triton==3.1.0
-!pip install -U pynvml"""
+# !pip install --upgrade transformers==4.52.3"""
 
 # =======================================================
 # Meta Synthetic Data Kit Notebook
@@ -116,13 +113,10 @@ else:
 
 installation_grpo_synthetic_data_content = """%%capture
 !pip install pip3-autoremove
-!pip-autoremove torch torchvision torchaudio -y
-!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu121
-!pip install unsloth vllm==0.8.5.post1
-!pip install triton==3.1.0
-!pip install -U pynvml
-!pip install synthetic-data-kit==0.0.3
-"""
+!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
+!pip install unsloth vllm
+# !pip install --upgrade transformers==4.52.3
+!pip install synthetic-data-kit==0.0.3"""
 
 # =======================================================
 # Orpheus Notebook
