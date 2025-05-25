@@ -112,7 +112,7 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | --- | --- | --- |
 | Unsloth | Studio | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb) |
 | Sesame CSM | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Sesame_CSM_(1B)-TTS.ipynb) |
-| CodeForces | Reasoning | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb) |
+| CodeForces cot Finetune for Reasoning on CodeForces | Reasoning | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb) |
 
 # 📒 Kaggle Notebooks
 <details>

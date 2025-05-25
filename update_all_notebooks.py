@@ -68,7 +68,7 @@ if "COLAB_" not in "".join(os.environ.keys()):
     !pip install unsloth vllm
 else:
     # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
-    !pip install --no-deps unsloth vllm"""
+    !pip install --no-deps unsloth vllm==0.8.5.post1"""
 
 installation_extra_grpo_content = r"""#@title Colab Extra Install { display-mode: "form" }
 %%capture
@@ -76,7 +76,7 @@ import os
 if "COLAB_" not in "".join(os.environ.keys()):
     !pip install unsloth vllm
 else:
-    !pip install --no-deps unsloth vllm
+    !pip install --no-deps unsloth vllm==0.8.5.post1
     # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
     # Skip restarting message in Colab
     import sys, re, requests; modules = list(sys.modules.keys())
