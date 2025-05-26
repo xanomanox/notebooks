@@ -208,7 +208,7 @@ installation_sesame_csm_kaggle_content = installation_kaggle_content + """\n!pip
 # NEWS (WILL KEEP CHANGING THIS)
 # =======================================================
 
-new_announcement = """Read our **[TTS Guide](https://docs.unsloth.ai/basics/text-to-speech-tts-fine-tuning)** for instructions and all our notebooks.
+new_announcement = """Unsloth now supports Text-to-Speech (TTS) models. Read our [guide here](https://docs.unsloth.ai/basics/text-to-speech-tts-fine-tuning).
 
 Read our **[Qwen3 Guide](https://docs.unsloth.ai/basics/qwen3-how-to-run-and-fine-tune)** and check out our new **[Dynamic 2.0](https://docs.unsloth.ai/basics/unsloth-dynamic-2.0-ggufs)** quants which outperforms other quantization methods!
 
