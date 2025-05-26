@@ -147,21 +147,21 @@ installation_spark_kaggle_content = installation_kaggle_content + """\n!git clon
 # =======================================================
 
 installation_oute_content = installation_content + """\n!pip install omegaconf einx
-!git clone https://github.com/edwko/OuteTTS
+!rm -rf OuteTTS && git clone https://github.com/edwko/OuteTTS
 import os
 os.remove("/content/OuteTTS/outetts/models/gguf_model.py")
 os.remove("/content/OuteTTS/outetts/interface.py")
 os.remove("/content/OuteTTS/outetts/__init__.py")
-!pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken
+!pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken ftfy
 !pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
 %env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
 installation_oute_kaggle_content = installation_kaggle_content + """\n!pip install omegaconf einx
-!git clone https://github.com/edwko/OuteTTS
+!rm -rf OuteTTS && git clone https://github.com/edwko/OuteTTS
 import os
 os.remove("/content/OuteTTS/outetts/models/gguf_model.py")
 os.remove("/content/OuteTTS/outetts/interface.py")
 os.remove("/content/OuteTTS/outetts/__init__.py")
-!pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken
+!pip install pyloudnorm openai-whisper uroman MeCab loguru flatten_dict ffmpy randomname argbind tiktoken ftfy
 !pip install descript-audio-codec descript-audiotools julius openai-whisper --no-deps
 %env UNSLOTH_DISABLE_FAST_GENERATION = 1"""
 
