@@ -17,7 +17,7 @@
 
 # 📒 Fine-tuning Notebooks
 Below are our notebooks for Google Colab categorized by model.
-You can also view our [Kaggle notebooks here](https://github.com/unslothai/notebooks/nb/#-kaggle-notebooks).
+You can also view our [Kaggle notebooks here](https://github.com/unslothai/notebooks/#-kaggle-notebooks).
 
 ### GRPO Notebooks
 | Model | Type | Colab Link |
