@@ -82,7 +82,6 @@ else:
     for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft "trl==0.15.2" triton cut_cross_entropy unsloth_zoo
     !pip install sentencepiece protobuf "datasets>=3.4.1" huggingface_hub hf_transfer
-    !pip install transformers==4.51.3
     
     # vLLM requirements - vLLM breaks Colab due to reinstalling numpy
     f = requests.get("https://raw.githubusercontent.com/vllm-project/vllm/refs/heads/main/requirements/common.txt").content
@@ -109,7 +108,6 @@ if "COLAB_" not in "".join(os.environ.keys()):
 else:
     # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
     !pip install --no-deps unsloth vllm==0.8.5.post1
-    !pip install transformers==4.51.3
     !pip install synthetic-data-kit==0.0.3
 """
 
@@ -118,7 +116,6 @@ installation_grpo_synthetic_data_content = """%%capture
 !pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
 !pip install unsloth vllm
 # !pip install --upgrade transformers==4.52.3
-!pip install transformers==4.51.3
 !pip install synthetic-data-kit==0.0.3"""
 
 # =======================================================
