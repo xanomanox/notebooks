@@ -67,16 +67,6 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Mistral Nemo | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_Nemo_(12B)-Alpaca.ipynb) |
 | Mistral | Text Completion | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_(7B)-Text_Completion.ipynb) |
 
-### Orpheus Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Orpheus | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Orpheus_(3B)-TTS.ipynb) |
-
-### Oute Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Oute TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Oute_TTS_(1B).ipynb) |
-
 ### Phi Notebooks
 | Model | Type | Colab Link |
 | --- | --- | --- |
@@ -97,21 +87,20 @@ You can also view our [Kaggle notebooks here](https://github.com/unslothai/noteb
 | Qwen2 VL | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2_VL_(7B)-Vision.ipynb) |
 | Qwen2 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2_(7B)-Alpaca.ipynb) |
 
-### Spark Notebooks
+### Text-to-Speech (TTS) Notebooks
 | Model | Type | Colab Link |
 | --- | --- | --- |
+| Sesame CSM | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Sesame_CSM_(1B)-TTS.ipynb) |
+| Orpheus | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Orpheus_(3B)-TTS.ipynb) |
 | Spark TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Spark_TTS_(0_5B).ipynb) |
-
-### Whisper Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Whisper |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Whisper.ipynb) |
+| Oute TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Oute_TTS_(1B).ipynb) |
+| Oute TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Oute_TTS_(1B).ipynb) |
+| Whisper-large-V3 | STT | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Whisper.ipynb) |
 
 ### Other notebooks Notebooks
 | Model | Type | Colab Link |
 | --- | --- | --- |
 | Unsloth | Studio | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb) |
-| Sesame CSM | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Sesame_CSM_(1B)-TTS.ipynb) |
 | CodeForces cot Finetune for Reasoning on CodeForces | Reasoning | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb) |
 
 # 📒 Kaggle Notebooks
