@@ -19,90 +19,119 @@
 Below are our notebooks for Google Colab categorized by model.
 You can also view our [Kaggle notebooks here](https://github.com/unslothai/notebooks/#-kaggle-notebooks).
 
-### GRPO Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Phi 4 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4_(14B)-GRPO.ipynb) |
-| Llama3.1 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-GRPO.ipynb) |
-| Meta Synthetic Data Llama3.1 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Meta-Synthetic-Data-Llama3.1_(8B).ipynb) |
-| Gemma3 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_(1B)-GRPO.ipynb) |
-| Qwen3 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(4B)-GRPO.ipynb) |
-| Meta Synthetic Data Llama3 2 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Meta_Synthetic_Data_Llama3_2_(3B).ipynb) |
-| Qwen2.5 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_(3B)-GRPO.ipynb) |
-| Mistral v0.3 | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_(7B)-GRPO.ipynb) |
+### Main Notebooks
+| Model           | Type | Notebook Link                                                                                                                            |
+| -------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Qwen3 (14B)**            | Conversational   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_%2814B%29-Reasoning-Conversational.ipynb) |
+| **Qwen3 (4B)**       | GRPO   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_%284B%29-GRPO.ipynb)                      |
+| **Gemma 3 (4B)**           | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_%284B%29.ipynb)                          |
+| **Llama 3.2 (3B)**         | Conversational   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_%281B_and_3B%29-Conversational.ipynb)  |
+| **Phi-4 (14B)**            | Conversational   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4-Conversational.ipynb)                     |
+| **Llama 3.2 Vision (11B)** | Vision   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_%2811B%29-Vision.ipynb)                |
+| **Llama 3.1 (8B)**         | Alpaca   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_%288B%29-Alpaca.ipynb)                 |
+| **Mistral v0.3 (7B)**      | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_%287B%29-Conversational.ipynb)     |
+| **Llama 3.2 (3B) by Meta** | Synthetic Data           | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Meta_Synthetic_Data_Llama3_2_%283B%29.ipynb)   |
+| **Sesame-CSM (1B)**        | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Sesame_CSM_%281B%29-TTS.ipynb)                  |
 
-### Gemma Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Gemma3 |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_(4B).ipynb) |
-| Gemma2 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(2B)-Alpaca.ipynb) |
-| Gemma2 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(9B)-Alpaca.ipynb) |
-| CodeGemma | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeGemma_(7B)-Conversational.ipynb) |
+### GRPO Notebooks
+
+| Model             | Type | Notebook Link                                                                                                               |
+| ----------------- | ---- | --------------------------------------------------------------------------------------------------------------------------- |
+| Phi-4 (14B)       | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4_%2814B%29-GRPO.ipynb)       |
+| Llama 3.1 (8B)    | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_%288B%29-GRPO.ipynb)     |
+| Gemma 3 (1B)      | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_%281B%29-GRPO.ipynb)       |
+| Qwen3 (4B)        | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_%284B%29-GRPO.ipynb)        |
+| Qwen 2.5 (3B)     | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_%283B%29-GRPO.ipynb)      |
+| Mistral v0.3 (7B) | GRPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_%287B%29-GRPO.ipynb) |
 
 ### Llama Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Llama3.2 | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B_and_3B)-Conversational.ipynb) |
-| Llama3.2 | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(11B)-Vision.ipynb) |
-| Llama3.2 | RAFT | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B)-RAFT.ipynb) |
-| Llama3.1 | Inference | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-Inference.ipynb) |
-| Llama3.1 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-Alpaca.ipynb) |
-| Llama3 | Ollama | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Ollama.ipynb) |
-| Llama3 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Alpaca.ipynb) |
-| Llama3 | ORPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-ORPO.ipynb) |
-| Llama3 | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Conversational.ipynb) |
-| TinyLlama | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/TinyLlama_(1.1B)-Alpaca.ipynb) |
-| Llasa TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llasa_TTS_(1B).ipynb) |
-| Llasa TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llasa_TTS_(3B).ipynb) |
 
-### Mistral Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Mistral v0.3 | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_(7B)-Conversational.ipynb) |
-| Mistral v0.3 | CPT | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_(7B)-CPT.ipynb) |
-| Mistral v0.3 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_(7B)-Alpaca.ipynb) |
-| Pixtral | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Pixtral_(12B)-Vision.ipynb) |
-| Zephyr | DPO | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Zephyr_(7B)-DPO.ipynb) |
-| Mistral Small | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_Small_(22B)-Alpaca.ipynb) |
-| Mistral Nemo | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_Nemo_(12B)-Alpaca.ipynb) |
-| Mistral | Text Completion | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_(7B)-Text_Completion.ipynb) |
-
-### Phi Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Phi 4 | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4-Conversational.ipynb) |
-| Phi 3.5 Mini | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_3.5_Mini-Conversational.ipynb) |
-| Phi 3 Medium | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_3_Medium-Conversational.ipynb) |
+| Model                              | Type           | Notebook Link                                                                                                                            |
+| ---------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Llama 3.2 (1B and 3B)              | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_%281B_and_3B%29-Conversational.ipynb) |
+| Llama 3.2 (11B)                    | Vision         | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_%2811B%29-Vision.ipynb)               |
+| Llama 3.2 (1B)                     | RAFT           | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_%281B%29-RAFT.ipynb)                  |
+| Llama 3.1 (8B)                     | Inference      | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_%288B%29-Inference.ipynb)             |
+| Llama 3.1 (8B)                     | Alpaca         | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_%288B%29-Alpaca.ipynb)                |
+| Llama 3 (8B)                       | Ollama         | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_%288B%29-Ollama.ipynb)                  |
+| Llama 3 (8B)                       | Alpaca         | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_%288B%29-Alpaca.ipynb)                  |
+| Llama 3 (8B)                       | ORPO           | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_%288B%29-ORPO.ipynb)                    |
+| Llama 3 (8B)                       | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_%288B%29-Conversational.ipynb)          |
+| Meta Synthetic Data Llama 3.2 (3B) | GRPO           | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Meta_Synthetic_Data_Llama3_2_%283B%29.ipynb)   |
 
 ### Qwen Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Qwen3 |  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(14B).ipynb) |
-| Qwen3 | Reasoning Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(14B)-Reasoning-Conversational.ipynb) |
-| Qwen3 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_(14B)-Alpaca.ipynb) |
-| Qwen2.5 Coder | Tool Calling | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_Coder_(1.5B)-Tool_Calling.ipynb) |
-| Qwen2.5 VL | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_VL_(7B)-Vision.ipynb) |
-| Qwen2.5 Coder | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_Coder_(14B)-Conversational.ipynb) |
-| Qwen2.5 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_(7B)-Alpaca.ipynb) |
-| Qwen2 VL | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2_VL_(7B)-Vision.ipynb) |
-| Qwen2 | Alpaca | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2_(7B)-Alpaca.ipynb) |
+
+| Model                | Type                     | Notebook Link                                                                                                                             |
+| -------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Qwen3 (14B)          | Reasoning Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_%2814B%29-Reasoning-Conversational.ipynb) |
+| Qwen3-Base (14B)     | Alpaca                   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_%2814B%29-Alpaca.ipynb)                   |
+| Qwen2.5 Coder (1.5B) | Tool Calling             | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_Coder_%281.5B%29-Tool_Calling.ipynb)    |
+| Qwen2.5 VL (7B)      | Vision                   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_VL_%287B%29-Vision.ipynb)               |
+| Qwen2.5 Coder (14B)  | Conversational           | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_Coder_%2814B%29-Conversational.ipynb)   |
+| Qwen2.5 (7B)         | Alpaca                   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_%287B%29-Alpaca.ipynb)                  |
+| Qwen2 VL (7B)        | Vision                   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2_VL_%287B%29-Vision.ipynb)                 |
+| Qwen2 (7B)           | Alpaca                   | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2_%287B%29-Alpaca.ipynb)                    |
+
+### Gemma Notebooks
+
+| Model          | Type           | Notebook Link                                                                                                                      |
+| -------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Gemma 3 (4B)   |                | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_%284B%29.ipynb)                   |
+| Gemma 2 (2B)   | Alpaca         | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_%282B%29-Alpaca.ipynb)            |
+| Gemma 2 (9B)   | Alpaca         | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_%289B%29-Alpaca.ipynb)            |
+| CodeGemma (7B) | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeGemma_%287B%29-Conversational.ipynb) |
+
+### Mistral Notebooks
+
+| Model               | Type            | Notebook Link                                                                                                                         |
+| ------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Mistral v0.3 (7B)   | Conversational  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_%287B%29-Conversational.ipynb) |
+| Mistral v0.3 (7B)   | CPT             | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_%287B%29-CPT.ipynb)            |
+| Mistral v0.3 (7B)   | Alpaca          | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_%287B%29-Alpaca.ipynb)         |
+| Pixtral (12B)       | Vision          | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Pixtral_%2812B%29-Vision.ipynb)             |
+| Zephyr (7B)         | DPO             | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Zephyr_%287B%29-DPO.ipynb)                  |
+| Mistral Small (22B) | Alpaca          | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_Small_%2822B%29-Alpaca.ipynb)       |
+| Mistral Nemo (12B)  | Alpaca          | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_Nemo_%2812B%29-Alpaca.ipynb)        |
+| Mistral (7B)        | Text Completion | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_%287B%29-Text_Completion.ipynb)     |
+
+### Phi Notebooks
+
+| Model        | Type           | Notebook Link                                                                                                                |
+| ------------ | -------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Phi-4        | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4-Conversational.ipynb)        |
+| Phi-3.5 Mini | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_3.5_Mini-Conversational.ipynb) |
+| Phi-3 Medium | Conversational | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_3_Medium-Conversational.ipynb) |
 
 ### Text-to-Speech (TTS) Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Sesame CSM | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Sesame_CSM_(1B)-TTS.ipynb) |
-| Orpheus | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Orpheus_(3B)-TTS.ipynb) |
-| Spark TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Spark_TTS_(0_5B).ipynb) |
-| Oute TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Oute_TTS_(1B).ipynb) |
-| Oute TTS | TTS | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Oute_TTS_(1B).ipynb) |
-| Whisper-large-V3 | STT | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Whisper.ipynb) |
+
+| Model            | Type | Notebook Link                                                                                                            |
+| ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------ |
+| Sesame-CSM       | TTS  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Sesame_CSM_%281B%29-TTS.ipynb) |
+| Orpheus-TTS      | TTS  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Orpheus_%283B%29-TTS.ipynb)    |
+| Spark-TTS        | TTS  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Spark_TTS_%280_5B%29.ipynb)    |
+| Oute-TTS         | TTS  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Oute_TTS_%281B%29.ipynb)       |
+| Oute-TTS         | TTS  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Oute_TTS_%281B%29.ipynb)       |
+| Llasa TTS (1B)   | TTS  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llasa_TTS_%281B%29.ipynb)      |
+| Llasa TTS (3B)   | TTS  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llasa_TTS_%283B%29.ipynb)      |
+| Whisper-Large-V3 | STT  | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Whisper.ipynb)                 |
+
+### Vision (Multimodal) Notebooks:
+
+| Model           | Type   | Notebook Link                                                                                                               |
+| --------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
+| Llama 3.2 (11B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_%2811B%29-Vision.ipynb)  |
+| Qwen2.5 VL (7B) | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_VL_%287B%29-Vision.ipynb) |
+| Pixtral (12B)   | Vision | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Pixtral_%2812B%29-Vision.ipynb)   |
 
 ### Other notebooks Notebooks
-| Model | Type | Colab Link |
-| --- | --- | --- |
-| Unsloth | Studio | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb) |
-| CodeForces cot Finetune for Reasoning on CodeForces | Reasoning | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb) |
 
+| Model                                               | Type         | Notebook Link                                                                                                                                        |
+| --------------------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Qwen2.5 Coder (1.5B)                                | Tool Calling | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_Coder_%281.5B%29-Tool_Calling.ipynb)               |
+| TinyLlama (1.1B)                                    | Alpaca       | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/TinyLlama_%281.1B%29-Alpaca.ipynb)                         |
+| Meta Synthetic Data Llama 3.1 (8B)                  | GRPO         | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Meta-Synthetic-Data-Llama3.1_%288B%29.ipynb)               |
+| Unsloth                                             | Studio       | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb)                                      |
+| CodeForces cot Finetune for Reasoning on CodeForces | Reasoning    | [Open in Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb) |
 # 📒 Kaggle Notebooks
 <details>
   <summary>
