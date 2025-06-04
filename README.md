@@ -129,6 +129,18 @@ Below are our notebooks for Google Colab categorized by model. You can also view
 | -------------------  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **ModernBERT-large**  | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/timothelaborie/text_classification_scripts/blob/main/bert_classification.ipynb)  |
 
+### Specific use-case Notebooks
+| Usecase             | Model                         | Notebook Link |
+|---------------------|-------------------------------|---------------|
+| Text Classification | Llama 3.1 (8B)                        | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/timothelaborie/text_classification_scripts/blob/main/unsloth_classification.ipynb) |
+| Tool Calling        | Qwen2.5-Coder (1.5B)           | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_Coder_(1.5B)-Tool_Calling.ipynb) |
+| Multiple Datasets   |                   | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1njCCbE1YVal9xC83hjdo2hiGItpY_D6t?usp=sharing) |
+| KTO                 | Qwen2.5-Instruct (1.5B)                  | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1MRgGtLWuZX4ypSfGguFgC-IblTvO2ivM?usp=sharing) |
+| Inference Chat UI   | LLaMa 3.2 Vision               | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb) |
+| Conversational      | LLaMa 3.2 (1B and 3B)          | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B_and_3B)-Conversational.ipynb) |
+| ChatML              | Mistral (7B)                 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15F1xyn8497_dUbxZP4zWmPZ3PJx1Oymv?usp=sharing) |
+| Text Completion     | Mistral (7B)                   | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_(7B)-Text_Completion.ipynb) |
+
 ### Other Notebooks
 
 | Model                                                   | Type         | Notebook Link                                                                                                                                                                                                     |
