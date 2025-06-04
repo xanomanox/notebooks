@@ -123,6 +123,12 @@ Below are our notebooks for Google Colab categorized by model. You can also view
 | **Qwen2.5 VL (7B)** | Vision | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen2.5_VL_%287B%29-Vision.ipynb) |
 | **Pixtral (12B)**   | Vision | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Pixtral_%2812B%29-Vision.ipynb)   |
 
+### BERT Notebooks
+
+| Model                  | Notebook Link                                                                                                                                                                            |
+| -------------------  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ModernBERT-large**  | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/timothelaborie/text_classification_scripts/blob/main/bert_classification.ipynb)  |
+
 ### Other Notebooks
 
 | Model                                                   | Type         | Notebook Link                                                                                                                                                                                                     |
