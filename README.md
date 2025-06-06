@@ -30,6 +30,7 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 | **Llama 3.2 Vision (11B)** | Vision         | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_%2811B%29-Vision.ipynb)                |
 | **Llama 3.1 (8B)**         | Alpaca         | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_%288B%29-Alpaca.ipynb)                 |
 | **Mistral v0.3 (7B)**      | Conversational | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Mistral_v0.3_%287B%29-Conversational.ipynb)     |
+| **DeepSeek-R1-0528-Qwen3 (8B)**        | GRPO | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/DeepSeek_R1_0528_Qwen3_(8B)_GRPO.ipynb)        |
 | **Llama 3.2 (3B) by Meta** | Synthetic Data | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Meta_Synthetic_Data_Llama3_2_%283B%29.ipynb)    |
 | **Sesame-CSM (1B)**        | TTS            | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Sesame_CSM_%281B%29-TTS.ipynb)                  |
 
@@ -141,6 +142,7 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 
 | Model                 | Type | Notebook Link                                                                                                                                                                            |
 | --------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **DeepSeek-R1-0528-Qwen3 (8B)**        | GRPO | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/DeepSeek_R1_0528_Qwen3_(8B)_GRPO.ipynb)        |
 | **Phi-4 (14B)**       | GRPO | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Phi_4_%2814B%29-GRPO.ipynb)       |
 | **Llama 3.1 (8B)**    | GRPO | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_%288B%29-GRPO.ipynb)     |
 | **Gemma 3 (1B)**      | GRPO | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_%281B%29-GRPO.ipynb)       |
