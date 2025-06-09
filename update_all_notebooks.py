@@ -896,8 +896,8 @@ def update_readme(
             "Kaggle": {"header": f"### {section} Notebooks\n", "rows": []},
         }
 
-    colab_table_header = "| Model | Type | Colab Link |\n| --- | --- | --- |\n"
-    kaggle_table_header = "| Model | Type | Kaggle Link |\n| --- | --- | --- |\n"
+    colab_table_header = "| Model | Type | Notebook Link |\n| --- | --- | --- |\n"
+    kaggle_table_header = "| Model | Type | Notebook Link |\n| --- | --- | --- |\n"
 
     notebook_data = []
 
@@ -925,6 +925,8 @@ def update_readme(
         model_type = info['type'] if info and info['type'] else "" 
         architecture = info['architecture'] if info else None
         size = info['size'] 
+        size = size.replace(r"_", " ") if size else None 
+        size = f"**({size})**" if size else ""
 
         section_name = "Other notebooks" 
         if model_type == 'GRPO':
@@ -932,11 +934,14 @@ def update_readme(
         elif architecture and architecture in list_models:
              section_name = architecture
         link_base = base_url_kaggle if is_kaggle else base_url_colab
-        link_text = "Open in Kaggle" if is_kaggle else "Open in Colab"
+        if is_kaggle:
+            link_text = "[![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)]"
+        else:
+            link_text = "[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)]"
         link_url = f"{link_base}{path}"
         if is_kaggle and kaggle_accelerator:
              link_url += f"&accelerator={kaggle_accelerator}"
-        link = f"[{link_text}]({link_url})"
+        link = f"{link_text}({link_url})"
 
         notebook_data.append(
             {
@@ -966,7 +971,7 @@ def update_readme(
     notebook_data.sort(key=get_sort_key)
 
     for data in notebook_data:
-        row = f"| {data['model']} | {data['type']} | {data['link']} |\n"
+        row = f"| **{data['model']}** {data['size']} | {data['type']} | {data['link']} |\n"
         platform = "Kaggle" if "kaggle" in data['link'].lower() else "Colab"
         sections[data["section"]][platform]["rows"].append(row)
 
@@ -1007,11 +1012,7 @@ def update_readme(
             else "(https://github.com/unslothai/notebooks/#-kaggle-notebooks).\n\n"
         )
 
-        colab_updated_notebooks_links = (
-            "\nBelow are our notebooks for Google Colab categorized by model.\n"
-            "You can also view our [Kaggle notebooks here]"
-            f"{temp}"
-        )
+        colab_updated_notebooks_links = "\nBelow are our notebooks for Google Colab categorized by model. You can view our [Kaggle notebooks here](https://github.com/unslothai/notebooks/#-kaggle-notebooks).<br>Use our guided notebooks to prep data, train, evaluate, and save your model. View our main [GitHub repo here](https://github.com/unslothai/unsloth).)\n"
 
         kaggle_updated_notebooks_links = (
             "# 📒 Kaggle Notebooks\n"
