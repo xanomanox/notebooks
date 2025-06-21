@@ -206,6 +206,7 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 ### Mistral Notebooks
 | Model | Type | Kaggle Link |
 | --- | --- | --- |
+| Kaggle Magistral | Reasoning Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Magistral_(24B)-Reasoning-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Mistral v0.3 | Conversational | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Mistral_v0.3_(7B)-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Mistral v0.3 | Alpaca | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Mistral_v0.3_(7B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
 | Kaggle Mistral v0.3 | CPT | [Open in Kaggle](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Mistral_v0.3_(7B)-CPT.ipynb&accelerator=nvidiaTeslaT4) |
