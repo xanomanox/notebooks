@@ -224,15 +224,6 @@ installation_sesame_csm_content = installation_content + """\n!pip install trans
 installation_sesame_csm_kaggle_content = installation_kaggle_content + """\n!pip install transformers==4.52.3"""
 
 # =======================================================
-# Gemma Notebook
-# =======================================================
-installation_gemma_content = """%%capture
-!pip install unsloth
-"""
-installation_gemma_kaggle_content = installation_gemma_content
-
-
-# =======================================================
 # NEWS (WILL KEEP CHANGING THIS)
 # =======================================================
 
@@ -680,13 +671,6 @@ def update_notebook_sections(
                                 installation = installation_sesame_csm_kaggle_content
                             else:
                                 installation = installation_sesame_csm_content
-
-                        # GEMMA INSTALLATION
-                        if is_path_contains_any(notebook_path.lower(), ["gemma"]):
-                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
-                                installation = installation_gemma_kaggle_content
-                            else:
-                                installation = installation_gemma_content
 
                         notebook_content["cells"][i + 1]["source"] = installation
                         updated = True
