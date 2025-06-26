@@ -72,10 +72,14 @@ else:
     !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
 !pip install pip3-autoremove
 !pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
 !pip install unsloth
-# !pip install --upgrade transformers==4.52.3"""
+!pip install --upgrade transformers==4.52.4
+"""
 
 # =======================================================
 # GRPO Notebook
