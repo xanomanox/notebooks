@@ -316,6 +316,16 @@ ARCHITECTURE_MAPPING = {
     'meta synthetic data': 'Llama',
 }
 
+TYPE_MAPPING = {
+    "Gemma3N" : {
+        "Conversational" : "Multimodal"
+    },
+    "Meta Synthetic Data" : {
+        "Synthetic Data" : "GRPO",
+        "GRPO LoRA" : "GRPO"
+    },
+}
+
 KNOWN_TYPES_ORDERED = [
     'Tool Calling',          
     'Text Completion',       
@@ -413,8 +423,15 @@ def extract_model_info_refined(filename, architecture_mapping, known_types_order
             elif key.lower() in name_lower_for_mapping and architecture is None:
                architecture = architecture_mapping[key]
 
-    if type_ == "Synthetic Data" or type_ == "GRPO LoRA":
-        type_ = "GRPO"
+    for key in TYPE_MAPPING:
+        if key.lower() in name.lower():
+            type_ = TYPE_MAPPING[key].get(type_, type_)
+            break
+    for key in TYPE_MAPPING:
+        kaggle_key = f"Kaggle {key}"
+        if kaggle_key.lower() in name.lower():
+            type_ = TYPE_MAPPING.get(kaggle_key, {}).get(type_, type_)
+            break
 
     if "kaggle" in name.lower():
         # Remove "kaggle" from the name
@@ -932,7 +949,7 @@ def update_readme(
         size = size.replace(r"_", " ") if size else None 
         size = f"**({size})**" if size else ""
 
-        section_name = "Other notebooks" 
+        section_name = "Other" 
         if model_type == 'GRPO':
             section_name = 'GRPO'
         elif architecture and architecture in list_models:

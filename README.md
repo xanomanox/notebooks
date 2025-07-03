@@ -198,8 +198,8 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 | --- | --- | --- |
 | **CodeGemma** **(7B)** | Conversational | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-CodeGemma_(7B)-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
 | **Gemma3** **(4B)** |  | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3_(4B).ipynb&accelerator=nvidiaTeslaT4) |
-| **Gemma3N** **(4B)** | Multimodal | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3N_(4B)-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
 | **Gemma3** **(4B)** | Vision | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3_(4B)-Vision.ipynb&accelerator=nvidiaTeslaT4) |
+| **Gemma3N** **(4B)** | Multimodal | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3N_(4B)-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
 | **Gemma2** **(2B)** | Alpaca | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
 | **Gemma2** **(9B)** | Alpaca | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(9B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
 
@@ -271,7 +271,7 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 | --- | --- | --- |
 | **Whisper**  |  | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Whisper.ipynb&accelerator=nvidiaTeslaT4) |
 
-### Other notebooks Notebooks
+### Other Notebooks
 | Model | Type | Notebook Link |
 | --- | --- | --- |
 | **Magistral** **(24B)** | Reasoning Conversational | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Magistral_(24B)-Reasoning-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
