@@ -68,7 +68,7 @@ if "COLAB_" not in "".join(os.environ.keys()):
 else:
     # Do this only in Colab notebooks! Otherwise use pip install unsloth
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1" huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" huggingface_hub hf_transfer
     !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
@@ -105,7 +105,7 @@ else:
     import sys, re, requests; modules = list(sys.modules.keys())
     for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1" huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" huggingface_hub hf_transfer
     
     # vLLM requirements - vLLM breaks Colab due to reinstalling numpy
     f = requests.get("https://raw.githubusercontent.com/vllm-project/vllm/refs/heads/main/requirements/common.txt").content
@@ -202,7 +202,7 @@ if "COLAB_" not in "".join(os.environ.keys()):
 else:
     # Do this only in Colab notebooks! Otherwise use pip install unsloth
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl==0.15.2 triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1" huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" huggingface_hub hf_transfer
     !pip install --no-deps unsloth==2025.4.1
 
 !pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
@@ -823,8 +823,14 @@ def update_unsloth_config(filename):
     f = f.replace("TrainingArguments(\\n", "SFTConfig(\\n")
     f = replace("fp16=not is_bfloat16_supported(),", "", f)
     f = replace("bf16=is_bfloat16_supported(),", "", f)
+    f = replace("fp16 = not is_bfloat16_supported(),", "", f)
+    f = replace("bf16 = is_bfloat16_supported(),", "", f)
     f = replace("logging_steps=1,", "", f)
+    f = replace("logging_steps = 1,", "", f)
     f = replace("dataset_num_proc=2,", "", f)
+    f = replace("dataset_num_proc=4,", "", f)
+    f = replace("dataset_num_proc = 2,", "", f)
+    f = replace("dataset_num_proc = 4,", "", f)
 
     # Fix all spacings x=x to x = x
     spaces = r'(\"[ ]{4,}[^\<\n]{1,}[^ \=\'\"])\=([^ \=\'\"].*?\,\n)'
