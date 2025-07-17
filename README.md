@@ -169,12 +169,12 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 ### Other Notebooks
 | Model | Type | Notebook Link |
 | --- | --- | --- |
-| **Magistral** **(24B)** | Reasoning Conversational | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Magistral_(24B)-Reasoning-Conversational.ipynb) |
-| **Lfm2** **(1.2B)** | Alpaca | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Lfm2_(1.2B)-Alpaca.ipynb) |
-| **Sesame CSM** **(1B)** | TTS | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Sesame_CSM_(1B)-TTS.ipynb) |
-| **Falcon H1** **(0.5B)** | Alpaca | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Falcon_H1_(0.5B)-Alpaca.ipynb) |
-| **Unsloth**  | Studio | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Unsloth_Studio.ipynb) |
-| **CodeForces cot Finetune for Reasoning on CodeForces**  | Reasoning | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/feat/liquid_notebooks/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb) |
+| **Magistral** **(24B)** | Reasoning Conversational | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Magistral_(24B)-Reasoning-Conversational.ipynb) |
+| **Lfm2** **(1.2B)** | Alpaca | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Lfm2_(1.2B)-Alpaca.ipynb) |
+| **Sesame CSM** **(1B)** | TTS | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Sesame_CSM_(1B)-TTS.ipynb) |
+| **Falcon H1** **(0.5B)** | Alpaca | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Falcon_H1_(0.5B)-Alpaca.ipynb) |
+| **Unsloth**  | Studio | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Unsloth_Studio.ipynb) |
+| **CodeForces cot Finetune for Reasoning on CodeForces**  | Reasoning | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb) |
 
 # 📒 Kaggle Notebooks
 <details>
@@ -276,12 +276,12 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 ### Other Notebooks
 | Model | Type | Notebook Link |
 | --- | --- | --- |
-| **Magistral** **(24B)** | Reasoning Conversational | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Kaggle-Magistral_(24B)-Reasoning-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
-| **Lfm2** **(1.2B)** | Alpaca | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Kaggle-Lfm2_(1.2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
-| **Sesame CSM** **(1B)** | TTS | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Kaggle-Sesame_CSM_(1B)-TTS.ipynb&accelerator=nvidiaTeslaT4) |
-| **Falcon H1** **(0.5B)** | Alpaca | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Kaggle-Falcon_H1_(0.5B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
-| **CodeForces cot Finetune for Reasoning on CodeForces**  | Reasoning | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Kaggle-CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb&accelerator=nvidiaTeslaT4) |
-| **Unsloth**  | Studio | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/feat/liquid_notebooks/nb/Kaggle-Unsloth_Studio.ipynb&accelerator=nvidiaTeslaT4) |
+| **Magistral** **(24B)** | Reasoning Conversational | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Magistral_(24B)-Reasoning-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
+| **Lfm2** **(1.2B)** | Alpaca | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Lfm2_(1.2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
+| **Sesame CSM** **(1B)** | TTS | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Sesame_CSM_(1B)-TTS.ipynb&accelerator=nvidiaTeslaT4) |
+| **Falcon H1** **(0.5B)** | Alpaca | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Falcon_H1_(0.5B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
+| **CodeForces cot Finetune for Reasoning on CodeForces**  | Reasoning | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-CodeForces-cot-Finetune_for_Reasoning_on_CodeForces.ipynb&accelerator=nvidiaTeslaT4) |
+| **Unsloth**  | Studio | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Unsloth_Studio.ipynb&accelerator=nvidiaTeslaT4) |
 
 </details>
 
