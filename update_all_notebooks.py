@@ -310,6 +310,10 @@ ARCHITECTURE_MAPPING = {
     'spark': 'Spark',
     'orpheus': 'Orpheus',
 
+    # Linear Attention
+    'falcon' : 'Linear Attention',
+    'Lfm' : 'Linear Attention',
+
     # Other Models (Assign architecture or keep specific)
     # 'codeforces': 'CodeForces Model', # Example
     # 'unsloth': 'Unsloth Model',     # Example
