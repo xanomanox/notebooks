@@ -312,7 +312,7 @@ ARCHITECTURE_MAPPING = {
 
     # Linear Attention
     'falcon' : 'Linear Attention',
-    'Lfm' : 'Linear Attention',
+    'liquid' : 'Linear Attention',
 
     # Other Models (Assign architecture or keep specific)
     # 'codeforces': 'CodeForces Model', # Example
