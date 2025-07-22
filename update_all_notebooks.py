@@ -127,7 +127,7 @@ installation_grpo_kaggle_content = """%%capture
 installation_synthetic_data_content = """%%capture
 import os
 if "COLAB_" not in "".join(os.environ.keys()):
-    !pip install unsloth vllm
+    !pip install unsloth vllm==0.8.5.post1
     !pip install synthetic-data-kit==0.0.3
 else:
     # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
@@ -138,7 +138,7 @@ else:
 installation_grpo_synthetic_data_content = """%%capture
 !pip install pip3-autoremove
 !pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
-!pip install unsloth vllm
+!pip install unsloth vllm==0.8.5.post1
 # !pip install --upgrade transformers==4.52.3
 !pip install synthetic-data-kit==0.0.3"""
 
