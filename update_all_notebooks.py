@@ -228,6 +228,18 @@ installation_sesame_csm_content = installation_content + """\n!pip install trans
 installation_sesame_csm_kaggle_content = installation_kaggle_content + """\n!pip install transformers==4.52.3"""
 
 # =======================================================
+# SGLang Notebook
+# =======================================================
+installation_sglang_content = """%%capture
+import sys
+import os
+!git clone https://github.com/sgl-project/sglang.git && cd sglang && pip install -e "python[all]"
+!pip install -U transformers==4.53.0
+sys.path.append(f'{os.getcwd()}/sglang/')
+sys.path.append(f'{os.getcwd()}/sglang/python')"""
+installation_sglang_kaggle_content = installation_sglang_content
+
+# =======================================================
 # NEWS (WILL KEEP CHANGING THIS)
 # =======================================================
 
@@ -701,6 +713,13 @@ def update_notebook_sections(
                                 installation = installation_sesame_csm_kaggle_content
                             else:
                                 installation = installation_sesame_csm_content
+
+                        # SGLANG INSTALLATION
+                        if is_path_contains_any(notebook_path.lower(), ["sglang"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_sglang_kaggle_content
+                            else:
+                                installation = installation_sglang_content
 
                         notebook_content["cells"][i + 1]["source"] = installation
                         updated = True
