@@ -359,6 +359,7 @@ KNOWN_TYPES_ORDERED = [
     'Coder',                
     'Inference',            
     'Ollama',               
+    'Audio',
     
     'ORPO',
     'GRPO',

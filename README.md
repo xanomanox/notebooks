@@ -96,7 +96,7 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 | **Gemma3N** **(2B)** | Inference | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3N_(2B)-Inference.ipynb) |
 | **Gemma3N** **(4B)** | Multimodal | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3N_(4B)-Conversational.ipynb) |
 | **Gemma3** **(4B)** | Vision | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_(4B)-Vision.ipynb) |
-| **Gemma3N** **(4B)** |  | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3N_(4B)-Audio.ipynb) |
+| **Gemma3N** **(4B)** | Audio | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3N_(4B)-Audio.ipynb) |
 | **Gemma2** **(2B)** | Alpaca | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(2B)-Alpaca.ipynb) |
 | **Gemma2** **(9B)** | Alpaca | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma2_(9B)-Alpaca.ipynb) |
 
@@ -209,7 +209,7 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 | **Gemma3** **(4B)** | Vision | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3_(4B)-Vision.ipynb&accelerator=nvidiaTeslaT4) |
 | **Gemma3** **(4B)** |  | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3_(4B).ipynb&accelerator=nvidiaTeslaT4) |
 | **Gemma3N** **(4B)** | Multimodal | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3N_(4B)-Conversational.ipynb&accelerator=nvidiaTeslaT4) |
-| **Gemma3N** **(4B)** |  | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3N_(4B)-Audio.ipynb&accelerator=nvidiaTeslaT4) |
+| **Gemma3N** **(4B)** | Audio | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma3N_(4B)-Audio.ipynb&accelerator=nvidiaTeslaT4) |
 | **Gemma2** **(9B)** | Alpaca | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(9B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
 | **Gemma2** **(2B)** | Alpaca | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Gemma2_(2B)-Alpaca.ipynb&accelerator=nvidiaTeslaT4) |
 
