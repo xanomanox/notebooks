@@ -68,7 +68,7 @@ if "COLAB_" not in "".join(os.environ.keys()):
 else:
     # Do this only in Colab notebooks! Otherwise use pip install unsloth
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" "huggingface_hub>=0.34.0" hf_transfer
     !pip install --no-deps unsloth"""
 
 installation_kaggle_content = """%%capture
@@ -78,7 +78,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 !pip install pip3-autoremove
 !pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
 !pip install unsloth
-!pip install --upgrade transformers==4.53.2
+!pip install --upgrade transformers==4.53.2 "huggingface_hub>=0.34.0" "datasets>=3.4.1,<4.0.0"
 """
 
 # =======================================================
@@ -105,7 +105,7 @@ else:
     import sys, re, requests; modules = list(sys.modules.keys())
     for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" "huggingface_hub>=0.34.0" hf_transfer
     
     # vLLM requirements - vLLM breaks Colab due to reinstalling numpy
     f = requests.get("https://raw.githubusercontent.com/vllm-project/vllm/refs/heads/main/requirements/common.txt").content
@@ -118,6 +118,7 @@ installation_grpo_kaggle_content = """%%capture
 !pip install pip3-autoremove
 !pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
 !pip install unsloth vllm
+!pip install "huggingface_hub>=0.34.0" "datasets>=3.4.1,<4.0.0"
 # !pip install --upgrade transformers==4.52.3"""
 
 # =======================================================
@@ -202,7 +203,7 @@ if "COLAB_" not in "".join(os.environ.keys()):
 else:
     # Do this only in Colab notebooks! Otherwise use pip install unsloth
     !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl==0.15.2 triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" huggingface_hub hf_transfer
+    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" "huggingface_hub>=0.34.0" hf_transfer
     !pip install --no-deps unsloth==2025.4.1
 
 !pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
