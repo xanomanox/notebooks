@@ -323,6 +323,9 @@ ARCHITECTURE_MAPPING = {
     'spark': 'Spark',
     'orpheus': 'Orpheus',
 
+    # gpt oss
+    'gpt oss': 'GPT-OSS',
+
     # Linear Attention
     'falcon' : 'Linear Attention',
     'liquid' : 'Linear Attention',
