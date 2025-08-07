@@ -986,14 +986,17 @@ def update_readme(
         elif architecture and architecture in list_models:
              section_name = architecture
         link_base = base_url_kaggle if is_kaggle else base_url_colab
-        if is_kaggle:
-            link_text = "[![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)]"
-        else:
-            link_text = "[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)]"
         link_url = f"{link_base}{path}"
-        if is_kaggle and kaggle_accelerator:
-             link_url += f"&accelerator={kaggle_accelerator}"
-        link = f"{link_text}({link_url})"
+
+        if is_kaggle:
+            image_src = "https://kaggle.com/static/images/open-in-kaggle.svg"
+            image_alt = "Open in Kaggle"
+            if kaggle_accelerator:
+                link_url += f"&accelerator={kaggle_accelerator}"
+        else:
+            image_src = "https://colab.research.google.com/assets/colab-badge.svg"
+            image_alt = "Open In Colab"
+        link = f'<a href="{link_url}" target="_blank" rel="noopener noreferrer"><img src="{image_src}" alt="{image_alt}"></a>'
 
         notebook_data.append(
             {
