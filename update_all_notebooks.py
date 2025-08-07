@@ -168,6 +168,23 @@ installation_spark_kaggle_content = installation_kaggle_content + """\n!git clon
 !pip install omegaconf einx"""
 
 # =======================================================
+# GPT OSS Notebook
+# =======================================================
+installation_gpt_oss_content = r"""%%capture
+!pip install --upgrade -qqq uv
+try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
+except: install_numpy = "numpy"
+!uv pip install -qqq \
+    "torch>=2.8.0" "triton>=3.4.0" {install_numpy} \
+    "unsloth_zoo[base] @ git+https://github.com/unslothai/unsloth-zoo" \
+    "unsloth[base] @ git+https://github.com/unslothai/unsloth" \
+    torchvision bitsandbytes \
+    git+https://github.com/huggingface/transformers \
+    git+https://github.com/triton-lang/triton.git@main#subdirectory=python/triton_kernels"""
+
+installation_gpt_oss_kaggle_content = installation_gpt_oss_content
+
+# =======================================================
 # Oute Notebook
 # =======================================================
 
@@ -725,6 +742,13 @@ def update_notebook_sections(
                                 installation = installation_sglang_kaggle_content
                             else:
                                 installation = installation_sglang_content
+                                
+                        # GPT OSS INSTALLATION
+                        if is_path_contains_any(notebook_path.lower(), ["gpt_oss"]):
+                            if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
+                                installation = installation_gpt_oss_kaggle_content
+                            else:
+                                installation = installation_gpt_oss_content
 
                         notebook_content["cells"][i + 1]["source"] = installation
                         updated = True
