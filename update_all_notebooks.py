@@ -170,17 +170,24 @@ installation_spark_kaggle_content = installation_kaggle_content + """\n!git clon
 # =======================================================
 # GPT OSS Notebook
 # =======================================================
-installation_gpt_oss_content = r"""%%capture
-!pip install --upgrade -qqq uv
-try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
-except: install_numpy = "numpy"
-!uv pip install -qqq \
-    "torch>=2.8.0" "triton>=3.4.0" {install_numpy} \
-    "unsloth_zoo[base] @ git+https://github.com/unslothai/unsloth-zoo" \
-    "unsloth[base] @ git+https://github.com/unslothai/unsloth" \
-    torchvision bitsandbytes \
-    git+https://github.com/huggingface/transformers \
-    git+https://github.com/triton-lang/triton.git@main#subdirectory=python/triton_kernels"""
+installation_gpt_oss_content = r"""try:
+    import triton_kernels
+except:
+    !pip install --upgrade -qqq uv
+    try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
+    except: install_numpy = "numpy"
+    !uv pip install -qqq \
+        "torch>=2.8.0" "triton>=3.4.0" {install_numpy} \
+        "unsloth_zoo[base] @ git+https://github.com/unslothai/unsloth-zoo" \
+        "unsloth[base] @ git+https://github.com/unslothai/unsloth" \
+        torchvision bitsandbytes \
+        git+https://github.com/huggingface/transformers \
+        git+https://github.com/triton-lang/triton.git@main#subdirectory=python/triton_kernels
+
+!uv pip install --force-reinstall --no-deps git+https://github.com/unslothai/unsloth-zoo.git@nightly
+!uv pip install --force-reinstall --no-deps git+https://github.com/unslothai/unsloth.git@nightly
+!uv pip install git+https://github.com/triton-lang/triton.git@main#subdirectory=python/triton_kernels
+"""
 
 installation_gpt_oss_kaggle_content = installation_gpt_oss_content
 

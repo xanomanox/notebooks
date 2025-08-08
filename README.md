@@ -91,6 +91,7 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 ### GPT-OSS Notebooks
 | Model | Type | Notebook Link |
 | --- | --- | --- |
+| **gpt oss** **(20B)** |  | <a href="https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/gpt-oss-(20B)-Fine-tuning.ipynb" target="_blank" rel="noopener noreferrer"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a> |
 | **GPT OSS BNB** **(20B)** | Inference | <a href="https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/GPT_OSS_BNB_(20B)-Inference.ipynb" target="_blank" rel="noopener noreferrer"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a> |
 | **GPT OSS MXFP4** **(20B)** | Inference | <a href="https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/GPT_OSS_MXFP4_(20B)-Inference.ipynb" target="_blank" rel="noopener noreferrer"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a> |
 
@@ -212,6 +213,7 @@ Below are our notebooks for Google Colab categorized by model. You can view our 
 | Model | Type | Notebook Link |
 | --- | --- | --- |
 | **GPT OSS BNB** **(20B)** | Inference | <a href="https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-GPT_OSS_BNB_(20B)-Inference.ipynb&accelerator=nvidiaTeslaT4" target="_blank" rel="noopener noreferrer"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open in Kaggle"></a> |
+| **gpt oss** **(20B)** |  | <a href="https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-gpt-oss-(20B)-Fine-tuning.ipynb&accelerator=nvidiaTeslaT4" target="_blank" rel="noopener noreferrer"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open in Kaggle"></a> |
 | **GPT OSS MXFP4** **(20B)** | Inference | <a href="https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-GPT_OSS_MXFP4_(20B)-Inference.ipynb&accelerator=nvidiaTeslaT4" target="_blank" rel="noopener noreferrer"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open in Kaggle"></a> |
 
 ### Gemma Notebooks
