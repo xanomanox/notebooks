@@ -263,7 +263,9 @@ installation_sglang_kaggle_content = installation_sglang_content
 # NEWS (WILL KEEP CHANGING THIS)
 # =======================================================
 
-new_announcement = """Unsloth now supports Text-to-Speech (TTS) models. Read our [guide here](https://docs.unsloth.ai/basics/text-to-speech-tts-fine-tuning).
+new_announcement = """**NEW** Unsloth now supports training the new **gpt-oss** model from OpenAI! You can start finetune gpt-oss for free with our **[Colab notebook](https://x.com/UnslothAI/status/1953896997867729075)**!
+
+Unsloth now supports Text-to-Speech (TTS) models. Read our [guide here](https://docs.unsloth.ai/basics/text-to-speech-tts-fine-tuning).
 
 Read our **[Gemma 3N Guide](https://docs.unsloth.ai/basics/gemma-3n-how-to-run-and-fine-tune)** and check out our new **[Dynamic 2.0](https://docs.unsloth.ai/basics/unsloth-dynamic-2.0-ggufs)** quants which outperforms other quantization methods!
 
@@ -393,6 +395,10 @@ KNOWN_TYPES_ORDERED = [
     'VL',                   
     'RAFT'
 ]
+
+FIRST_MAPPING_NAME = {
+    "gpt-oss-(20B)-Fine-tuning" : "GPT_OSS_(20B)-Fine-tuning",
+}
 
 def extract_model_info_refined(filename, architecture_mapping, known_types_ordered):
     if not filename.endswith(".ipynb"):
