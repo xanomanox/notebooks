@@ -181,8 +181,7 @@ except: install_numpy = "numpy"
     "unsloth[base] @ git+https://github.com/unslothai/unsloth" \
     torchvision bitsandbytes \
     git+https://github.com/huggingface/transformers \
-    git+https://github.com/triton-lang/triton.git@main#subdirectory=python/triton_kernels
-"""
+    git+https://github.com/triton-lang/triton.git@05b2c186c1b6c9a08375389d5efe9cb4c401c075#subdirectory=python/triton_kernels"""
 
 installation_gpt_oss_kaggle_content = installation_gpt_oss_content
 
