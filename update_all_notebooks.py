@@ -90,37 +90,40 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 installation_grpo_content = """%%capture
 import os
 if "COLAB_" not in "".join(os.environ.keys()):
+    # If you're not in Colab, just use pip install or uv pip install
     !pip install unsloth vllm
 else:
-    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
-    !pip install --no-deps unsloth vllm==0.8.5.post1"""
+    pass # For Colab / Kaggle, we need extra instructions hidden below \\/"""
 
 installation_extra_grpo_content = r"""#@title Colab Extra Install { display-mode: "form" }
 %%capture
 import os
+!pip install --upgrade -qqq uv
 if "COLAB_" not in "".join(os.environ.keys()):
+    # If you're not in Colab, just use pip install!
     !pip install unsloth vllm
 else:
-    !pip install --no-deps unsloth vllm==0.8.5.post1
-    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
-    # Skip restarting message in Colab
-    import sys, re, requests; modules = list(sys.modules.keys())
-    for x in modules: sys.modules.pop(x) if "PIL" in x or "google" in x else None
-    !pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" "huggingface_hub>=0.34.0" hf_transfer
-    
-    # vLLM requirements - vLLM breaks Colab due to reinstalling numpy
-    f = requests.get("https://raw.githubusercontent.com/vllm-project/vllm/refs/heads/main/requirements/common.txt").content
-    with open("vllm_requirements.txt", "wb") as file:
-        file.write(re.sub(rb"(transformers|numpy|xformers)[^\n]{1,}\n", b"", f))
-    !pip install -r vllm_requirements.txt"""
+    try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
+    except: install_numpy = "numpy"
+    try: import subprocess; is_t4 = "Tesla T4" in str(subprocess.check_output(["nvidia-smi"]))
+    except: is_tesla_t4 = False
+    get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", "triton")
+    !uv pip install -qqq --upgrade \
+        unsloth {install_vllm} {install_numpy} torchvision bitsandbytes xformers transformers
+    !uv pip install -qqq {install_triton}"""
 
 
 installation_grpo_kaggle_content = """%%capture
-!pip install pip3-autoremove
-!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
-!pip install unsloth vllm
-!pip install "huggingface_hub>=0.34.0" "datasets>=3.4.1,<4.0.0"""
+!pip install --upgrade -qqq uv
+try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
+except: install_numpy = "numpy"
+try: import subprocess; is_t4 = "Tesla T4" in str(subprocess.check_output(["nvidia-smi"]))
+except: is_tesla_t4 = False
+get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", "triton")
+!uv pip install -qqq --upgrade \
+    unsloth {install_vllm} {install_numpy} torchvision bitsandbytes xformers transformers
+!uv pip install -qqq {install_triton}
+!uv pip install "huggingface_hub>=0.34.0" "datasets>=3.4.1,<4.0."""
 
 # =======================================================
 # Meta Synthetic Data Kit Notebook
@@ -128,20 +131,33 @@ installation_grpo_kaggle_content = """%%capture
 
 installation_synthetic_data_content = """%%capture
 import os
+!pip install --upgrade -qqq uv
 if "COLAB_" not in "".join(os.environ.keys()):
-    !pip install unsloth vllm==0.8.5.post1
-    !pip install synthetic-data-kit==0.0.3
+    # If you're not in Colab, just use pip install!
+    !pip install unsloth vllm synthetic-data-kit==0.0.3
 else:
-    # [NOTE] Do the below ONLY in Colab! Use [[pip install unsloth vllm]]
-    !pip install --no-deps unsloth vllm==0.8.5.post1
-    !pip install synthetic-data-kit==0.0.3
-"""
+    try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
+    except: install_numpy = "numpy"
+    try: import subprocess; is_t4 = "Tesla T4" in str(subprocess.check_output(["nvidia-smi"]))
+    except: is_tesla_t4 = False
+    get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", "triton")
+    !uv pip install -qqq --upgrade \
+        unsloth {install_vllm} {install_numpy} torchvision bitsandbytes xformers transformers
+    !uv pip install -qqq {install_triton}
+    !uv pip install synthetic-data-kit==0.0.3"""
 
 installation_grpo_synthetic_data_content = """%%capture
-!pip install pip3-autoremove
-!pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu124
-!pip install unsloth vllm==0.8.5.post1
-!pip install synthetic-data-kit==0.0.3"""
+!pip install --upgrade -qqq uv
+try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
+except: install_numpy = "numpy"
+try: import subprocess; is_t4 = "Tesla T4" in str(subprocess.check_output(["nvidia-smi"]))
+except: is_tesla_t4 = False
+get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", "triton")
+!uv pip install -qqq --upgrade \
+    unsloth {install_vllm} {install_numpy} torchvision bitsandbytes xformers transformers
+!uv pip install -qqq {install_triton}
+!uv pip install "huggingface_hub>=0.34.0" "datasets>=3.4.1,<4.0.0
+!uv pip install synthetic-data-kit==0.0.3"""
 
 # =======================================================
 # Orpheus Notebook
@@ -173,13 +189,12 @@ installation_spark_kaggle_content = installation_kaggle_content + """\n!git clon
 installation_gpt_oss_content = r"""%%capture
 # We're installing the latest Torch, Triton, OpenAI's Triton kernels, Transformers and Unsloth!
 !pip install --upgrade -qqq uv
-try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
-except: install_numpy = "numpy"
+try: import numpy; get_numpy = f"numpy=={numpy.__version__}"
+except: get_numpy = "numpy"
 !uv pip install -qqq \
-    "torch>=2.8.0" "triton>=3.4.0" {install_numpy} \
+    "torch>=2.8.0" "triton>=3.4.0" {get_numpy} torchvision bitsandbytes \
     "unsloth_zoo[base] @ git+https://github.com/unslothai/unsloth-zoo" \
     "unsloth[base] @ git+https://github.com/unslothai/unsloth" \
-    torchvision bitsandbytes \
     git+https://github.com/huggingface/transformers \
     git+https://github.com/triton-lang/triton.git@05b2c186c1b6c9a08375389d5efe9cb4c401c075#subdirectory=python/triton_kernels"""
 
