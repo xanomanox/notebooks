@@ -103,26 +103,26 @@ if "COLAB_" not in "".join(os.environ.keys()):
     # If you're not in Colab, just use pip install!
     !pip install unsloth vllm
 else:
-    try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
-    except: install_numpy = "numpy"
+    try: import numpy; get_numpy = f"numpy=={numpy.__version__}"
+    except: get_numpy = "numpy"
     try: import subprocess; is_t4 = "Tesla T4" in str(subprocess.check_output(["nvidia-smi"]))
     except: is_tesla_t4 = False
     get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", "triton")
     !uv pip install -qqq --upgrade \
-        unsloth {install_vllm} {install_numpy} torchvision bitsandbytes xformers transformers
-    !uv pip install -qqq {install_triton}"""
+        unsloth {get_vllm} {get_numpy} torchvision bitsandbytes xformers transformers
+    !uv pip install -qqq {get_triton}"""
 
 
 installation_grpo_kaggle_content = """%%capture
 !pip install --upgrade -qqq uv
-try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
-except: install_numpy = "numpy"
+try: import numpy; get_numpy = f"numpy=={numpy.__version__}"
+except: get_numpy = "numpy"
 try: import subprocess; is_t4 = "Tesla T4" in str(subprocess.check_output(["nvidia-smi"]))
 except: is_tesla_t4 = False
 get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", "triton")
 !uv pip install -qqq --upgrade \
-    unsloth {install_vllm} {install_numpy} torchvision bitsandbytes xformers transformers
-!uv pip install -qqq {install_triton}
+    unsloth {get_vllm} {get_numpy} torchvision bitsandbytes xformers transformers
+!uv pip install -qqq {get_triton}
 !uv pip install "huggingface_hub>=0.34.0" "datasets>=3.4.1,<4.0."""
 
 # =======================================================
@@ -136,26 +136,26 @@ if "COLAB_" not in "".join(os.environ.keys()):
     # If you're not in Colab, just use pip install!
     !pip install unsloth vllm synthetic-data-kit==0.0.3
 else:
-    try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
-    except: install_numpy = "numpy"
+    try: import numpy; get_numpy = f"numpy=={numpy.__version__}"
+    except: get_numpy = "numpy"
     try: import subprocess; is_t4 = "Tesla T4" in str(subprocess.check_output(["nvidia-smi"]))
     except: is_tesla_t4 = False
     get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", "triton")
     !uv pip install -qqq --upgrade \
-        unsloth {install_vllm} {install_numpy} torchvision bitsandbytes xformers transformers
-    !uv pip install -qqq {install_triton}
+        unsloth {get_vllm} {get_numpy} torchvision bitsandbytes xformers transformers
+    !uv pip install -qqq {get_triton}
     !uv pip install synthetic-data-kit==0.0.3"""
 
 installation_grpo_synthetic_data_content = """%%capture
 !pip install --upgrade -qqq uv
-try: import numpy; install_numpy = f"numpy=={numpy.__version__}"
-except: install_numpy = "numpy"
+try: import numpy; get_numpy = f"numpy=={numpy.__version__}"
+except: get_numpy = "numpy"
 try: import subprocess; is_t4 = "Tesla T4" in str(subprocess.check_output(["nvidia-smi"]))
 except: is_tesla_t4 = False
 get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", "triton")
 !uv pip install -qqq --upgrade \
-    unsloth {install_vllm} {install_numpy} torchvision bitsandbytes xformers transformers
-!uv pip install -qqq {install_triton}
+    unsloth {get_vllm} {get_numpy} torchvision bitsandbytes xformers transformers
+!uv pip install -qqq {get_triton}
 !uv pip install "huggingface_hub>=0.34.0" "datasets>=3.4.1,<4.0.0
 !uv pip install synthetic-data-kit==0.0.3"""
 
