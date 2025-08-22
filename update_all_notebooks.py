@@ -192,10 +192,9 @@ installation_gpt_oss_content = r"""%%capture
 try: import numpy; get_numpy = f"numpy=={numpy.__version__}"
 except: get_numpy = "numpy"
 !uv pip install -qqq \
-    "torch>=2.8.0" "triton>=3.4.0" {get_numpy} torchvision bitsandbytes \
+    "torch>=2.8.0" "triton>=3.4.0" {get_numpy} torchvision bitsandbytes "transformers>=4.55.3" \
     "unsloth_zoo[base] @ git+https://github.com/unslothai/unsloth-zoo" \
     "unsloth[base] @ git+https://github.com/unslothai/unsloth" \
-    git+https://github.com/huggingface/transformers \
     git+https://github.com/triton-lang/triton.git@05b2c186c1b6c9a08375389d5efe9cb4c401c075#subdirectory=python/triton_kernels"""
 
 installation_gpt_oss_kaggle_content = installation_gpt_oss_content
