@@ -68,7 +68,7 @@ if "COLAB_" not in "".join(os.environ.keys()):
 else:
     # Do this only in Colab notebooks! Otherwise use pip install unsloth
     import torch; v = re.match(r"[0-9\\.]{3,}", str(torch.__version__)).group(0)
-    xformers = "xformers==" + "0.0.32.post2" if v == "2.8.0" else "0.0.29.post3"
+    xformers = "xformers==" + ("0.0.32.post2" if v == "2.8.0" else "0.0.29.post3")
     !pip install --no-deps bitsandbytes accelerate {xformers} peft trl triton cut_cross_entropy unsloth_zoo
     !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" "huggingface_hub>=0.34.0" hf_transfer
     !pip install --no-deps unsloth"""
@@ -226,19 +226,11 @@ os.remove("/content/OuteTTS/outetts/__init__.py")
 # Llasa Notebook
 # =======================================================
 
-installation_llasa_content = """%%capture
+# Llasa Need Unsloth==2025.4.1, Transformers==4.48 to running stable, and trl ==0.15.2
+installation_llasa_content = re.sub(r'\bunsloth\b(==[\d\.]*)?', 'unsloth==2025.4.1', installation_content)
+installation_llasa_content = re.sub(r'\btrl\b(==[\d\.]*)?', 'trl==0.15.2', installation_llasa_content)
 
-# Note Llasa needs unsloth==2025.4.1 and transformers==4.48 to be stable!
-import os, re
-if "COLAB_" not in "".join(os.environ.keys()):
-    !pip install unsloth==2025.4.1
-else:
-    # Do this only in Colab notebooks! Otherwise use pip install unsloth
-    import torch; v = re.match(r"[0-9\\.]{3,}", str(torch.__version__)).group(0)
-    xformers = "xformers==" + "0.0.32.post2" if v == "2.8.0" else "0.0.29.post3"
-    !pip install --no-deps bitsandbytes accelerate {xformers} peft trl==0.15.2 triton cut_cross_entropy unsloth_zoo
-    !pip install sentencepiece protobuf "datasets>=3.4.1,<4.0.0" "huggingface_hub>=0.34.0" hf_transfer
-    !pip install --no-deps unsloth==2025.4.1
+installation_llasa_content += """\
 
 !pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
 !pip install transformers==4.48 omegaconf
