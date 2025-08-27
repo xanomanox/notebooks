@@ -70,6 +70,7 @@ general_announcement_content_meta = general_announcement_content_meta[0] + "\n\n
 
 # CONSTANT
 PIN_TRANSFORMERS = "!pip install transformers==4.55.4"
+UV_PIN_TRANSFORMERS = PIN_TRANSFORMERS.replace("pip", "uv pip")
 SPACES = " " * 4
 
 # =======================================================
@@ -142,7 +143,7 @@ else:
 installation_extra_grpo_content = update_or_append_pip_install(
     installation_extra_grpo_content,
     "transformers",
-    PIN_TRANSFORMERS,
+    UV_PIN_TRANSFORMERS,
 )
 
 
@@ -160,7 +161,7 @@ get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", 
 installation_grpo_kaggle_content = update_or_append_pip_install(
     installation_grpo_kaggle_content,
     "transformers",
-    PIN_TRANSFORMERS,
+    UV_PIN_TRANSFORMERS,
 )
 
 # =======================================================
@@ -186,7 +187,7 @@ else:
 installation_synthetic_data_content = update_or_append_pip_install(
     installation_synthetic_data_content,
     "transformers",
-    PIN_TRANSFORMERS,
+    UV_PIN_TRANSFORMERS,
 )
 
 installation_grpo_synthetic_data_content = """%%capture
@@ -204,7 +205,7 @@ get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", 
 installation_grpo_synthetic_data_content = update_or_append_pip_install(
     installation_grpo_synthetic_data_content,
     "transformers",
-    PIN_TRANSFORMERS,
+    UV_PIN_TRANSFORMERS,
 )
 
 # =======================================================
