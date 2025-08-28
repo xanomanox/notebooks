@@ -248,7 +248,7 @@ except: get_numpy = "numpy"
 installation_gpt_oss_content = update_or_append_pip_install(
     installation_gpt_oss_content,
     "transformers",
-    PIN_TRANSFORMERS,
+    UV_PIN_TRANSFORMERS,
 )
 
 installation_gpt_oss_kaggle_content = installation_gpt_oss_content
