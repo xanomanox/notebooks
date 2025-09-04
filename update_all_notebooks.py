@@ -117,6 +117,7 @@ installation_kaggle_content = update_or_append_pip_install(
 
 installation_grpo_content = """%%capture
 import os
+os.environ["UNSLOTH_VLLM_STANDBY"] = "1"
 if "COLAB_" not in "".join(os.environ.keys()):
     # If you're not in Colab, just use pip install or uv pip install
     !pip install unsloth vllm
@@ -148,6 +149,8 @@ installation_extra_grpo_content = update_or_append_pip_install(
 
 
 installation_grpo_kaggle_content = """%%capture
+import os
+os.environ["UNSLOTH_VLLM_STANDBY"] = "1"
 !pip install --upgrade -qqq uv
 try: import numpy; get_numpy = f"numpy=={numpy.__version__}"
 except: get_numpy = "numpy"
