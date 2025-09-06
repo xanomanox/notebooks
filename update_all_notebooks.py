@@ -52,6 +52,8 @@ To install Unsloth on your own computer, follow the installation instructions on
 
 You will learn how to do [data prep](#Data), how to [train](#Train), how to [run the model](#Inference), & [how to save it](#Save)"""
 
+general_announcement_content_a100 = general_announcement_content.replace("on a **free** Tesla T4 Google Colab instance!", "on your A100 Google Colab Pro instance!")
+
 announcement_separation = '<div class="align-center">'
 
 general_announcement_content_hf_course = general_announcement_content.split(announcement_separation)
@@ -381,7 +383,18 @@ installation_sglang_kaggle_content = installation_sglang_content
 # NEWS (WILL KEEP CHANGING THIS)
 # =======================================================
 
-new_announcement = """**NEW** Unsloth now supports training the new **gpt-oss** model from OpenAI! You can start finetune gpt-oss for free with our **[Colab notebook](https://x.com/UnslothAI/status/1953896997867729075)**!
+new_announcement = """
+🎉 **News!** Google Colab now has A100 80GB GPUs available. Train massive models faster than ever! We've prepared several notebooks to get you started right away:
+
+* **[gpt-oss 120B](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/gpt-oss-(120B)_A100-Fine-tuning.ipynb)**
+
+* **[Llama 3.3 70B](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.3_(70B)_A100-Conversational.ipynb)**
+
+* **[Gemma 3 27B](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Gemma3_(27B)_A100-Conversational.ipynb)**
+
+* **[Qwen 3 32B](https://www.kaggle.com/notebooks/welcome?src=https://github.com/unslothai/notebooks/blob/main/nb/Kaggle-Qwen3_(32B)_A100-Reasoning-Conversational.ipynb&accelerator=nvidiaTeslaT4)**
+
+**NEW** Unsloth now supports training the new **gpt-oss** model from OpenAI! You can start finetune gpt-oss for free with our **[Colab notebook](https://x.com/UnslothAI/status/1953896997867729075)**!
 
 Unsloth now supports Text-to-Speech (TTS) models. Read our [guide here](https://docs.unsloth.ai/basics/text-to-speech-tts-fine-tuning).
 
@@ -522,6 +535,12 @@ def extract_model_info_refined(filename, architecture_mapping, known_types_order
     if not filename.endswith(".ipynb"):
         return {'name': filename, 'size': None, 'type': None, 'architecture': None}
     stem = filename[:-len(".ipynb")]
+
+    requires_a100 = False
+    if 'A100' in stem:
+        requires_a100 = True
+        stem = stem.replace('_A100', '')
+
     original_stem_parts = stem.replace('+', '_').split('_') 
     type_ = None
     stem_searchable = stem.lower().replace('_', ' ').replace('+', ' ')
@@ -604,7 +623,8 @@ def extract_model_info_refined(filename, architecture_mapping, known_types_order
     return {'name': name,
             'size': size,
             'type': type_,
-            'architecture': architecture}
+            'architecture': architecture,
+            'requires_a100': requires_a100}
 
 extracted_info_refined = {}
 original_template_path = os.path.abspath("original_template")
@@ -717,6 +737,8 @@ def update_notebook_sections(
             general_announcement = general_announcement_content_hf_course.format(full_model_name=full_model_name)
         elif "Meta" in notebook_path:
             general_announcement = general_announcement_content_meta
+        elif "A100" in notebook_path:
+            general_announcement = general_announcement_content_a100
 
         # Update the general announcement section
         if first_markdown_index != -1:
@@ -1140,7 +1162,7 @@ def update_readme(
             )
         except Exception as e:
             print(f"Error processing {notebook_name}: {e}")
-            info = {'name': notebook_name.replace('.ipynb',''), 'size': None, 'type': 'Error', 'architecture': None} # Fallback
+            info = {'name': notebook_name.replace('.ipynb',''), 'size': None, 'type': 'Error', 'architecture': None, 'requires_a100': False} # Fallback
 
         model_name = info['name'] if info and info['name'] else notebook_name.replace('.ipynb','') 
         model_type = info['type'] if info and info['type'] else "" 
@@ -1148,6 +1170,8 @@ def update_readme(
         size = info['size'] 
         size = size.replace(r"_", " ") if size else None 
         size = f"**({size})**" if size else ""
+
+        requires_a100 = info.get('requires_a100', False)
 
         section_name = "Other" 
         if model_type == 'GRPO':
@@ -1176,6 +1200,7 @@ def update_readme(
                 "path": path, 
                 "architecture" : architecture, 
                 "size" : size, 
+                "requires_a100": requires_a100,
             }
         )
 
@@ -1195,7 +1220,8 @@ def update_readme(
     notebook_data.sort(key=get_sort_key)
 
     for data in notebook_data:
-        row = f"| **{data['model']}** {data['size']} | {data['type']} | {data['link']} |\n"
+        model_prefix = "(A100) " if data.get('requires_a100', False) else ""
+        row = f"| **{model_prefix}{data['model']}** {data['size']} | {data['type']} | {data['link']} |\n"
         platform = "Kaggle" if "kaggle" in data['link'].lower() else "Colab"
         sections[data["section"]][platform]["rows"].append(row)
 
