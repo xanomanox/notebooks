@@ -73,6 +73,9 @@ general_announcement_content_meta = general_announcement_content_meta[0] + "\n\n
 # CONSTANT
 PIN_TRANSFORMERS = "!pip install transformers==4.55.4"
 UV_PIN_TRANSFORMERS = PIN_TRANSFORMERS.replace("pip", "uv pip")
+
+PIN_TRL = "!pip install trl==0.22.2"
+UV_PIN_TRL = PIN_TRL.replace("pip", "uv pip")
 SPACES = " " * 4
 
 # =======================================================
@@ -96,6 +99,11 @@ installation_content = update_or_append_pip_install(
     "transformers",
     PIN_TRANSFORMERS,
 )
+installation_content = update_or_append_pip_install(
+    installation_content,
+    "trl",
+    PIN_TRL,
+)
 
 installation_kaggle_content = """%%capture
 import os
@@ -111,6 +119,11 @@ installation_kaggle_content = update_or_append_pip_install(
     installation_kaggle_content,
     "transformers",
     PIN_TRANSFORMERS,
+)
+installation_kaggle_content = update_or_append_pip_install(
+    installation_kaggle_content,
+    "trl",
+    PIN_TRL,
 )
 
 # =======================================================
@@ -148,6 +161,11 @@ installation_extra_grpo_content = update_or_append_pip_install(
     "transformers",
     UV_PIN_TRANSFORMERS,
 )
+installation_extra_grpo_content = update_or_append_pip_install(
+    installation_extra_grpo_content,
+    "trl",
+    UV_PIN_TRL,
+)
 
 
 installation_grpo_kaggle_content = """%%capture
@@ -163,10 +181,17 @@ get_vllm, get_triton = ("vllm==0.10.1", "triton==3.2.0") if is_t4 else ("vllm", 
     unsloth {get_vllm} {get_numpy} torchvision bitsandbytes xformers
 !uv pip install -qqq {get_triton}
 !uv pip install "huggingface_hub>=0.34.0" "datasets>=3.4.1,<4.0."""
+
 installation_grpo_kaggle_content = update_or_append_pip_install(
     installation_grpo_kaggle_content,
     "transformers",
     UV_PIN_TRANSFORMERS,
+)
+
+installation_grpo_kaggle_content = update_or_append_pip_install(
+    installation_grpo_kaggle_content,
+    "trl",
+    UV_PIN_TRL,
 )
 
 # =======================================================
@@ -189,10 +214,17 @@ else:
         unsloth {get_vllm} {get_numpy} torchvision bitsandbytes xformers
     !uv pip install -qqq {get_triton}
     !uv pip install synthetic-data-kit==0.0.3"""
+
 installation_synthetic_data_content = update_or_append_pip_install(
     installation_synthetic_data_content,
     "transformers",
     UV_PIN_TRANSFORMERS,
+)
+
+installation_synthetic_data_content = update_or_append_pip_install(
+    installation_synthetic_data_content,
+    "trl",
+    UV_PIN_TRL,
 )
 
 installation_grpo_synthetic_data_content = """%%capture
@@ -211,6 +243,11 @@ installation_grpo_synthetic_data_content = update_or_append_pip_install(
     installation_grpo_synthetic_data_content,
     "transformers",
     UV_PIN_TRANSFORMERS,
+)
+installation_grpo_synthetic_data_content = update_or_append_pip_install(
+    installation_grpo_synthetic_data_content,
+    "trl",
+    UV_PIN_TRL,
 )
 
 # =======================================================
@@ -254,6 +291,11 @@ installation_gpt_oss_content = update_or_append_pip_install(
     installation_gpt_oss_content,
     "transformers",
     UV_PIN_TRANSFORMERS,
+)
+installation_gpt_oss_content = update_or_append_pip_install(
+    installation_gpt_oss_content,
+    "trl",
+    UV_PIN_TRL,
 )
 
 installation_gpt_oss_kaggle_content = installation_gpt_oss_content
@@ -309,6 +351,11 @@ installation_llasa_kaggle_content = update_or_append_pip_install(
     "transformers",
     "!pip install transformers==4.48",
 )
+installation_llasa_kaggle_content = update_or_append_pip_install(
+    installation_llasa_kaggle_content,
+    "trl",
+    PIN_TRL,
+)
 
 # =======================================================
 # Tool Calling Notebook
@@ -328,12 +375,22 @@ installation_sesame_csm_content = update_or_append_pip_install(
     "transformers",
     "!pip install transformers==4.52.3",
 )
+installation_sesame_csm_content = update_or_append_pip_install(
+    installation_sesame_csm_content,
+    "trl",
+    PIN_TRL
+)
 
 installation_sesame_csm_kaggle_content = installation_kaggle_content
 installation_sesame_csm_kaggle_content = update_or_append_pip_install(
     installation_sesame_csm_kaggle_content,
     "transformers",
     "!pip install transformers==4.52.3",
+)
+installation_sesame_csm_kaggle_content = update_or_append_pip_install(
+    installation_sesame_csm_kaggle_content,
+    "trl",
+    PIN_TRL
 )
 
 # =======================================================
@@ -345,12 +402,23 @@ installation_llama_vision_content = update_or_append_pip_install(
     "transformers",
     "!pip install transformers==4.53.2",
 )
+installation_llama_vision_content = update_or_append_pip_install(
+    installation_llama_vision_content,
+    "trl",
+    PIN_TRL
+)
+
 
 installation_llama_vision_kaggle_content = installation_kaggle_content
 installation_llama_vision_kaggle_content = update_or_append_pip_install(
     installation_llama_vision_kaggle_content,
     "transformers",
     "!pip install transformers==4.53.2",
+)
+installation_llama_vision_kaggle_content = update_or_append_pip_install(
+    installation_llama_vision_kaggle_content,
+    "trl",
+    PIN_TRL
 )
 
 # =======================================================
