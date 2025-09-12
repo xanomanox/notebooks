@@ -1497,19 +1497,22 @@ def missing_files(nb: str | os.PathLike, original_template: str | os.PathLike) -
 
 
 def remove_unwanted_section(script_content):
+    start_marker = "# ### Installation"
     end_marker = "# ### Unsloth"
 
-    start_index = 0
+    start_index = script_content.find(start_marker)
     end_index = script_content.find(end_marker)
 
-    # If both markers are found and are in the correct order
     if start_index != -1 and end_index != -1 and start_index < end_index:
-        # Reconstruct the script content without the unwanted section
         before_section = script_content[:start_index]
+        section_to_comment = script_content[start_index:end_index]
         after_section = script_content[end_index:]
-        return before_section + after_section
+
+        lines = section_to_comment.split('\n')
+        commented_lines = [f"# {line}" for line in lines]
+        commented_section = '\n'.join(commented_lines)
+        return before_section + commented_section + after_section
     else:
-        # If markers are not found, return the original content
         return script_content
 
 def convert_notebook_to_script(notebook_path: str, output_path: str):
@@ -1534,7 +1537,7 @@ def convert_folder(input_folder: str, output_folder: str):
         os.makedirs(output_folder)
 
     for filename in os.listdir(input_folder):
-        if filename.endswith('.ipynb') and not filename.startswith('Kaggle'):
+        if filename.endswith('.ipynb'):
             notebook_path = os.path.join(input_folder, filename)
             script_filename = filename.replace('.ipynb', '.py')
             output_path = os.path.join(output_folder, script_filename)
