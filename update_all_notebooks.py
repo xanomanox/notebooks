@@ -6,6 +6,8 @@ import shutil
 import subprocess
 from datetime import datetime
 from glob import glob
+from nbconvert import PythonExporter
+import nbformat
 
 DONT_UPDATE_EXCEPTIONS = [
     'Falcon_H1-Alpaca.ipynb',
@@ -406,7 +408,7 @@ installation_llama_vision_content = installation_content
 installation_llama_vision_content = update_or_append_pip_install(
     installation_llama_vision_content,
     "transformers",
-    "!pip install transformers==4.53.2",
+    PIN_TRANSFORMERS,
 )
 installation_llama_vision_content = update_or_append_pip_install(
     installation_llama_vision_content,
@@ -419,7 +421,7 @@ installation_llama_vision_kaggle_content = installation_kaggle_content
 installation_llama_vision_kaggle_content = update_or_append_pip_install(
     installation_llama_vision_kaggle_content,
     "transformers",
-    "!pip install transformers==4.53.2",
+    PIN_TRANSFORMERS,
 )
 installation_llama_vision_kaggle_content = update_or_append_pip_install(
     installation_llama_vision_kaggle_content,
@@ -1494,6 +1496,54 @@ def missing_files(nb: str | os.PathLike, original_template: str | os.PathLike) -
     return sorted(list(only_in_nb))
 
 
+def remove_unwanted_section(script_content):
+    start_marker = "# ### Installation"
+    end_marker = "# ### Unsloth"
+
+    start_index = script_content.find(start_marker)
+    end_index = script_content.find(end_marker)
+
+    if start_index != -1 and end_index != -1 and start_index < end_index:
+        before_section = script_content[:start_index]
+        section_to_comment = script_content[start_index:end_index]
+        after_section = script_content[end_index:]
+
+        lines = section_to_comment.split('\n')
+        commented_lines = [f"# {line}" for line in lines]
+        commented_section = '\n'.join(commented_lines)
+        return before_section + commented_section + after_section
+    else:
+        return script_content
+
+def convert_notebook_to_script(notebook_path: str, output_path: str):
+    exporter = PythonExporter()
+    with open(notebook_path, 'r', encoding='utf-8') as f:
+        notebook_content = nbformat.read(f, as_version=4)
+
+    (body, resources) = exporter.from_notebook_node(notebook_content)
+
+    body = remove_unwanted_section(body)
+
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(body)
+
+    print(f"Converted {notebook_path} to {output_path}")
+
+def convert_folder(input_folder: str, output_folder: str):
+    if os.path.exists(output_folder):
+        shutil.rmtree(output_folder)
+
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    for filename in os.listdir(input_folder):
+        if filename.endswith('.ipynb'):
+            notebook_path = os.path.join(input_folder, filename)
+            script_filename = filename.replace('.ipynb', '.py')
+            output_path = os.path.join(output_folder, script_filename)
+            convert_notebook_to_script(notebook_path, output_path)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -1510,6 +1560,11 @@ if __name__ == "__main__":
         "--reverse",
         action="store_true",
         help="If true, instead of checking from original_template to nb, it will check nb to original_template instead"
+    )
+    parser.add_argument(
+        "--disable_convert_to_script",
+        action="store_true",
+        help="If true, it will not convert the notebooks to scripts",
     )
     args = parser.parse_args()
 
@@ -1559,3 +1614,6 @@ if __name__ == "__main__":
         KNOWN_TYPES_ORDERED,
         type_order
     )
+
+    if not args.disable_convert_to_script:
+        convert_folder("nb", "python_scripts")
