@@ -13,6 +13,7 @@ DONT_UPDATE_EXCEPTIONS = [
     'Falcon_H1-Alpaca.ipynb',
     'Liquid_LFM2-Conversational.ipynb',
     'Advanced_Llama3_1_(3B)_GRPO_LoRA.ipynb', # Daniel's?
+    'Qwen2_5_7B_VL_GRPO.ipynb'
 ]
 
 def get_current_git_branch():
