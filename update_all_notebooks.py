@@ -570,6 +570,7 @@ KNOWN_TYPES_ORDERED = [
     'Text Completion',       
     'Synthetic Data',        
     'Reasoning Conversational',
+    'Vision GRPO',
     'GRPO LoRA',             
     
     'Conversational',
