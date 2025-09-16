@@ -124,7 +124,6 @@ def formatting_prompts_func(examples):
     convos = examples["conversations"]
     texts = [tokenizer.apply_chat_template(convo, tokenize = False, add_generation_prompt = False) for convo in convos]
     return { "text" : texts, }
-pass
 
 from datasets import load_dataset
 dataset = load_dataset("philschmid/guanaco-sharegpt-style", split = "train")

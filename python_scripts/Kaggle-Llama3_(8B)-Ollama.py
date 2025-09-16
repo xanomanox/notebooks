@@ -364,7 +364,6 @@ if False:
         load_in_4bit = load_in_4bit,
     )
     FastLanguageModel.for_inference(model) # Enable native 2x faster inference
-pass
 
 messages = [                    # Change below!
     {"role": "user", "content": "Describe anything special about a sequence. Your input is 1, 1, 2, 3, 5, 8,"},

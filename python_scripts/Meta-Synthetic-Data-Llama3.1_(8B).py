@@ -397,7 +397,6 @@ def formatting_prompts_func(examples):
     convos = examples["messages"]
     texts = [tokenizer.apply_chat_template(convo, tokenize = False, add_generation_prompt = False) for convo in convos]
     return { "text" : texts, }
-pass
 
 from datasets import load_dataset, Dataset
 dataset = Dataset.from_json("/content/data/final/ai_meta_com_qa_pairs_cleaned_ft.json")

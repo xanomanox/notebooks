@@ -270,7 +270,6 @@ def formatting_prompts_func(conversations):
         text = alpaca_prompt.format(convo[0]["value"], convo[1]["value"]) + EOS_TOKEN
         texts.append(text)
     return { "text" : texts, }
-pass
 
 alpaca_dataset = alpaca_dataset.map(formatting_prompts_func, batched = True,)
 

@@ -125,7 +125,6 @@ def formatting_prompts_func(examples):
         text = alpaca_prompt.format(instruction, input, output) + EOS_TOKEN
         texts.append(text)
     return { "text" : texts, }
-pass
 
 from datasets import load_dataset
 dataset = load_dataset("yahma/alpaca-cleaned", split = "train")

@@ -117,7 +117,6 @@ def formatting_prompts_func(examples):
         for convo in convos
     ]
     return { "text" : texts, }
-pass
 
 from datasets import load_dataset
 dataset = load_dataset("mlabonne/FineTome-100k", split = "train")

@@ -133,7 +133,6 @@ def format_prompt(sample):
     sample["chosen"]   = accepted + EOS_TOKEN
     sample["rejected"] = rejected + EOS_TOKEN
     return sample
-pass
 
 from datasets import load_dataset
 dataset = load_dataset("reciperesearch/dolphin-sft-v0.1-preference")["train"]
