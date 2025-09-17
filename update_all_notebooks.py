@@ -115,7 +115,6 @@ installation_content = update_or_append_pip_install(
 
 installation_kaggle_content = """%%capture
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 !pip install pip3-autoremove
 !pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu128
