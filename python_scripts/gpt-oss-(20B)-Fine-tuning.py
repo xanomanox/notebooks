@@ -359,6 +359,25 @@ from transformers import TextStreamer
 _ = model.generate(**inputs, max_new_tokens = 64, streamer = TextStreamer(tokenizer))
 
 
+# ### Saving to float16 for VLLM or mxfp4
+# 
+# We also support saving to `float16` or `mxfp4` directly. Select `merged_16bit` for float16. Use `push_to_hub_merged` to upload to your Hugging Face account! You can go to https://huggingface.co/settings/tokens for your personal tokens.
+
+# In[ ]:
+
+
+# Merge and push to hub in mxfp4 4bit format
+if False:
+  model.save_pretrained_merged("finetuned_model", tokenizer, save_method="mxfp4")
+if False: model.push_to_hub_merged("repo_id/repo_name", tokenizer, token="hf...", save_method="mxfp4")
+
+# Merge and push to hub in 16bit
+if False:
+  model.save_pretrained_merged("finetuned_model", tokenizer, save_method="merged_16bit")
+if False: # Pushing to HF Hub
+    model.push_to_hub_merged("hf/gpt-oss-finetune", tokenizer, save_method = "merged_16bit", token = "")
+
+
 # And we're done! If you have any questions on Unsloth, we have a [Discord](https://discord.gg/unsloth) channel! If you find any bugs or want to keep updated with the latest LLM stuff, or need help, join projects etc, feel free to join our Discord!
 # 
 # Some other links:

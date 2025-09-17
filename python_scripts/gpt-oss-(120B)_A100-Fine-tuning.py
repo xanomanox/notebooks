@@ -328,26 +328,24 @@ from transformers import TextStreamer
 _ = model.generate(**inputs, max_new_tokens = 64, streamer = TextStreamer(tokenizer))
 
 
-# ### Saving to float16 for VLLM
+# ### Saving to float16 for VLLM or mxfp4
 # 
-# We also support saving to `float16` directly. Select `merged_16bit` for float16 or `merged_4bit` for int4. We also allow `lora` adapters as a fallback. Use `push_to_hub_merged` to upload to your Hugging Face account! You can go to https://huggingface.co/settings/tokens for your personal tokens.
+# We also support saving to `float16` directly. Select `merged_16bit` for float16, `merged_4bit` for int4, and `mxfp4` for mxfp4. We also allow `lora` adapters as a fallback. Use `push_to_hub_merged` to upload to your Hugging Face account! You can go to https://huggingface.co/settings/tokens for your personal tokens.
 # 
-# **[NOTE]** Due to the disk limit in Colab, the 'save_pretrained_merged' function will not work. We will either need to free up some space or use the 'push_to_hub_merged' function.
+# **[NOTE]** Due to the disk limit in Colab, we have to save it using `mxfp4` format (4-bit) or we can use 'push_to_hub_merged' function instead.
 
-# In[17]:
+# In[ ]:
 
 
-# Merge to 16bit
+# Merge to mxfp 4bit
 if False:
-    model.save_pretrained_merged("gpt-oss-finetune", tokenizer, save_method = "merged_16bit",)
+    model.save_pretrained_merged("gpt-oss-finetune", tokenizer, save_method = "mxfp4",)
+if False: # Pushing to HF Hub
+    model.push_to_hub_merged("hf/gpt-oss-finetune", tokenizer, save_method = "mxfp4", token = "")
+
+# Merge and push to hub in 16bit
 if False: # Pushing to HF Hub
     model.push_to_hub_merged("hf/gpt-oss-finetune", tokenizer, save_method = "merged_16bit", token = "")
-
-# Merge to 4bit
-if False:
-    model.save_pretrained_merged("gpt-oss-finetune", tokenizer, save_method = "forced_merged_4bit",)
-if False: # Pushing to HF Hub
-    model.push_to_hub_merged("hf/gpt-oss-finetune", tokenizer, save_method = "forced_merged_4bit", token = "")
 
 # Just LoRA adapters
 if False:
