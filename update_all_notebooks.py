@@ -13,7 +13,6 @@ DONT_UPDATE_EXCEPTIONS = [
     'Falcon_H1-Alpaca.ipynb',
     'Liquid_LFM2-Conversational.ipynb',
     'Advanced_Llama3_1_(3B)_GRPO_LoRA.ipynb', # Daniel's?
-    'Qwen2_5_7B_VL_GRPO.ipynb'
 ]
 
 def get_current_git_branch():
@@ -597,6 +596,7 @@ KNOWN_TYPES_ORDERED = [
 
 FIRST_MAPPING_NAME = {
     "gpt-oss-(20B)-Fine-tuning" : "GPT_OSS_(20B)-Fine-tuning",
+    "Qwen2_5_7B_VL_GRPO" : "Qwen2.5_(7B)-VL-GRPO",
 }
 
 def extract_model_info_refined(filename, architecture_mapping, known_types_ordered):

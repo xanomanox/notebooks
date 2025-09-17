@@ -27,13 +27,13 @@
 
 # # ### Installation
 # 
-# # In[1]:
+# # In[ ]:
 # 
 # 
 # get_ipython().run_cell_magic('capture', '', 'import os\nos.environ["UNSLOTH_VLLM_STANDBY"] = "1" # [NEW] Extra 30% context lengths!\nif "COLAB_" not in "".join(os.environ.keys()):\n    # If you\'re not in Colab, just use pip install or uv pip install\n    !pip install unsloth vllm\nelse:\n    pass # For Colab / Kaggle, we need extra instructions hidden below \\/\n')
 # 
 # 
-# # In[2]:
+# # In[ ]:
 # 
 # 
 # #@title Colab Extra Install { display-mode: "form" }
@@ -82,7 +82,7 @@ model, tokenizer = FastVisionModel.from_pretrained(
 
 # In Unsloth, we share vLLM's weights directly, reducing VRAM usage by > 50%. vLLM also does not yet support LoRA on the vision layers, so we can only add them on the language layers. Vision GRPO still works though!
 
-# In[ ]:
+# In[4]:
 
 
 model = FastVisionModel.get_peft_model(
@@ -111,7 +111,7 @@ model = FastVisionModel.get_peft_model(
 # 
 # For this notebook, we will only use math problems with numeric answers for simpilicity.
 
-# In[4]:
+# In[5]:
 
 
 from datasets import load_dataset
@@ -122,7 +122,7 @@ dataset = load_dataset("AI4Math/MathVista", split = "testmini")
 
 # We filter the dataset to keep only float or numeric answers:
 
-# In[5]:
+# In[6]:
 
 
 def is_numeric_answer(example):
@@ -137,7 +137,7 @@ dataset = dataset.filter(is_numeric_answer)
 
 # We also resize the images to be 512 by 512 pixels to make the images managable in context length. We also convert them to RGB so they are compatible for training!
 
-# In[6]:
+# In[7]:
 
 
 # Resize to (512, 512)
@@ -160,7 +160,7 @@ dataset = dataset.map(convert_to_rgb)
 
 # We then create the conversational template that is needed to collate the dataset for RL:
 
-# In[7]:
+# In[8]:
 
 
 # Define the delimiter variables for clarity and easy modification
@@ -204,7 +204,7 @@ train_dataset = train_dataset.rename_column("decoded_image", "image")
 
 # Now let's apply the chat template across the entire dataset:
 
-# In[8]:
+# In[9]:
 
 
 train_dataset = train_dataset.map(
@@ -222,7 +222,7 @@ train_dataset = train_dataset.map(
 # 
 # We now define some basic formatting rewards functions to see if reasoning starts and ends, and also another to see if the answers were written correctly.
 
-# In[9]:
+# In[10]:
 
 
 # Reward functions
@@ -261,7 +261,7 @@ def correctness_reward_func(prompts, completions, answer, **kwargs) -> list[floa
 
 # Here is the first example prompt in the dataset
 
-# In[10]:
+# In[11]:
 
 
 train_dataset[0]["prompt"]
@@ -272,7 +272,7 @@ train_dataset[0]["prompt"]
 # Now let's try the model on the hundredth sample of the train dataset without training.
 # 
 
-# In[11]:
+# In[12]:
 
 
 from vllm import SamplingParams
@@ -297,7 +297,7 @@ print(outputs[0].outputs[0].text)
 # 
 # Now set up the `GRPO` Trainer and all configurations! Note we actually enable `GSPO` as well!
 
-# In[12]:
+# In[13]:
 
 
 from trl import GRPOConfig, GRPOTrainer
@@ -341,7 +341,7 @@ training_args = GRPOConfig(
 # | 3    | 0.000000      | -0.079000 | 0.163776   | 182.500000        | 0.000005 |
 # 
 
-# In[ ]:
+# In[14]:
 
 
 trainer = GRPOTrainer(
@@ -366,7 +366,7 @@ trainer.train()
 
 # And now with the LoRA we just trained with GRPO - we first save the LoRA first!
 
-# In[ ]:
+# In[15]:
 
 
 model.save_lora("grpo_lora")
@@ -374,7 +374,7 @@ model.save_lora("grpo_lora")
 
 # We try calling vLLM with our trained RL model:
 
-# In[ ]:
+# In[16]:
 
 
 from vllm import SamplingParams
@@ -396,7 +396,7 @@ print(outputs[0].outputs[0].text)
 
 # Verify LoRA is actually trained!
 
-# In[ ]:
+# In[17]:
 
 
 from safetensors import safe_open
@@ -415,7 +415,7 @@ with safe_open("grpo_lora/adapter_model.safetensors", framework = "pt") as f:
 # 
 # We also support saving to `float16` directly. Select `merged_16bit` for float16 or `merged_4bit` for int4. We also allow `lora` adapters as a fallback. Use `push_to_hub_merged` to upload to your Hugging Face account! You can go to https://huggingface.co/settings/tokens for your personal tokens.
 
-# In[ ]:
+# In[18]:
 
 
 # Merge to 16bit
@@ -445,7 +445,7 @@ if False:
 # 
 # [**NEW**] To finetune and auto export to Ollama, try our [Ollama notebook](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Ollama.ipynb)
 
-# In[ ]:
+# In[19]:
 
 
 # Save to 8bit Q8_0
