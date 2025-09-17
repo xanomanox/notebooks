@@ -227,7 +227,38 @@ trainer = SFTTrainer(
 )
 
 
-# In[11]:
+# We also use Unsloth's `train_on_completions` method to only train on the assistant outputs and ignore the loss on the user's inputs. This helps increase accuracy of finetunes and lower loss as well!
+
+# In[ ]:
+
+
+from unsloth.chat_templates import train_on_responses_only
+
+gpt_oss_kwargs = dict(instruction_part = "<|start|>user<|message|>", response_part="<|start|>assistant<|channel|>final<|message|>")
+
+trainer = train_on_responses_only(
+    trainer,
+    **gpt_oss_kwargs,
+)
+
+
+# Let's verify masking the instruction part is done! Let's print the 100th row again.
+
+# In[ ]:
+
+
+tokenizer.decode(trainer.train_dataset[100]["input_ids"])
+
+
+# Now let's print the masked out example - you should see only the answer is present:
+
+# In[ ]:
+
+
+tokenizer.decode([tokenizer.pad_token_id if x == -100 else x for x in trainer.train_dataset[100]["labels"]]).replace(tokenizer.pad_token, " ")
+
+
+# In[ ]:
 
 
 # @title Show current memory stats
@@ -237,6 +268,8 @@ max_memory = round(gpu_stats.total_memory / 1024 / 1024 / 1024, 3)
 print(f"GPU = {gpu_stats.name}. Max memory = {max_memory} GB.")
 print(f"{start_gpu_memory} GB of memory reserved.")
 
+
+# Let's train the model! To resume a training run, set `trainer.train(resume_from_checkpoint = True)`
 
 # In[12]:
 
