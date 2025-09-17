@@ -59,7 +59,7 @@ fourbit_models = [
 ] # More models at https://huggingface.co/unsloth
 
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "unsloth/Magistral-Small-2506-unsloth-bnb-4bit",
+    model_name = "unsloth/Magistral-Small-2509-unsloth-bnb-4bit",
     max_seq_length = 2048,   # Context length - can be longer, but uses more memory
     load_in_4bit = True,     # 4bit uses much less memory
     load_in_8bit = False,    # A bit more accurate, uses 2x memory
