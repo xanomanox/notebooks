@@ -43,7 +43,7 @@
 # 
 # <img src="https://raw.githubusercontent.com/lupantech/MathVista/main/assets/our_new_3_datasets.png" alt="Alt text" height="256">
 
-# In[3]:
+# In[ ]:
 
 
 from unsloth import FastVisionModel
@@ -62,7 +62,7 @@ model, tokenizer = FastVisionModel.from_pretrained(
 
 # In Unsloth, we share vLLM's weights directly, reducing VRAM usage by > 50%. vLLM also does not yet support LoRA on the vision layers, so we can only add them on the language layers. Vision GRPO still works though!
 
-# In[4]:
+# In[ ]:
 
 
 model = FastVisionModel.get_peft_model(
@@ -91,7 +91,7 @@ model = FastVisionModel.get_peft_model(
 # 
 # For this notebook, we will only use math problems with numeric answers for simpilicity.
 
-# In[5]:
+# In[ ]:
 
 
 from datasets import load_dataset
@@ -102,7 +102,7 @@ dataset = load_dataset("AI4Math/MathVista", split = "testmini")
 
 # We filter the dataset to keep only float or numeric answers:
 
-# In[6]:
+# In[ ]:
 
 
 def is_numeric_answer(example):
@@ -117,7 +117,7 @@ dataset = dataset.filter(is_numeric_answer)
 
 # We also resize the images to be 512 by 512 pixels to make the images managable in context length. We also convert them to RGB so they are compatible for training!
 
-# In[7]:
+# In[ ]:
 
 
 # Resize to (512, 512)
@@ -140,7 +140,7 @@ dataset = dataset.map(convert_to_rgb)
 
 # We then create the conversational template that is needed to collate the dataset for RL:
 
-# In[8]:
+# In[ ]:
 
 
 # Define the delimiter variables for clarity and easy modification
@@ -153,8 +153,9 @@ def make_conversation(example):
     # Define placeholder constants if they are not defined globally
     # The user's text prompt
     text_content = (
-        f"{example['question']}, provide your reasoning between {REASONING_START} and {REASONING_END} "
-        f"and then your final answer between {SOLUTION_START} and (put a float here) {SOLUTION_END}"
+        f"{example['question']}. Also first provide your reasoning or working out"\
+        f" on how you would go about solving the question between {REASONING_START} and {REASONING_END}"
+        f" and then your final answer between {SOLUTION_START} and (put a single float here) {SOLUTION_END}"
     )
 
     # Construct the prompt in the desired multi-modal format
@@ -184,7 +185,7 @@ train_dataset = train_dataset.rename_column("decoded_image", "image")
 
 # Now let's apply the chat template across the entire dataset:
 
-# In[9]:
+# In[ ]:
 
 
 train_dataset = train_dataset.map(
@@ -192,7 +193,7 @@ train_dataset = train_dataset.map(
         "prompt": tokenizer.apply_chat_template(
             example["prompt"],
             tokenize = False,
-            add_generation_prompt = False,
+            add_generation_prompt = True, # Must add assistant
         )
     }
 )
@@ -201,8 +202,10 @@ train_dataset = train_dataset.map(
 # ## Reward functions
 # 
 # We now define some basic formatting rewards functions to see if reasoning starts and ends, and also another to see if the answers were written correctly.
+# 
+# We also try to fix the `addCriterion` issue as described in our [blog post](https://docs.unsloth.ai/new/vision-reinforcement-learning-vlm-rl#qwen-2.5-vl-vision-rl-issues-and-quirks)
 
-# In[10]:
+# In[ ]:
 
 
 # Reward functions
@@ -222,6 +225,15 @@ def formatting_reward_func(completions,**kwargs):
             score += 1.0
         if len(answer_matches) == 1:
             score += 1.0
+
+        # Fix up addCriterion issues
+        # See https://docs.unsloth.ai/new/vision-reinforcement-learning-vlm-rl#qwen-2.5-vl-vision-rl-issues-and-quirks
+        # Penalize on excessive addCriterion and newlines
+        if len(completion) != 0:
+            removal = completion.replace("addCriterion", "").replace("\n", "")
+            if (len(completion)-len(removal))/len(completion) >= 0.5:
+                score -= 2.0
+
         scores.append(score)
     return scores
 
@@ -231,7 +243,6 @@ def correctness_reward_func(prompts, completions, answer, **kwargs) -> list[floa
 
     responses = [re.findall(answer_pattern, completion, re.DOTALL) for completion in completions]
     q = prompts[0]
-
     print('-'*20, f"Question:\n{q}", f"\nAnswer:\n{answer[0]}", f"\nResponse:{completions[0]}")
     return [
         2.0 if len(r)==1 and a == r[0].replace('\n','') else 0.0
@@ -241,7 +252,7 @@ def correctness_reward_func(prompts, completions, answer, **kwargs) -> list[floa
 
 # Here is the first example prompt in the dataset
 
-# In[11]:
+# In[ ]:
 
 
 train_dataset[0]["prompt"]
@@ -252,7 +263,7 @@ train_dataset[0]["prompt"]
 # Now let's try the model on the hundredth sample of the train dataset without training.
 # 
 
-# In[12]:
+# In[ ]:
 
 
 from vllm import SamplingParams
@@ -277,7 +288,7 @@ print(outputs[0].outputs[0].text)
 # 
 # Now set up the `GRPO` Trainer and all configurations! Note we actually enable `GSPO` as well!
 
-# In[13]:
+# In[ ]:
 
 
 from trl import GRPOConfig, GRPOTrainer
@@ -296,8 +307,8 @@ training_args = GRPOConfig(
     num_generations = 4, # Decrease if out of memory
     max_prompt_length = 1024,
     max_completion_length = 1024,
-    # num_train_epochs = 2, # Set to 1 for a full training run
-    max_steps = 60,
+    num_train_epochs = 0.5, # Set to 1 for a full training run
+    # max_steps = 60,
     save_steps = 60,
     max_grad_norm = 0.1,
     report_to = "none", # Can use Weights & Biases
@@ -320,6 +331,7 @@ training_args = GRPOConfig(
 # | 2    | 0.000000      | 0.072375  | 0.248112   | 200.000000        | 0.000000 |
 # | 3    | 0.000000      | -0.079000 | 0.163776   | 182.500000        | 0.000005 |
 # 
+# During inference, you might encounter `addCriterion` or some weird gibberish outputs. Please read our [blog post](https://docs.unsloth.ai/new/vision-reinforcement-learning-vlm-rl#qwen-2.5-vl-vision-rl-issues-and-quirks) on why this occurs. It seems to be an inherent thing inside of the model, and we can ignore this.
 
 # In[14]:
 
@@ -366,8 +378,8 @@ sampling_params = SamplingParams(
 
 outputs = model.fast_generate(
     {
-        "prompt": train_dataset[100]["prompt"],
-        "multi_modal_data": {"image": train_dataset[100]["image"]}
+        "prompt": train_dataset[165]["prompt"],
+        "multi_modal_data": {"image": train_dataset[165]["image"]}
     },
     sampling_params,
     lora_request = model.load_lora("grpo_lora"))
@@ -376,7 +388,7 @@ print(outputs[0].outputs[0].text)
 
 # Verify LoRA is actually trained!
 
-# In[17]:
+# In[ ]:
 
 
 from safetensors import safe_open
@@ -395,7 +407,7 @@ with safe_open("grpo_lora/adapter_model.safetensors", framework = "pt") as f:
 # 
 # We also support saving to `float16` directly. Select `merged_16bit` for float16 or `merged_4bit` for int4. We also allow `lora` adapters as a fallback. Use `push_to_hub_merged` to upload to your Hugging Face account! You can go to https://huggingface.co/settings/tokens for your personal tokens.
 
-# In[18]:
+# In[ ]:
 
 
 # Merge to 16bit
@@ -452,25 +464,8 @@ if False:
     )
 
 
-# Now, use the `model-unsloth.gguf` file or `model-unsloth-Q4_K_M.gguf` file in llama.cpp.
-# 
-# And we're done! If you have any questions on Unsloth, we have a [Discord](https://discord.gg/unsloth) channel! If you find any bugs or want to keep updated with the latest LLM stuff, or need help, join projects etc, feel free to join our Discord!
-# 
 # Special Credits to [GAD-Cell](https://github.com/GAD-cell) for helping Unsloth create this notebook and bringing VLM GRPO into Unsloth!
-# 
-# Some other links:
-# 1. Train your own reasoning model - Llama GRPO notebook [Free Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.1_(8B)-GRPO.ipynb)
-# 2. Saving finetunes to Ollama. [Free notebook](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Ollama.ipynb)
-# 3. Llama 3.2 Vision finetuning - Radiography use case. [Free Colab](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(11B)-Vision.ipynb)
-# 6. See notebooks for DPO, ORPO, Continued pretraining, conversational finetuning and more on our [documentation](https://docs.unsloth.ai/get-started/unsloth-notebooks)!
-# 
-# <div class="align-center">
-#   <a href="https://unsloth.ai"><img src="https://github.com/unslothai/unsloth/raw/main/images/unsloth%20new%20logo.png" width="115"></a>
-#   <a href="https://discord.gg/unsloth"><img src="https://github.com/unslothai/unsloth/raw/main/images/Discord.png" width="145"></a>
-#   <a href="https://docs.unsloth.ai/"><img src="https://github.com/unslothai/unsloth/blob/main/images/documentation%20green%20button.png?raw=true" width="125"></a>
-# 
-#   Join Discord if you need help + ⭐️ <i>Star us on <a href="https://github.com/unslothai/unsloth">Github</a> </i> ⭐️
-# </div>
+
 # Now, use the `model-unsloth.gguf` file or `model-unsloth-Q4_K_M.gguf` file in llama.cpp.
 # 
 # And we're done! If you have any questions on Unsloth, we have a [Discord](https://discord.gg/unsloth) channel! If you find any bugs or want to keep updated with the latest LLM stuff, or need help, join projects etc, feel free to join our Discord!
@@ -488,4 +483,3 @@ if False:
 # 
 #   Join Discord if you need help + ⭐️ <i>Star us on <a href="https://github.com/unslothai/unsloth">Github</a> </i> ⭐️
 # </div>
-# 
