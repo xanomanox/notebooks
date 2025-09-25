@@ -32,7 +32,7 @@
 # # In[ ]:
 # 
 # 
-# get_ipython().run_cell_magic('capture', '', '# We\'re installing the latest Torch, Triton, OpenAI\'s Triton kernels, Transformers and Unsloth!\n!pip install --upgrade -qqq uv\ntry: import numpy; get_numpy = f"numpy=={numpy.__version__}"\nexcept: get_numpy = "numpy"\n!uv pip install -qqq \\\n    "torch>=2.8.0" "triton>=3.4.0" {get_numpy} torchvision bitsandbytes "transformers>=4.55.3" \\\n    "unsloth_zoo[base] @ git+https://github.com/unslothai/unsloth-zoo" \\\n    "unsloth[base] @ git+https://github.com/unslothai/unsloth" \\\n    git+https://github.com/triton-lang/triton.git@05b2c186c1b6c9a08375389d5efe9cb4c401c075#subdirectory=python/triton_kernels\n!uv pip install transformers==4.55.4\n!uv pip install --no-deps trl==0.22.2\n')
+# get_ipython().run_cell_magic('capture', '', '# We\'re installing the latest Torch, Triton, OpenAI\'s Triton kernels, Transformers and Unsloth!\n!pip install --upgrade -qqq uv\ntry: import numpy; get_numpy = f"numpy=={numpy.__version__}"\nexcept: get_numpy = "numpy"\n!uv pip install -qqq \\\n    "torch>=2.8.0" "triton>=3.4.0" {get_numpy} torchvision bitsandbytes "transformers>=4.55.3" \\\n    "unsloth_zoo[base] @ git+https://github.com/unslothai/unsloth-zoo" \\\n    "unsloth[base] @ git+https://github.com/unslothai/unsloth" \\\n    git+https://github.com/triton-lang/triton.git@05b2c186c1b6c9a08375389d5efe9cb4c401c075#subdirectory=python/triton_kernels\n!uv pip install transformers==4.56.2\n!uv pip install --no-deps trl==0.22.2\n')
 # 
 # 
 # # ### Unsloth
@@ -368,12 +368,12 @@ _ = model.generate(**inputs, max_new_tokens = 64, streamer = TextStreamer(tokeni
 
 # Merge and push to hub in mxfp4 4bit format
 if False:
-  model.save_pretrained_merged("finetuned_model", tokenizer, save_method="mxfp4")
+    model.save_pretrained_merged("finetuned_model", tokenizer, save_method="mxfp4")
 if False: model.push_to_hub_merged("repo_id/repo_name", tokenizer, token="hf...", save_method="mxfp4")
 
 # Merge and push to hub in 16bit
 if False:
-  model.save_pretrained_merged("finetuned_model", tokenizer, save_method="merged_16bit")
+    model.save_pretrained_merged("finetuned_model", tokenizer, save_method="merged_16bit")
 if False: # Pushing to HF Hub
     model.push_to_hub_merged("hf/gpt-oss-finetune", tokenizer, save_method = "merged_16bit", token = "")
 

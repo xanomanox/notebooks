@@ -297,7 +297,7 @@ except: get_numpy = "numpy"
 installation_gpt_oss_content = update_or_append_pip_install(
     installation_gpt_oss_content,
     "transformers",
-    UV_PIN_TRANSFORMERS,
+    "!uv pip install transformers==4.56.2",
 )
 installation_gpt_oss_content = update_or_append_pip_install(
     installation_gpt_oss_content,
@@ -882,7 +882,7 @@ def update_notebook_sections(
                             installation = installation_steps
 
                         # GRPO INSTALLATION
-                        if is_path_contains_any(notebook_path.lower(), ["grpo"]):
+                        if is_path_contains_any(notebook_path.lower(), ["grpo"]) and not is_path_contains_any(notebook_path.lower(), ["gpt_oss", "gpt-oss"]):
                             if is_path_contains_any(notebook_path.lower(), ["kaggle"]):
                                 installation = installation_grpo_kaggle_content
                                 # Kaggle will delete the second cell instead -> Need to check
