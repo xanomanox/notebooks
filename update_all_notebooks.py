@@ -285,20 +285,23 @@ installation_spark_kaggle_content = installation_kaggle_content + """\n!git clon
 # GPT OSS Notebook
 # =======================================================
 installation_gpt_oss_content = r"""%%capture
-# We're installing the latest Torch, Triton, OpenAI's Triton kernels, Transformers and Unsloth!
 !pip install --upgrade -qqq uv
 try: import numpy; get_numpy = f"numpy=={numpy.__version__}"
 except: get_numpy = "numpy"
+!uv pip install -qqq --upgrade --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu128
 !uv pip install -qqq \
     "torch>=2.8.0" "triton>=3.4.0" {get_numpy} torchvision bitsandbytes "transformers>=4.55.3" \
     "unsloth_zoo[base] @ git+https://github.com/unslothai/unsloth-zoo" \
     "unsloth[base] @ git+https://github.com/unslothai/unsloth" \
-    git+https://github.com/triton-lang/triton.git@05b2c186c1b6c9a08375389d5efe9cb4c401c075#subdirectory=python/triton_kernels"""
-installation_gpt_oss_content = update_or_append_pip_install(
-    installation_gpt_oss_content,
-    "transformers",
-    "!uv pip install transformers==4.56.2",
-)
+    git+https://github.com/triton-lang/triton.git@05b2c186c1b6c9a08375389d5efe9cb4c401c075#subdirectory=python/triton_kernels
+!uv pip install --upgrade --no-deps transformers==4.56.2 tokenizers
+!uv pip install --no-deps trl==0.22.2"""
+
+# installation_gpt_oss_content = update_or_append_pip_install(
+#     installation_gpt_oss_content,
+#     "transformers",
+#     "!uv pip install transformers==4.56.2",
+# )
 installation_gpt_oss_content = update_or_append_pip_install(
     installation_gpt_oss_content,
     "trl",
