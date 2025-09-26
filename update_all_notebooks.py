@@ -351,7 +351,7 @@ installation_llasa_content += """\
 installation_llasa_content = update_or_append_pip_install(
     installation_llasa_content,
     "transformers",
-    "!pip install transformers==4.48",
+    "!pip install transformers==4.56.1",
 )
 
 installation_llasa_kaggle_content = installation_kaggle_content + """\n!pip install torchtune torchao vector_quantize_pytorch einx tiktoken xcodec2==0.1.5 --no-deps
