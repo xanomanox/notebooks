@@ -1,0 +1,7 @@
+# Ignore everything in nb/
+nb/*
+# But do not ignore .ipynb files directly inside nb/
+!nb/*.ipynb
+# Ignore everything in subfolders of nb/
+nb/*/
+
